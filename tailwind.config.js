@@ -7,6 +7,11 @@ export default {
         larken: ['larken', 'serif'],
         inconsolata: ['inconsolata', 'san-serif'],
       },
+      fontSize: {
+        s: '1.2rem',
+        l: '5rem',
+        xl: '18rem',
+      },
     },
   },
   plugins: [],

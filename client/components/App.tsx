@@ -1,21 +1,30 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 
 function App() {
   return (
-    <Router>
-      <div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/work" element={<Work />} />
+    <>
+      <nav className="mx-10 mt-2.5 flex justify-between border-black border-b-2">
+        <div>
+          <NavLink to="/">
+            <h1 className="text-s">Liam Simpson</h1>
+          </NavLink>
+        </div>
+        <div className="flex gap-x-5">
+          <NavLink to="/projects">Projects</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
+        </div>
+      </nav>
 
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </div>
-    </Router>
+      <main className="mx-10 my-2.5 border-black border-b-2">
+        <Outlet />
+      </main>
+
+      <footer className="mx-10 my-2.5">
+        <h2 className="text-s">Liam Simpson</h2>
+      </footer>
+    </>
   )
 }
-const Home = () => <h2 className="font-larken text-8xl">Home Page</h2>
-const Work = () => <h2 className="font-larken text-8xl">Work</h2>
-const Contact = () => <h2 className="font-larken text-8xl">Contact</h2>
 
 export default App
