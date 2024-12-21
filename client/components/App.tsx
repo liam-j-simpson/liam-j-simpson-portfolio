@@ -10,7 +10,7 @@ function App() {
           </NavLink>
         </div>
         <div className="flex gap-x-5">
-          <NavLink to="/projects">Projects</NavLink>
+          <NavLink to="/">Projects</NavLink>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </div>
