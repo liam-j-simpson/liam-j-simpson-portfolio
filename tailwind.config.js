@@ -1,18 +1,31 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./client/components/**/*.tsx', './index.html'],
+    darkMode: ['class'],
+    content: ['./client/components/**/*.tsx', './index.html'],
   theme: {
-    extend: {
-      fontFamily: {
-        larken: ['larken', 'serif'],
-        inconsolata: ['inconsolata', 'san-serif'],
-      },
-      fontSize: {
-        s: '1.2rem',
-        l: '5rem',
-        xl: '18rem',
-      },
-    },
+  	extend: {
+  		fontFamily: {
+  			larken: [
+  				'larken',
+  				'serif'
+  			],
+  			inconsolata: [
+  				'inconsolata',
+  				'san-serif'
+  			]
+  		},
+  		fontSize: {
+  			s: '1.2rem',
+  			l: '5rem',
+  			xl: '18rem'
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		colors: {}
+  	}
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 }

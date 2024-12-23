@@ -11,6 +11,9 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "allowImportingTsExtensions": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
   }
-}
+}}
