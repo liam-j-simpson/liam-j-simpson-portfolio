@@ -15,23 +15,27 @@ export function Admin() {
         </p>
 
         <Label htmlFor="projectName">Project Name</Label>
-        <Input id="projectName" placeholder="Project Name"></Input>
+        <Input id="projectName" placeholder="Enter project name"></Input>
 
         <Label htmlFor="shortDescription">Short Description</Label>
-        <Input id="shortDescription" placeholder="Short Description"></Input>
+        <Input
+          id="shortDescription"
+          placeholder="Enter short description"
+        ></Input>
 
         <Label htmlFor="longDescription">Long Description</Label>
-        <Input id="longDescription" placeholder="Long Description"></Input>
+        <Input
+          id="longDescription"
+          placeholder="Enter long description"
+        ></Input>
 
         <Label htmlFor="stack">Stack</Label>
-        <Input id="stack" placeholder="Stack"></Input>
+        <Input id="stack" placeholder="Press enter to add stack tag"></Input>
 
         <Label htmlFor="date">Date</Label>
         <Input id="date" placeholder="Date"></Input>
 
-        <Button type="submit" className="">
-          Submit
-        </Button>
+        <Button type="submit">Submit</Button>
       </form>
     </>
   )
