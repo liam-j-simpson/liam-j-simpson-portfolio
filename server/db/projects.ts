@@ -1,3 +1,4 @@
+import { Project } from 'models/projects'
 import db from './connection'
 
 export async function getAllProjects() {
@@ -11,12 +12,12 @@ export async function getProjectById(id: number) {
 }
 
 export async function addProject(project) {
-  const { name, date, shortDescription, longDescription, stack } = project
+  const { name, date, short_description, long_description, stack } = project
   await db('projects').insert({
     name,
     date,
-    shortDescription,
-    longDescription,
+    short_description,
+    long_description,
     stack,
   })
   return { success: true, message: `${name} has been successfully created.` }
