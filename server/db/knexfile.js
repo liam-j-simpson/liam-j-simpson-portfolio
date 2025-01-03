@@ -11,12 +11,6 @@ export default {
     connection: {
       filename: Path.join(__dirname, 'dev.sqlite3'),
     },
-    migrations: {
-      directory: Path.join(__dirname, 'server', 'db', 'migrations'),
-    },
-    seeds: {
-      directory: Path.join(__dirname, 'server', 'db', 'seeds'),
-    },
     pool: {
       afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
     },
@@ -29,10 +23,10 @@ export default {
       filename: ':memory:',
     },
     migrations: {
-      directory: Path.join(__dirname, 'migrations'),
+      directory: Path.join(__dirname, 'server', 'db', 'migrations'),
     },
     seeds: {
-      directory: Path.join(__dirname, 'seeds'),
+      directory: Path.join(__dirname, 'server', 'db', 'seeds'),
     },
     pool: {
       afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
