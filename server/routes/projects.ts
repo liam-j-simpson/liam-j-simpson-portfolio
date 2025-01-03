@@ -1,18 +1,33 @@
 import { Router } from 'express'
-import { getProjects } from 'server/db/projects'
+import { getAllProjects, getProjectById } from 'server/db/projects'
 
 const router = Router()
 
 router.get('/', async (req, res, next) => {
   try {
-    const projects = await getProjects()
+    const projects = await getAllProjects()
     res.json({ projects })
   } catch (error) {
     next(error)
   }
 })
 
-//router.get by id
+router.get('/:id', async (req, res, next) => {
+  try {
+    const id = Number(req.params.id)
+    const project = await getProjectById(id)
+    res.json({ project })
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/', async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error)
+  }
+})
 
 //router.post
 
