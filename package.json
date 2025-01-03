@@ -10,7 +10,9 @@
     "build": "vite build",
     "test": "vitest",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "format": "prettier -w '**/*.{js,jsx,ts,tsx}'"
+    "format": "prettier -w '**/*.{js,jsx,ts,tsx}'",
+    "server": "tsx server/index.ts",
+    "knex": "knex --knexfile ./server/db/knexfile.js"
   },
   "eslintConfig": {
     "extends": "@devacademy/eslint-config/react",
@@ -22,6 +24,7 @@
   "license": "ISC",
   "devDependencies": {
     "@devacademy/eslint-config": "^1.10.1",
+    "@types/express": "^5.0.0",
     "@types/node": "^18.19.68",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
@@ -40,6 +43,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.19.2",
     "typescript": "^5.3.3",
     "vite": "^5.0.0",
     "vitest": "^1.2.0"
@@ -54,6 +58,7 @@
     "@radix-ui/react-slot": "^1.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "express": "^4.21.2",
     "knex": "^3.1.0",
     "lucide-react": "^0.469.0",
     "sqlite3": "^5.1.7",
