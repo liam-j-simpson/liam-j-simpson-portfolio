@@ -1,5 +1,6 @@
 {
   "name": "boilerplate-react",
+  "homepage": "https://liamsimpson.co.nz",
   "type": "module",
   "version": "0.2.0",
   "description": "React!",
