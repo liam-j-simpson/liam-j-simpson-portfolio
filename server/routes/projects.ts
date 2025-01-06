@@ -1,9 +1,14 @@
 import { Router } from 'express'
-import { addProject, getAllProjects, getProjectById } from 'server/db/projects'
+import {
+  addProject,
+  deleteProject,
+  getAllProjects,
+  getProjectById,
+} from 'server/db/projects'
 
 const router = Router()
 
-router.get('/', async (req, res, next) => {
+router.get('/', async (_req, res, next) => {
   try {
     const projects = await getAllProjects()
     res.json({ projects })
@@ -23,19 +28,25 @@ router.get('/:id', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
+  const project = req.body
   try {
-    const project = req.body
     await addProject(project)
-    return res.status
+    res.sendStatus(201)
   } catch (error) {
     next(error)
   }
 })
 
-//router.post
+router.delete('/:id', async (req, res, next) => {
+  const id = Number(req.params.id)
+  try {
+    await deleteProject(id)
+    res.sendStatus(200)
+  } catch (error) {
+    next(error)
+  }
+})
 
 //router.put
-
-//router.del
 
 export default router
