@@ -11,18 +11,19 @@ export async function getProjectById(id: number) {
   return projects
 }
 
-export async function addProject(project) {
+export async function addProject(project: Project) {
   const { name, date, short_description, long_description, stack } = project
-  await db('projects').insert({
+  return await db('projects').insert({
     name,
     date,
     short_description,
     long_description,
     stack,
   })
-  return { success: true, message: `${name} has been successfully created.` }
+}
+
+export async function deleteProject(id: number) {
+  return await db('projects').where('id', id).del()
 }
 
 // put / update a project
-
-// delete a project
