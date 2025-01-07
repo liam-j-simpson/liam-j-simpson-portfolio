@@ -1,6 +1,6 @@
 import { Label } from '@radix-ui/react-label'
-import { Button } from '../shadcn/Button'
-import { Input } from '../shadcn/Input'
+import { Button } from '../../shadcn/Button'
+import { Input } from '../../shadcn/Input'
 export function Admin() {
   return (
     <>
@@ -8,6 +8,7 @@ export function Admin() {
       <div>
         <h2 className="text-s">Current Projects</h2>
       </div>
+      
       <form>
         <h2 className="text-s">Create New Project</h2>
         <p className="mb-2.5">
