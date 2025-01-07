@@ -26,4 +26,6 @@ export async function deleteProject(id: number) {
   return await db('projects').where('id', id).del()
 }
 
-// put / update a project
+export async function editProject(id: number, changes: Project) {
+  return await db('projects').where('id', id).update(changes)
+}
