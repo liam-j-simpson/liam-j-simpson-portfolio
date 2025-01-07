@@ -3,11 +3,11 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom'
-import { Projects } from './Projects'
-import { Contact } from './Contact'
-import App from './App'
-import { About } from './About'
-import { Admin } from './Admin'
+import { Projects } from './components/pages/Projects'
+import { Contact } from './components/pages/Contact'
+import App from './components/pages/App'
+import { About } from './components/pages/About'
+import { Admin } from './components/pages/Admin'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
