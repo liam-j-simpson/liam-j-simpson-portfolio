@@ -25,7 +25,7 @@ export async function getProjectById(id: number) {
 export async function addProject(project: Project) {
   try {
     const res = await request.post('/api/v1/projects/').send(project)
-    return res.body
+    return res.body.projects
   } catch (error) {
     console.error(error)
   }
