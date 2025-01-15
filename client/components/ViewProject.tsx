@@ -1,3 +1,7 @@
+// import { ProjectData } from 'models/projects'
+
+import { Project, ProjectArray, ProjectData } from "models/projects";
+
 export function ViewProject() {
   return (
     <>
@@ -24,16 +28,17 @@ export function ViewProject() {
           </tr>
         </thead>
         <tbody className="!text-left">
-          {/* MAP OVER PROJECT DATA */}
-          <tr>
-            <td className="break-words">PAKT</td>
-            <td className="break-words">SHORT DESCRIPTION</td>
-            <td className="break-words">LONG DESCRIPTION</td>
-            <td className="break-words">STACK</td>
-            <td className="break-words">21/12/2024</td>
-            {/* DELETE BUTTON COMPONENT*/}
-            {/* EDIT BUTTON COMPONENT*/}
-          </tr>
+          {/* {data.map((project) => (
+            <tr key={project.id}>
+              <td className="break-words">{project.name}</td>
+              <td className="break-words">{project.shortDescription}</td>
+              <td className="break-words">{project.longDescription}</td>
+              <td className="break-words">{project.stack}</td>
+              <td className="break-words">{project.date}</td>
+              DELETE BUTTON COMPONENT
+              EDIT BUTTON COMPONENT
+            </tr>
+          ))} */}
         </tbody>
       </table>
     </>

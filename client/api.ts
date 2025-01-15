@@ -1,8 +1,16 @@
 import { Project } from 'models/projects'
 import request from 'superagent'
+import { useQuery } from '@tanstack/react-query'
+
+export function useViewProjects() {
+  return useQuery({
+    queryKey: ['projects'],
+    queryFn: getAllProjects,
+  })
+}
 
 //Get All Projects
-export async function getAllProjects() {
+async function getAllProjects() {
   try {
     const res = await request.get('/api/v1/projects')
     return res.body.projects
@@ -15,7 +23,7 @@ export async function getAllProjects() {
 export async function getProjectById(id: number) {
   try {
     const res = await request.get(`/api/v1/projects/${id}`)
-    return res.body.project
+    return res.body
   } catch (error) {
     console.error(error)
   }
@@ -25,7 +33,7 @@ export async function getProjectById(id: number) {
 export async function addProject(project: Project) {
   try {
     const res = await request.post('/api/v1/projects/').send(project)
-    return res.body.projects
+    return res.body
   } catch (error) {
     console.error(error)
   }
