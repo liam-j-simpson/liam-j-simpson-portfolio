@@ -11,14 +11,8 @@ export function AddProject() {
       <Label htmlFor="projectName">Project Name</Label>
       <Input id="projectName" placeholder="Enter project name"></Input>
 
-      <Label htmlFor="shortDescription">Short Description</Label>
-      <Input
-        id="shortDescription"
-        placeholder="Enter short description"
-      ></Input>
-
-      <Label htmlFor="longDescription">Long Description</Label>
-      <Input id="longDescription" placeholder="Enter long description"></Input>
+      <Label htmlFor="description">Description</Label>
+      <Input id="description" placeholder="Enter description"></Input>
 
       <Label htmlFor="stack">Stack</Label>
       <Input id="stack" placeholder="Press enter to add stack tag"></Input>

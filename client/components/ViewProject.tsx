@@ -1,6 +1,6 @@
 // import { ProjectData } from 'models/projects'
 
-import { Project, ProjectArray, ProjectData } from "models/projects";
+import { Project, ProjectArray, ProjectData } from 'models/projects'
 
 export function ViewProject() {
   return (
@@ -10,19 +10,16 @@ export function ViewProject() {
       <table className="w-full table-fixed">
         <thead>
           <tr>
-            <th className="w-1/5">
+            <th className="w-1/4">
               <h3 className="text-s">Name</h3>
             </th>
-            <th className="w-1/5">
-              <h3 className="text-s">Short Description</h3>
+            <th className="w-1/4">
+              <h3 className="text-s">Description</h3>
             </th>
-            <th className="w-1/5">
-              <h3 className="text-s">Long Description</h3>
-            </th>
-            <th className="w-1/5">
+            <th className="w-1/4">
               <h3 className="text-s">Stack</h3>
             </th>
-            <th className="w-1/5">
+            <th className="w-1/4">
               <h3 className="text-s">Date</h3>
             </th>
           </tr>

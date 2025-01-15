@@ -1,8 +1,7 @@
 export interface Project {
   name: string
   date: string
-  short_description: string
-  long_description: string
+  description: string
   stack: string[]
 }
 export interface ProjectData extends Project {

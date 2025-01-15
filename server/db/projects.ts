@@ -12,12 +12,11 @@ export async function getProjectById(id: number) {
 }
 
 export async function addProject(project: Project) {
-  const { name, date, short_description, long_description, stack } = project
+  const { name, date, description, stack } = project
   return await db('projects').insert({
     name,
     date,
-    short_description,
-    long_description,
+    description,
     stack,
   })
 }
