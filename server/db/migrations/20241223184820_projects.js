@@ -3,8 +3,7 @@ export async function up(knex) {
     table.increments('id')
     table.string('name')
     table.string('date')
-    table.string('short_description')
-    table.text('long_description')
+    table.string('description')
     table.text('stack')
   })
 }
