@@ -1,9 +1,9 @@
 import { AddProject } from '../AddProject'
-import { useViewProjects } from '../../api'
+import { useGetAllProjects } from '../hooks/useGetProject'
 import { ViewProject } from '../AdminViewProject'
 
 export function Admin() {
-  const { isPending, isError, error, data } = useViewProjects()
+  const { isPending, isError, error, data } = useGetAllProjects()
   if (isPending) {
     return <h2>Loading...</h2>
   }

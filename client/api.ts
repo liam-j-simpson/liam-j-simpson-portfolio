@@ -1,16 +1,9 @@
 import { Project } from 'models/projects'
 import request from 'superagent'
-import { useQuery } from '@tanstack/react-query'
 
-export function useViewProjects() {
-  return useQuery({
-    queryKey: ['projects'],
-    queryFn: getAllProjects,
-  })
-}
 
 //Get All Projects
-async function getAllProjects() {
+export async function getAllProjects() {
   try {
     const res = await request.get('/api/v1/projects')
     return res.body.projects
@@ -20,7 +13,7 @@ async function getAllProjects() {
 }
 
 //Get Projects By ID
-export async function getProjectById(id: number) {
+export async function getProject(id: number) {
   try {
     const res = await request.get(`/api/v1/projects/${id}`)
     return res.body
@@ -56,3 +49,4 @@ export async function editProject(id: number, changes: Project) {
     console.error(error)
   }
 }
+
