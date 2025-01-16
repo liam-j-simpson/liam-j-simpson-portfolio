@@ -14,7 +14,7 @@ export function Projects() {
       <>
         <h1 className="text-xl">PROJECTS</h1>
         <div>
-          <ProjectCards data={data}/>
+          <ProjectCards data={data} />
         </div>
       </>
     )

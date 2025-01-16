@@ -28,6 +28,7 @@ export async function addProject(project: Project) {
     return res.body
   } catch (error) {
     console.error(error)
+    throw error
   }
 }
 
