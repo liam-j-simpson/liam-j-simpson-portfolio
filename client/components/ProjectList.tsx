@@ -1,8 +1,6 @@
 import { ProjectArray, ProjectData } from 'models/projects'
 
-export function ViewProject({ data }: ProjectArray) {
-  console.log('view project data', data)
-
+export function ProjectList({ data }: ProjectArray) {
   return (
     <>
       <h2 className="text-s">Projects</h2>
