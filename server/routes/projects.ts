@@ -13,7 +13,6 @@ router.get('/', async (_req, res, next) => {
   try {
     const projects = await getAllProjects()
     res.json({ projects })
-    res.sendStatus(200)
   } catch (error) {
     next(error)
   }
