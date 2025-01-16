@@ -1,6 +1,6 @@
 import { AddProject } from '../AddProject'
 import { useGetAllProjects } from '../hooks/useGetProject'
-import { ViewProject } from '../AdminViewProject'
+import { ProjectList } from '../ProjectList'
 
 export function Admin() {
   const { isPending, isError, error, data } = useGetAllProjects()
@@ -15,9 +15,8 @@ export function Admin() {
       <>
         <h1 className="text-xl">ADMIN</h1>
         <div>
-          <ViewProject data={data} />
+          <ProjectList data={data} />
         </div>
-
         <AddProject />
       </>
     )

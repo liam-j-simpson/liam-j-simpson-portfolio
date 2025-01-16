@@ -1,7 +1,6 @@
 import { Project } from 'models/projects'
 import request from 'superagent'
 
-
 //Get All Projects
 export async function getAllProjects() {
   try {
@@ -49,4 +48,3 @@ export async function editProject(id: number, changes: Project) {
     console.error(error)
   }
 }
-
