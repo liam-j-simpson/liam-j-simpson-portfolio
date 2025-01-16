@@ -1,6 +1,21 @@
+import { useViewProjects } from "../../api"
+
 export function Projects() {
+    const { isPending, isError, error, data } = useViewProjects()
+    if (isPending) {
+      return <h2>Loading...</h2>
+    }
+    if (isError) {
+      return <h2>Error: {error.message}</h2>
+    }
+    if (data) {
+
   return (
     <>
+    {/* <Link>
+    <ProjectListItem>
+    </Link> */}
+    
       <h1 className="text-xl">PROJECTS</h1>
       <h2 className="text-s mb-2.5">PAKT</h2>
       <button className="rounded-full px-5 outline mb-2.5 mr-2.5">
@@ -17,4 +32,4 @@ export function Projects() {
       </p>
     </>
   )
-}
+}}

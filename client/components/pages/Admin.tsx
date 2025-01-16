@@ -1,11 +1,9 @@
 import { AddProject } from '../AddProject'
 import { useViewProjects } from '../../api'
-import { ViewProject } from '../ViewProject'
-import { ProjectData } from 'models/projects'
+import { ViewProject } from '../AdminViewProject'
 
 export function Admin() {
   const { isPending, isError, error, data } = useViewProjects()
-  console.log('query state:', data)
   if (isPending) {
     return <h2>Loading...</h2>
   }
@@ -16,11 +14,8 @@ export function Admin() {
     return (
       <>
         <h1 className="text-xl">ADMIN</h1>
-        {data.map((item: ProjectData) => (
-          <h1 key={item.id}>{item.name}</h1>
-        ))}
         <div>
-          <ViewProject />
+          <ViewProject data={data} />
         </div>
 
         <AddProject />

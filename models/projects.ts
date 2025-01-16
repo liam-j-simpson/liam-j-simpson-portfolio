@@ -9,5 +9,5 @@ export interface ProjectData extends Project {
 }
 
 export interface ProjectArray {
-  projects: ProjectData[]
+  data: ProjectData[]
 }
