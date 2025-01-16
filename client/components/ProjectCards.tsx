@@ -11,10 +11,10 @@ export function ProjectCards({ data }: ProjectArray) {
             <ul>
               <li>
                 <button className="rounded-full px-5 outline mb-2.5 mr-2.5">
-                  <p>{item.stack}</p>
+                  <p>{item.tags}</p>
                 </button>
                 <button className="rounded-full px-5 outline mb-2.5 mr-2.5">
-                  <p>{item.stack}</p>
+                  <p>{item.tags}</p>
                 </button>
               </li>
             </ul>
