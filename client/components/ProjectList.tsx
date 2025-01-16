@@ -15,7 +15,7 @@ export function ProjectList({ data }: ProjectArray) {
               <h3 className="text-s">Description</h3>
             </th>
             <th className="w-1/4">
-              <h3 className="text-s">Stack</h3>
+              <h3 className="text-s">Tags</h3>
             </th>
             <th className="w-1/4">
               <h3 className="text-s">Date</h3>
@@ -28,7 +28,7 @@ export function ProjectList({ data }: ProjectArray) {
               <tr key={item.id}>
                 <td className="break-words">{item.name}</td>
                 <td className="break-words">{item.description}</td>
-                <td className="break-words">{item.stack}</td>
+                <td className="break-words">{item.tags}</td>
                 <td className="break-words">{item.date}</td>
                 <button>Edit</button>
                 <button>Delete</button>
