@@ -13,7 +13,7 @@ export function useGetAllProjects() {
 
 export function useGetProject(id: number) {
   return useQuery({
-    queryKey: ['capsule', id],
+    queryKey: ['project', id],
     queryFn: async () => {
       const response = await api.getProject(id)
       return response

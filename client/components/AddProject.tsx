@@ -2,28 +2,38 @@ import { Label } from '@radix-ui/react-label'
 import { Button } from '../shadcn/Button'
 import { Input } from '../shadcn/Input'
 import { useState } from 'react'
+import { Project } from 'models/projects'
+import { useAddProject } from './hooks/useAddProject'
 
 export function AddProject() {
-  const [form, setForm] = useState({
+  const addProjectMutation = useAddProject()
+
+  const [form, setForm] = useState<Project>({
     name: '',
     description: '',
-    stack: [],
+    tags: [],
     date: '',
   })
 
-  const handleChange = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    addProjectMutation.mutate(form)
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setForm({ ...form, [name]: value })
   }
 
-  const handleSubmit = () => {}
-
-  const handleChangeDate = (e) => {
-    const { name, value } = e.target
-    setForm({ ...form, [name]: value })
+  const handleChangeTags = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      const newTags = e.currentTarget.value
+      setForm({ ...form, tags: [...form.tags, newTags] })
+      e.currentTarget.value = ''
+    }
   }
 
-  const handleChangeTags = () => {}
   return (
     <form onSubmit={handleSubmit}>
       <h2 className="text-s">Add Project</h2>
@@ -45,20 +55,22 @@ export function AddProject() {
         onChange={handleChange}
       ></Input>
 
-      <Label htmlFor="stack">Stack</Label>
+      <Label htmlFor="tags">Tags</Label>
       <Input
-        id="stack"
-        name="stack"
-        placeholder="Press enter to add stack tag"
-        onChange={handleChangeTags}
+        id="tags"
+        name="tags"
+        placeholder="Press enter to add tag"
+        onKeyDown={handleChangeTags}
       ></Input>
+      <p>{form.tags}</p>
 
       <Label htmlFor="date">Date</Label>
       <Input
         id="date"
         name="date"
+        type="date"
         placeholder="Date"
-        onChange={handleChangeDate}
+        onChange={handleChange}
       ></Input>
 
       <Button type="submit">Submit</Button>
