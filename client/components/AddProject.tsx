@@ -3,8 +3,11 @@ import { Button } from '../shadcn/Button'
 import { Input } from '../shadcn/Input'
 import { useState } from 'react'
 import { Project } from 'models/projects'
+import { useAddProject } from './hooks/useAddProject'
 
 export function AddProject() {
+  const addProjectMutation = useAddProject()
+
   const [form, setForm] = useState<Project>({
     name: '',
     description: '',
@@ -13,7 +16,10 @@ export function AddProject() {
   })
   console.log('form', form)
 
-  const handleSubmit = () => {}
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    addProjectMutation.mutate(form)
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
