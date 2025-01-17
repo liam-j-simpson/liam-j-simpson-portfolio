@@ -95,7 +95,7 @@ export function ManageProjects({ data }: ProjectArray) {
                       name="name"
                       placeholder={item.name}
                       onChange={handleChange}
-                    ></Input>
+                    />
                   ) : (
                     item.name
                   )}
@@ -107,7 +107,7 @@ export function ManageProjects({ data }: ProjectArray) {
                       name="description"
                       placeholder={item.description}
                       onChange={handleChange}
-                    ></Input>
+                    />
                   ) : (
                     item.description
                   )}
@@ -117,9 +117,9 @@ export function ManageProjects({ data }: ProjectArray) {
                     <Input
                       id="tags"
                       name="tags"
-                      placeholder="add some tags"
+                      placeholder={`Submit tags with <Enter> ${item.tags}`}
                       onKeyDown={handleChangeTags}
-                    ></Input>
+                    />
                   ) : (
                     item.tags
                   )}
@@ -132,7 +132,7 @@ export function ManageProjects({ data }: ProjectArray) {
                       type="date"
                       placeholder={item.date}
                       onChange={handleChange}
-                    ></Input>
+                    />
                   ) : (
                     item.date
                   )}
