@@ -1,6 +1,12 @@
 import { ProjectArray, ProjectData } from 'models/projects'
+import { useDeleteProject } from './hooks/useDeleteProject'
 
 export function ProjectList({ data }: ProjectArray) {
+  const deleteMutation = useDeleteProject()
+
+  function handleDelete(id: number) {
+    deleteMutation.mutate(id)
+  }
   return (
     <>
       <h2 className="text-s">Projects</h2>
@@ -31,7 +37,13 @@ export function ProjectList({ data }: ProjectArray) {
                 <td className="break-words">{item.tags}</td>
                 <td className="break-words">{item.date}</td>
                 <button>Edit</button>
-                <button>Delete</button>
+                <button
+                  aria-label="delete project"
+                  value="delete"
+                  onClick={() => handleDelete(item.id)}
+                >
+                  Delete
+                </button>
               </tr>
             </>
           ))}

@@ -14,7 +14,6 @@ export function AddProject() {
     tags: [],
     date: '',
   })
-  console.log('form', form)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
