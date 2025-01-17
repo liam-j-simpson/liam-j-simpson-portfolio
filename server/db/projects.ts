@@ -7,17 +7,18 @@ export async function getAllProjects() {
 }
 
 export async function getProjectById(id: number) {
-  const projects = await db('projects').select().where({ id })
-  return projects
+  const project = await db('projects').select().where({ id })
+  return project
 }
 
 export async function addProject(project: Project) {
   const { name, date, description, tags } = project
+  const tagsJson = JSON.stringify(tags)
   return await db('projects').insert({
     name,
     date,
     description,
-    tags,
+    tags: tagsJson,
   })
 }
 
