@@ -1,4 +1,4 @@
-import { Project } from 'models/projects'
+import { EditProject, Project } from 'models/projects'
 import db from './connection'
 
 export async function getAllProjects() {
@@ -26,6 +26,16 @@ export async function deleteProject(id: number) {
   return await db('projects').where('id', id).del()
 }
 
-export async function editProject(id: number, changes: Project) {
-  return await db('projects').where('id', id).update(changes)
+export async function editProject(id: number, changes: EditProject) {
+  const { name, date, description, tags } = changes
+  if (tags !== undefined) {
+    const tagsJson = JSON.stringify(tags)
+
+    return await db('projects').where('id', id).update({
+      name,
+      date,
+      description,
+      tags: tagsJson,
+    })
+  } else await db('projects').where('id', id).update(changes)
 }

@@ -4,6 +4,13 @@ export interface Project {
   description: string
   tags: string[]
 }
+
+export interface EditProject {
+  name?: string
+  date?: string
+  description?: string
+  tags?: string[]
+}
 export interface ProjectData extends Project {
   id: number
 }

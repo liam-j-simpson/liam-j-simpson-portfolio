@@ -1,4 +1,4 @@
-import { Project } from 'models/projects'
+import { EditProject, Project } from 'models/projects'
 import request from 'superagent'
 
 //Get All Projects
@@ -42,10 +42,11 @@ export async function deleteProject(id: number) {
 }
 
 //Edit Project
-export async function editProject(id: number, changes: Project) {
+export async function editProject(id: number, changes: EditProject) {
   try {
     await request.patch(`/api/v1/projects/${id}`).send(changes)
   } catch (error) {
     console.error(error)
+    throw error
   }
 }
