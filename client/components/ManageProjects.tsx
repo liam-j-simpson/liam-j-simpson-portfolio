@@ -93,7 +93,7 @@ export function ManageProjects({ data }: ProjectArray) {
                     <Input
                       id="name"
                       name="name"
-                      placeholder={item.name}
+                      defaultValue={item.name}
                       onChange={handleChange}
                     />
                   ) : (
@@ -105,7 +105,7 @@ export function ManageProjects({ data }: ProjectArray) {
                     <Input
                       id="description"
                       name="description"
-                      placeholder={item.description}
+                      defaultValue={item.description}
                       onChange={handleChange}
                     />
                   ) : (
@@ -117,11 +117,13 @@ export function ManageProjects({ data }: ProjectArray) {
                     <Input
                       id="tags"
                       name="tags"
-                      placeholder={`Submit tags with <Enter> ${item.tags}`}
+                      placeholder="Submit tags with <Enter>"
                       onKeyDown={handleChangeTags}
                     />
                   ) : (
-                    item.tags
+                    <button className="rounded-full px-5 outline mb-2.5 mr-2.5">
+                      {item.tags}
+                    </button>
                   )}
                 </td>
                 <td className="break-words">
@@ -130,7 +132,7 @@ export function ManageProjects({ data }: ProjectArray) {
                       id="date"
                       name="date"
                       type="date"
-                      placeholder={item.date}
+                      defaultValue={item.date}
                       onChange={handleChange}
                     />
                   ) : (
