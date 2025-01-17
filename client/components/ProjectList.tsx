@@ -1,5 +1,6 @@
 import { ProjectArray, ProjectData } from 'models/projects'
 import { useDeleteProject } from './hooks/useDeleteProject'
+import { useState } from 'react'
 
 export function ProjectList({ data }: ProjectArray) {
   const deleteMutation = useDeleteProject()
@@ -7,6 +8,17 @@ export function ProjectList({ data }: ProjectArray) {
   function handleDelete(id: number) {
     deleteMutation.mutate(id)
   }
+  const [editId, setEditId] = useState<number>()
+
+  function handleEdit(id: number) {
+    setEditId(id)
+  }
+
+  function handleSave(id: number) {
+    setEditId(undefined)
+    
+  }
+
   return (
     <>
       <h2 className="text-s">Projects</h2>
@@ -32,11 +44,18 @@ export function ProjectList({ data }: ProjectArray) {
           {data.map((item: ProjectData) => (
             <>
               <tr key={item.id}>
-                <td className="break-words">{item.name}</td>
-                <td className="break-words">{item.description}</td>
-                <td className="break-words">{item.tags}</td>
-                <td className="break-words">{item.date}</td>
-                <button>Edit</button>
+                <td className="break-words">
+                  {item.id === editId ? 'edit' : item.name}
+                </td>
+                <td className="break-words">
+                  {item.id === editId ? 'edit' : item.description}
+                </td>
+                <td className="break-words">
+                  {item.id === editId ? 'edit' : item.tags}
+                </td>
+                <td className="break-words">
+                  {item.id === editId ? 'edit' : item.date}
+                </td>
                 <button
                   aria-label="delete project"
                   value="delete"
@@ -44,6 +63,24 @@ export function ProjectList({ data }: ProjectArray) {
                 >
                   Delete
                 </button>
+                {item.id !== editId && (
+                  <button
+                    aria-label="edit project"
+                    value="edit"
+                    onClick={() => handleEdit(item.id)}
+                  >
+                    Edit
+                  </button>
+                )}
+                {item.id === editId && (
+                  <button
+                    aria-label="save changes"
+                    value="save"
+                    onClick={() => handleSave(item.id)}
+                  >
+                    Save
+                  </button>
+                )}
               </tr>
             </>
           ))}
