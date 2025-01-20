@@ -13,13 +13,13 @@ export function ManageProjects({ data }: ProjectArray) {
   const deleteMutation = useDeleteProject()
   const editMutation = useEditProject()
 
+  const [editId, setEditId] = useState<number>()
   const [changes, setChanges] = useState<Project>({
     name: '',
     description: '',
     tags: [],
     date: '',
   })
-  console.log('changes', changes)
   const newChanges: EditProject = {}
   if (changes.name !== '') {
     newChanges.name = changes.name
@@ -33,8 +33,6 @@ export function ManageProjects({ data }: ProjectArray) {
   if (changes.date !== '') {
     newChanges.date = changes.date
   }
-
-  const [editId, setEditId] = useState<number>()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -67,24 +65,26 @@ export function ManageProjects({ data }: ProjectArray) {
     <>
       <h2 className="text-s">Manage Projects</h2>
 
-      <table className="w-full table-fixed">
-        <thead>
-          <tr>
-            <th className="w-1/4">
-              <h3 className="text-s">Name</h3>
-            </th>
-            <th className="w-1/4">
-              <h3 className="text-s">Description</h3>
-            </th>
-            <th className="w-1/4">
-              <h3 className="text-s">Tags</h3>
-            </th>
-            <th className="w-1/4">
-              <h3 className="text-s">Date</h3>
-            </th>
-          </tr>
-        </thead>
-        <tbody className="!text-left">
+      <div className="grid grid-cols-4 gap-4">
+        <div>
+          <h3 className="text-s">Name</h3>
+        </div>
+        <div>
+          <h3 className="text-s">Description</h3>
+        </div>
+        <div>
+          <h3 className="text-s">Tags</h3>
+        </div>
+        <div>
+          <h3 className="text-s">Date</h3>
+        </div>
+      </div>
+    </>
+  )
+}
+
+{
+  /* <div className="grid grid-cols-4 gap-4">
           {data.map((item: ProjectData) => (
             <>
               <tr key={item.id}>
@@ -167,8 +167,5 @@ export function ManageProjects({ data }: ProjectArray) {
               </tr>
             </>
           ))}
-        </tbody>
-      </table>
-    </>
-  )
+        </div> */
 }
