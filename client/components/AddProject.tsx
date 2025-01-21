@@ -34,9 +34,9 @@ export function AddProject() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2 className="text-s">Add Project</h2>
-      <p className="mb-2.5">Fill out the form below to add a project.</p>
+    <form onSubmit={handleSubmit} className="pb-6">
+      <h2 className="text-l">Add Project</h2>
+      <p className="mb-3">Fill out the form below to add a project.</p>
 
       <div className="grid grid-cols-6 gap-4">
         <div>

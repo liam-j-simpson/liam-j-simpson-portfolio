@@ -2,12 +2,12 @@ export function Contact() {
   return (
     <>
       <h1 className="text-xl">CONTACT</h1>
-      <h2 className="text-s mb-2.5">Phone</h2>
-      <p className="mb-2.5">+64211855651</p>
+      <h2 className="text-s mb-3">Phone</h2>
+      <p className="mb-3">+64211855651</p>
 
-      <h2 className="text-s mb-2.5">Email</h2>
+      <h2 className="text-s mb-3">Email</h2>
 
-      <p className="mb-2.5">contact@liamsimpson.co.nz</p>
+      <p className="mb-3">contact@liamsimpson.co.nz</p>
     </>
   )
 }
