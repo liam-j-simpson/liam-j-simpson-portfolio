@@ -64,9 +64,9 @@ export function ManageProjects({ data }: ProjectArray) {
 
   return (
     <>
-      <h2 className="text-s pb-5">Manage Projects</h2>
+      <h2 className="text-l pb-3">Manage Projects</h2>
 
-      <div className="grid grid-cols-6 gap-4 pb-5">
+      <div className="grid grid-cols-6 gap-3 pb-6">
         <div>
           <h3 className="text-s">Project Name</h3>
         </div>
@@ -117,7 +117,7 @@ export function ManageProjects({ data }: ProjectArray) {
                   onKeyDown={handleChangeTags}
                 />
               ) : (
-                <button className="rounded-full px-5 outline mb-2.5 mr-2.5">
+                <button className="rounded-full px-6 outline mb-3 mr-3">
                   {item.tags}
                 </button>
               )}
