@@ -48,6 +48,7 @@ export function AddProject() {
             name="name"
             placeholder="Enter project name"
             onChange={handleChange}
+            className="px-3"
           ></Input>
         </div>
         <div>
@@ -59,6 +60,7 @@ export function AddProject() {
             name="description"
             placeholder="Enter description"
             onChange={handleChange}
+            className="px-3"
           ></Input>
         </div>
         <div>
@@ -66,6 +68,7 @@ export function AddProject() {
             <h3 className="text-s">Tags</h3>
           </Label>
           <Input
+            className="px-3"
             id="tags"
             name="tags"
             placeholder="Press enter to add tag"
@@ -83,6 +86,7 @@ export function AddProject() {
             type="date"
             placeholder="Date"
             onChange={handleChange}
+            className="px-3"
           ></Input>
         </div>
         <div>
