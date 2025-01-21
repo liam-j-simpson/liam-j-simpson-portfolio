@@ -1,5 +1,4 @@
 import { Label } from '@radix-ui/react-label'
-import { Button } from '../shadcn/Button'
 import { Input } from '../shadcn/Input'
 import { useState } from 'react'
 import { Project } from 'models/projects'
@@ -39,41 +38,57 @@ export function AddProject() {
       <h2 className="text-s">Add Project</h2>
       <p className="mb-2.5">Fill out the form below to add a project.</p>
 
-      <Label htmlFor="name">Project Name</Label>
-      <Input
-        id="name"
-        name="name"
-        placeholder="Enter project name"
-        onChange={handleChange}
-      ></Input>
-
-      <Label htmlFor="description">Description</Label>
-      <Input
-        id="description"
-        name="description"
-        placeholder="Enter description"
-        onChange={handleChange}
-      ></Input>
-
-      <Label htmlFor="tags">Tags</Label>
-      <Input
-        id="tags"
-        name="tags"
-        placeholder="Press enter to add tag"
-        onKeyDown={handleChangeTags}
-      ></Input>
-      <p>{form.tags}</p>
-
-      <Label htmlFor="date">Date</Label>
-      <Input
-        id="date"
-        name="date"
-        type="date"
-        placeholder="Date"
-        onChange={handleChange}
-      ></Input>
-
-      <Button type="submit">Submit</Button>
+      <div className="grid grid-cols-6 gap-4">
+        <div>
+          <Label htmlFor="name">
+            <h3 className="text-s">Project Name</h3>
+          </Label>
+          <Input
+            id="name"
+            name="name"
+            placeholder="Enter project name"
+            onChange={handleChange}
+          ></Input>
+        </div>
+        <div>
+          <Label htmlFor="description">
+            <h3 className="text-s">Description</h3>
+          </Label>
+          <Input
+            id="description"
+            name="description"
+            placeholder="Enter description"
+            onChange={handleChange}
+          ></Input>
+        </div>
+        <div>
+          <Label htmlFor="tags">
+            <h3 className="text-s">Tags</h3>
+          </Label>
+          <Input
+            id="tags"
+            name="tags"
+            placeholder="Press enter to add tag"
+            onKeyDown={handleChangeTags}
+          ></Input>
+          <p>{form.tags}</p>
+        </div>
+        <div>
+          <Label htmlFor="date">
+            <h3 className="text-s">Date</h3>
+          </Label>
+          <Input
+            id="date"
+            name="date"
+            type="date"
+            placeholder="Date"
+            onChange={handleChange}
+          ></Input>
+        </div>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </div>
     </form>
   )
 }
