@@ -4,7 +4,6 @@ import { useGetProject } from '../hooks/useGetProject'
 export function ProjectPage() {
   const { id } = useParams()
   const { isPending, isError, error, data } = useGetProject(Number(id))
-  console.log(data)
   if (isPending) {
     return <h2>Loading...</h2>
   }
