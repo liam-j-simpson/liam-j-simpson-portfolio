@@ -3,16 +3,22 @@ import db from './connection'
 
 export async function getAllProjects() {
   const projects = await db('projects').select()
-  return projects
+  const updatedProjects = projects.map((project) => {
+    return { ...project, tags: JSON.parse(project.tags) }
+  })
+  return updatedProjects
 }
 
 export async function getProjectById(id: number) {
-  const project = await db('projects').select().where({ id })
-  return project
+  const project = await db('projects').where({ id }).select().first()
+  const updatedProject = { ...project, tags: JSON.parse(project.tags) }
+
+  return updatedProject
 }
 
 export async function addProject(project: Project) {
   const { name, date, description, tags } = project
+
   const tagsJson = JSON.stringify(tags)
   return await db('projects').insert({
     name,
