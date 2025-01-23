@@ -21,6 +21,9 @@ export function ManageProjects({ data }: ProjectArray) {
     tags: [],
     date: '',
   })
+
+  console.log('changes', changes)
+
   const newChanges: EditProject = {}
   if (changes.name !== '') {
     newChanges.name = changes.name
@@ -57,6 +60,7 @@ export function ManageProjects({ data }: ProjectArray) {
     }
   }
   function handleSave(id: number, newChanges: EditProject) {
+    console.log('handleSave', newChanges)
     editMutation.mutate({ id: id, changes: newChanges })
     setEditId(undefined)
     setChanges({ name: '', description: '', tags: [], date: '' })
