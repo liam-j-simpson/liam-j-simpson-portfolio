@@ -14,7 +14,7 @@ export function ProjectPage() {
   if (data) {
     return (
       <>
-        <h1 className="text-xl">{data.name}</h1>
+        <h1 className="text-xl">{data.name.toUpperCase()}</h1>
         <p className="mb-3">{data.date}</p>
         <ul className="flex">
           {data.tags.map((item: string) => (
