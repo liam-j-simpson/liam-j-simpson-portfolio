@@ -117,13 +117,19 @@ export function ManageProjects({ data }: ProjectArray) {
                 <Input
                   id="tags"
                   name="tags"
-                  placeholder="Submit tags with <Enter>"
+                  placeholder="Submit with <Enter>"
                   onKeyDown={handleChangeTags}
                 />
               ) : (
-                <button className="rounded-full px-6 outline mb-3 mr-3">
-                  {item.tags}
-                </button>
+                <ul>
+                  {item.tags.map((item) => (
+                    <li key={item}>
+                      <button className="rounded-full px-6 outline mb-3 mr-3">
+                        {item}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               )}
             </div>
             <div className="break-words">
