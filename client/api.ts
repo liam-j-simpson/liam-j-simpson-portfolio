@@ -15,7 +15,7 @@ export async function getAllProjects() {
 export async function getProject(id: number) {
   try {
     const res = await request.get(`/api/v1/projects/${id}`)
-    return res.body
+    return res.body.project
   } catch (error) {
     console.error(error)
   }
