@@ -8,15 +8,14 @@ export function ProjectCards({ data }: ProjectArray) {
           <li key={item.id}>
             <h2 className="text-s mb-3">{item.name}</h2>
 
-            <ul>
-              <li>
-                <button className="rounded-full px-6 outline mb-3 mr-3">
-                  <p>{item.tags}</p>
-                </button>
-                <button className="rounded-full px-6 outline mb-3 mr-3">
-                  <p>{item.tags}</p>
-                </button>
-              </li>
+            <ul className="flex">
+              {item.tags.map((item) => (
+                <li key={item}>
+                  <button className="rounded-full px-6 outline mb-3 mr-3">
+                    {item}
+                  </button>
+                </li>
+              ))}
             </ul>
 
             <p className="mb-3">{item.description}</p>
