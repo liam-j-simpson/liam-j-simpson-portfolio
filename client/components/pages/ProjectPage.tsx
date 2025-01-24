@@ -25,7 +25,13 @@ export function ProjectPage() {
           ))}
         </ul>
         <p className="mb-3">{data.description}</p>
-        {data.url && <button className="rounded-full px-6 outline mb-3 mr-3">View {data.url}</button>}
+        {data.url && (
+          <a href={data.url}>
+            <button className="rounded-full px-6 outline mb-3 mr-3">
+              View
+            </button>
+          </a>
+        )}
 
         <h1 className="text-xl">image gallery</h1>
       </>
