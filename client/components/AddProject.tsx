@@ -9,8 +9,10 @@ export function AddProject() {
 
   const [form, setForm] = useState<Project>({
     name: '',
+    summary: '',
     description: '',
     tags: [],
+    url: '',
     date: '',
   })
 
@@ -38,7 +40,7 @@ export function AddProject() {
       <h2 className="text-l">Add Project</h2>
       <p className="mb-3">Fill out the form below to add a project.</p>
 
-      <div className="grid grid-cols-6 gap-4">
+      <div className="grid grid-cols-8 gap-3 pb-6">
         <div>
           <Label htmlFor="name">
             <h3 className="text-s">Project Name</h3>
@@ -47,6 +49,18 @@ export function AddProject() {
             id="name"
             name="name"
             placeholder="Enter project name"
+            onChange={handleChange}
+            className="px-3"
+          ></Input>
+        </div>
+        <div>
+          <Label htmlFor="summary">
+            <h3 className="text-s">Summary</h3>
+          </Label>
+          <Input
+            id="summary"
+            name="summary"
+            placeholder="Enter summary"
             onChange={handleChange}
             className="px-3"
           ></Input>
@@ -71,10 +85,22 @@ export function AddProject() {
             className="px-3"
             id="tags"
             name="tags"
-            placeholder="Press enter to add tag"
+            placeholder="Submit with <Enter>"
             onKeyDown={handleChangeTags}
           ></Input>
           <p>{form.tags}</p>
+        </div>
+        <div>
+          <Label htmlFor="url">
+            <h3 className="text-s">URL</h3>
+          </Label>
+          <Input
+            id="url"
+            name="url"
+            placeholder="Enter url"
+            onChange={handleChange}
+            className="px-3"
+          ></Input>
         </div>
         <div>
           <Label htmlFor="date">
