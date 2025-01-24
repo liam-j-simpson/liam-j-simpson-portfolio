@@ -111,12 +111,24 @@ export function ManageProjects({ data }: ProjectArray) {
             </div>
             <div className="break-words">
               {item.id === editId ? (
-                <Input
-                  id="tags"
-                  name="tags"
-                  placeholder="Submit with <Enter>"
-                  onKeyDown={handleChangeTags}
-                />
+                <>
+                  <Input
+                    id="tags"
+                    name="tags"
+                    placeholder="Submit with <Enter>"
+                    onKeyDown={handleChangeTags}
+                  />
+                  <ul>
+                    {item.tags.map((item) => (
+                      <li key={item}>
+                        <button className="rounded-full px-6 outline mb-3 mr-3">
+                          {item}
+                          <button className="pl-2">x</button>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </>
               ) : (
                 <ul>
                   {item.tags.map((item) => (
