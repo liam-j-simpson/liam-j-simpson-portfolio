@@ -20,7 +20,7 @@ export function ProjectCards({ data }: ProjectArray) {
                 ))}
               </ul>
 
-              <p className="mb-3">{item.description}</p>
+              <p className="mb-3">{item.summary}</p>
             </Link>
           </li>
         ))}

@@ -12,18 +12,18 @@ export async function getAllProjects() {
 export async function getProjectById(id: number) {
   const project = await db('projects').where({ id }).select().first()
   const updatedProject = { ...project, tags: JSON.parse(project.tags) }
-
   return updatedProject
 }
 
 export async function addProject(project: Project) {
-  const { name, date, description, tags } = project
-
+  const { name, date, summary, description, url, tags } = project
   const tagsJson = JSON.stringify(tags)
   return await db('projects').insert({
     name,
     date,
+    summary,
     description,
+    url,
     tags: tagsJson,
   })
 }
@@ -33,14 +33,15 @@ export async function deleteProject(id: number) {
 }
 
 export async function editProject(id: number, changes: EditProject) {
-  const { name, date, description, tags } = changes
+  const { name, date, summary, description, url, tags } = changes
   if (tags !== undefined) {
     const tagsJson = JSON.stringify(tags)
-
     return await db('projects').where('id', id).update({
       name,
       date,
+      summary,
       description,
+      url,
       tags: tagsJson,
     })
   } else await db('projects').where('id', id).update(changes)

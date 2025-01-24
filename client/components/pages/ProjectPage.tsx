@@ -24,8 +24,9 @@ export function ProjectPage() {
             </li>
           ))}
         </ul>
-        <h2 className="text-s mb-3">{data.description}</h2>
-        <p className="mb-3">body copy</p>
+        <p className="mb-3">{data.description}</p>
+        {data.url && <button className="rounded-full px-6 outline mb-3 mr-3">View {data.url}</button>}
+
         <h1 className="text-xl">image gallery</h1>
       </>
     )

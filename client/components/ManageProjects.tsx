@@ -17,8 +17,10 @@ export function ManageProjects({ data }: ProjectArray) {
   const [editId, setEditId] = useState<number>()
   const [changes, setChanges] = useState<Project>({
     name: '',
+    summary: '',
     description: '',
     tags: [],
+    url: '',
     date: '',
   })
 
@@ -26,11 +28,17 @@ export function ManageProjects({ data }: ProjectArray) {
   if (changes.name !== '') {
     newChanges.name = changes.name
   }
+  if (changes.summary !== '') {
+    newChanges.summary = changes.summary
+  }
   if (changes.description !== '') {
     newChanges.description = changes.description
   }
   if (changes.tags.length > 0) {
     newChanges.tags = changes.tags
+  }
+  if (changes.url !== '') {
+    newChanges.url = changes.url
   }
   if (changes.date !== '') {
     newChanges.date = changes.date
@@ -60,22 +68,35 @@ export function ManageProjects({ data }: ProjectArray) {
   function handleSave(id: number, newChanges: EditProject) {
     editMutation.mutate({ id: id, changes: newChanges })
     setEditId(undefined)
-    setChanges({ name: '', description: '', tags: [], date: '' })
+    setChanges({
+      name: '',
+      summary: '',
+      description: '',
+      tags: [],
+      url: '',
+      date: '',
+    })
   }
 
   return (
     <>
       <h2 className="text-l pb-3">Manage Projects</h2>
 
-      <div className="grid grid-cols-6 gap-3 pb-6">
+      <div className="grid grid-cols-8 gap-3 pb-6">
         <div>
           <h3 className="text-s">Project Name</h3>
+        </div>
+        <div>
+          <h3 className="text-s">Summary</h3>
         </div>
         <div>
           <h3 className="text-s">Description</h3>
         </div>
         <div>
           <h3 className="text-s">Tags</h3>
+        </div>
+        <div>
+          <h3 className="text-s">URL</h3>
         </div>
         <div>
           <h3 className="text-s">Date</h3>
@@ -95,6 +116,18 @@ export function ManageProjects({ data }: ProjectArray) {
                 />
               ) : (
                 item.name
+              )}
+            </div>
+            <div className="break-words">
+              {item.id === editId ? (
+                <Input
+                  id="summary"
+                  name="summary"
+                  defaultValue={item.summary}
+                  onChange={handleChange}
+                />
+              ) : (
+                item.summary
               )}
             </div>
             <div className="break-words">
@@ -139,6 +172,18 @@ export function ManageProjects({ data }: ProjectArray) {
                     </li>
                   ))}
                 </ul>
+              )}
+            </div>
+            <div className="break-words">
+              {item.id === editId ? (
+                <Input
+                  id="url"
+                  name="url"
+                  defaultValue={item.url}
+                  onChange={handleChange}
+                />
+              ) : (
+                item.url
               )}
             </div>
             <div className="break-words">
