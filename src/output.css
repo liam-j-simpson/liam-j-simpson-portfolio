@@ -658,6 +658,18 @@ video {
   padding-left: 0.5rem;
 }
 
+.pb-12 {
+  padding-bottom: 3rem;
+}
+
+.pb-40 {
+  padding-bottom: 10rem;
+}
+
+.pb-24 {
+  padding-bottom: 6rem;
+}
+
 .text-l {
   font-size: 3rem;
 }

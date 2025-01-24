@@ -82,7 +82,7 @@ export function ManageProjects({ data }: ProjectArray) {
     <>
       <h2 className="text-l pb-3">Manage Projects</h2>
 
-      <div className="grid grid-cols-8 gap-3 pb-6">
+      <div className="grid grid-cols-8 gap-3 pb-24">
         <div>
           <h3 className="text-s">Project Name</h3>
         </div>
@@ -199,31 +199,43 @@ export function ManageProjects({ data }: ProjectArray) {
                 item.date
               )}
             </div>
-            <button
-              aria-label="delete project"
-              value="delete"
-              onClick={() => handleDelete(item.id)}
-            >
-              Delete
-            </button>
+
             {item.id !== editId && (
-              <button
-                aria-label="edit project"
-                value="edit"
-                onClick={() => handleEdit(item.id)}
-              >
-                Edit
-              </button>
+              <div>
+                <button
+                  aria-label="edit project"
+                  value="edit"
+                  onClick={() => handleEdit(item.id)}
+                  className="rounded-full px-6 outline mb-3 mr-3"
+                >
+                  Edit
+                </button>
+              </div>
             )}
+
             {item.id === editId && (
-              <button
-                aria-label="save changes"
-                value="save"
-                onClick={() => handleSave(item.id, newChanges)}
-              >
-                Save
-              </button>
+              <div>
+                <button
+                  aria-label="save changes"
+                  value="save"
+                  onClick={() => handleSave(item.id, newChanges)}
+                  className="rounded-full px-6 outline mb-3 mr-3"
+                >
+                  Save
+                </button>
+              </div>
             )}
+
+            <div>
+              <button
+                aria-label="delete project"
+                value="delete"
+                onClick={() => handleDelete(item.id)}
+                className="rounded-full px-6 outline mb-3 mr-3"
+              >
+                Delete
+              </button>
+            </div>
           </React.Fragment>
         ))}
       </div>
