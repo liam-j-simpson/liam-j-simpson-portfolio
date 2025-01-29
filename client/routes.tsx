@@ -9,7 +9,7 @@ import App from './components/pages/App'
 import { About } from './components/pages/About'
 import { Admin } from './components/pages/Admin'
 import { ProjectPage } from './components/pages/ProjectPage'
-import { AuthenticationGuard } from './components/AuthenticationGuard'
+import { AuthenticationGuard } from './components/authentication/AuthenticationGuard'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

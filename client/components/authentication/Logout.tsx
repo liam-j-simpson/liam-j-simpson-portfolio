@@ -5,6 +5,7 @@ export function Logout() {
   if (isAuthenticated) {
     return (
       <button
+        className="rounded-full mb-3 mr-3"
         onClick={() =>
           logout({ logoutParams: { returnTo: window.location.origin } })
         }
