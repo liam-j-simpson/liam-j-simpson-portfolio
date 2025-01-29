@@ -22,9 +22,12 @@ export async function getProject(id: number) {
 }
 
 //Add Project
-export async function addProject(project: Project) {
+export async function addProject(project: Project, token: string) {
   try {
-    const res = await request.post('/api/v1/projects/').send(project)
+    const res = await request
+      .post('/api/v1/projects/')
+      .set('Authorization', `Bearer ${token}`)
+      .send(project)
     return res.body
   } catch (error) {
     console.error(error)
@@ -33,18 +36,27 @@ export async function addProject(project: Project) {
 }
 
 //Delete Project
-export async function deleteProject(id: number) {
+export async function deleteProject(id: number, accessToken: string) {
   try {
-    await request.delete(`/api/v1/projects/${id}`)
+    await request
+      .delete(`/api/v1/projects/${id}`)
+      .set('Authorization', `Bearer ${accessToken}`)
   } catch (error) {
     console.error(error)
   }
 }
 
 //Edit Project
-export async function editProject(id: number, changes: EditProject) {
+export async function editProject(
+  id: number,
+  changes: EditProject,
+  accessToken: string,
+) {
   try {
-    await request.patch(`/api/v1/projects/${id}`).send(changes)
+    await request
+      .patch(`/api/v1/projects/${id}`)
+      .set('Authorization', `Bearer ${accessToken}`)
+      .send(changes)
   } catch (error) {
     console.error(error)
     throw error
