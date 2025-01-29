@@ -9,6 +9,17 @@ import {
 
 const router = Router()
 
+import { auth, requiredScopes } from 'express-oauth2-jwt-bearer'
+
+const checkJwt = auth({
+  audience: 'https://liamsimpsonportfolio/api',
+  issuerBaseURL: 'https://dev-wboo3txpyqmiudzh.au.auth0.com/',
+  tokenSigningAlg: 'RS256',
+})
+const checkEditScope = requiredScopes('edit:project')
+const checkAddScope = requiredScopes('add:project')
+const checkDeleteScope = requiredScopes('delete:project')
+
 router.get('/', async (_req, res, next) => {
   try {
     const projects = await getAllProjects()
@@ -29,7 +40,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', checkJwt, checkAddScope, async (req, res, next) => {
   const project = req.body
   try {
     await addProject(project)
@@ -39,7 +50,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', checkJwt, checkDeleteScope, async (req, res, next) => {
   const id = Number(req.params.id)
   try {
     await deleteProject(id)
@@ -49,7 +60,7 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-router.patch('/:id', async (req, res, next) => {
+router.patch('/:id', checkJwt, checkEditScope, async (req, res, next) => {
   const id = Number(req.params.id)
   const changes = req.body
   try {
