@@ -7,7 +7,7 @@ export function Auth0ProviderWithHistory({ children }) {
   const audience = import.meta.env.VITE_AUTH0_AUDIENCE
 
   const onRedirectCallback = (appState) => {
-    router.navigate(appState.returnTo || '/admin')
+    router.navigate('/admin')
   }
 
   return (
