@@ -1,11 +1,12 @@
 import { useParams } from 'react-router-dom'
 import { useGetProject } from '../hooks/useGetProject'
+import { PageLoader } from '../authentication/PageLoader'
 
 export function ProjectPage() {
   const { id } = useParams()
   const { isPending, isError, error, data } = useGetProject(Number(id))
   if (isPending) {
-    return <h2>Loading...</h2>
+    return <PageLoader/>
   }
   if (isError) {
     return <h2>Error: {error.message}</h2>
