@@ -43,7 +43,13 @@ export function AddProject() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="pb-6">
+    <form
+      onSubmit={handleSubmit}
+      className="pb-6"
+      action="/"
+      method="post"
+      encType="multipart/form-data"
+    >
       <h2 className="text-l border-black border-t-2">Add Project</h2>
       <p className="mb-3">Fill out the form below to add a project.</p>
 
@@ -79,6 +85,10 @@ export function AddProject() {
             className="px-3"
           ></Input>
         </div>
+        <div>
+          <input type="file" name="thumbnail"></input>
+        </div>
+
         <div>
           <Input
             id="summary"

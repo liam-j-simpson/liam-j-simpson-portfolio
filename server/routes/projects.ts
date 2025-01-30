@@ -7,6 +7,9 @@ import {
   getProjectById,
 } from 'server/db/projects'
 
+import multer from 'multer'
+const upload = multer({ dest: 'uploads/' })
+
 const router = Router()
 
 import { auth } from 'express-oauth2-jwt-bearer'
@@ -42,9 +45,12 @@ router.post(
   '/',
   checkJwt,
   checkPermissions('add:project'),
+  upload.single('thumbnail'),
   async (req, res, next) => {
     const project = req.body
     try {
+      console.log('file',req.file)
+      console.log(req.body)
       await addProject(project)
       res.sendStatus(201)
     } catch (error) {
