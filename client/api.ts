@@ -22,11 +22,11 @@ export async function getProject(id: number) {
 }
 
 //Add Project
-export async function addProject(project: Project, token: string) {
+export async function addProject(project: Project, accessToken: string) {
   try {
     const res = await request
       .post('/api/v1/projects/')
-      .set('Authorization', `Bearer ${token}`)
+      .set('Authorization', `Bearer ${accessToken}`)
       .send(project)
     return res.body
   } catch (error) {
@@ -36,11 +36,11 @@ export async function addProject(project: Project, token: string) {
 }
 
 //Delete Project
-export async function deleteProject(id: number, accessToken: string) {
+export async function deleteProject(id: number, token: string) {
   try {
     await request
       .delete(`/api/v1/projects/${id}`)
-      .set('Authorization', `Bearer ${accessToken}`)
+      .set('Authorization', `Bearer ${token}`)
   } catch (error) {
     console.error(error)
   }
