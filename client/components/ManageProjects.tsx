@@ -80,7 +80,7 @@ export function ManageProjects({ data }: ProjectArray) {
 
   return (
     <>
-      <h2 className="text-l pb-3">Manage Projects</h2>
+      <h2 className="text-l pb-3 border-black border-t-2">Manage Projects</h2>
 
       <div className="grid grid-cols-8 gap-3 pb-24">
         <div>
@@ -206,7 +206,7 @@ export function ManageProjects({ data }: ProjectArray) {
                   aria-label="edit project"
                   value="edit"
                   onClick={() => handleEdit(item.id)}
-                  className="rounded-full px-6 outline mb-3 mr-3"
+                  className="rounded-full px-6 outline mb-3 mr-3 bg-[#304637] text-[#E7E6E0]"
                 >
                   Edit
                 </button>
@@ -219,7 +219,7 @@ export function ManageProjects({ data }: ProjectArray) {
                   aria-label="save changes"
                   value="save"
                   onClick={() => handleSave(item.id, newChanges)}
-                  className="rounded-full px-6 outline mb-3 mr-3"
+                  className="rounded-full px-6 outline mb-3 mr-3 bg-[#304637] text-[#E7E6E0]"
                 >
                   Save
                 </button>
@@ -231,7 +231,7 @@ export function ManageProjects({ data }: ProjectArray) {
                 aria-label="delete project"
                 value="delete"
                 onClick={() => handleDelete(item.id)}
-                className="rounded-full px-6 outline mb-3 mr-3"
+                className="rounded-full px-6 outline mb-3 mr-3 bg-[#ED642E] text-[#E7E6E0]"
               >
                 Delete
               </button>

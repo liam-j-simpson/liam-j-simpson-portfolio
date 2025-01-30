@@ -44,7 +44,7 @@ export function AddProject() {
 
   return (
     <form onSubmit={handleSubmit} className="pb-6">
-      <h2 className="text-l">Add Project</h2>
+      <h2 className="text-l border-black border-t-2">Add Project</h2>
       <p className="mb-3">Fill out the form below to add a project.</p>
 
       <div className="grid grid-cols-8 gap-3 pb-24">
@@ -136,7 +136,10 @@ export function AddProject() {
           ></Input>
         </div>
         <div>
-          <button type="submit" className="rounded-full px-6 outline mb-3 mr-3">
+          <button
+            type="submit"
+            className="rounded-full px-6 outline mb-3 mr-3 bg-[#304637] text-[#E7E6E0]"
+          >
             Submit
           </button>
         </div>
