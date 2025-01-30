@@ -58,6 +58,9 @@ export function AddProject() {
           <h3 className="text-s">Project Name</h3>
         </div>
         <div>
+          <h3 className="text-s">Thumbnail</h3>
+        </div>
+        <div>
           <h3 className="text-s">Summary</h3>
         </div>
         <div>
@@ -72,7 +75,6 @@ export function AddProject() {
         <div>
           <h3 className="text-s">Date</h3>
         </div>
-        <div></div>
         <div></div>
         <div>
           <Input
