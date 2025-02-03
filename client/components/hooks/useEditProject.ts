@@ -9,14 +9,14 @@ export function useEditProject() {
   return useMutation({
     mutationFn: async ({
       id,
-      changes,
+      formData,
     }: {
       id: number
-      changes: EditProject
+      formData: EditProject
     }) => {
       const accessToken = await getAccessTokenSilently()
       if (!user?.sub) throw new Error('User not authenticated')
-      return await api.editProject(id, changes, accessToken)
+      return await api.editProject(id, formData, accessToken)
     },
     onSuccess: () => {
       queryClient.invalidateQueries({

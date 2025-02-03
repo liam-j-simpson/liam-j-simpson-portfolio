@@ -49,14 +49,14 @@ export async function deleteProject(id: number, token: string) {
 //Edit Project
 export async function editProject(
   id: number,
-  changes: EditProject,
+  formData: EditProject,
   accessToken: string,
 ) {
   try {
     await request
       .patch(`/api/v1/projects/${id}`)
       .set('Authorization', `Bearer ${accessToken}`)
-      .send(changes)
+      .send(formData)
   } catch (error) {
     console.error(error)
     throw error

@@ -86,11 +86,13 @@ router.patch(
   '/:id',
   checkJwt,
   checkPermissions('edit:project'),
+  upload.single('thumbnail'),
   async (req, res, next) => {
     const id = Number(req.params.id)
     const changes = req.body
+    const thumbnail = req.file?.path
     try {
-      await editProject(id, changes)
+      await editProject(id, changes, thumbnail)
       res.sendStatus(201)
     } catch (error) {
       next(error)

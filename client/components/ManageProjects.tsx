@@ -23,28 +23,7 @@ export function ManageProjects({ data }: ProjectArray) {
     url: '',
     date: '',
   })
-  const [thumbnail, setThumbnail] = useState([])
-
-  const newChanges: EditProject = {}
-  if (changes.name !== '') {
-    newChanges.name = changes.name
-  }
-  if (changes.summary !== '') {
-    newChanges.summary = changes.summary
-  }
-  if (changes.description !== '') {
-    newChanges.description = changes.description
-  }
-  if (changes.tags.length > 0) {
-    newChanges.tags = changes.tags
-  }
-  if (changes.url !== '') {
-    newChanges.url = changes.url
-  }
-  if (changes.date !== '') {
-    newChanges.date = changes.date
-  }
-
+  const [thumbnail, setThumbnail] = useState<File[]>([])
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setChanges({ ...changes, [name]: value })
@@ -68,12 +47,36 @@ export function ManageProjects({ data }: ProjectArray) {
   }
 
   const handleChangeThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setThumbnail(e.target.files)
+    if (e.target.files) {
+      setThumbnail(Array.from(e.target.files))
     }
   }
-  function handleSave(id: number, newChanges: EditProject) {
-    editMutation.mutate({ id: id, changes: newChanges })
+  function handleSave(id: number) {
+    const formData = new FormData()
+    if (changes.name !== '') {
+      formData.append('name', `${changes.name}`)
+    }
+    if (changes.summary !== '') {
+      formData.append('summary', `${changes.summary}`)
+    }
+    if (changes.description !== '') {
+      formData.append('description', `${changes.description}`)
+    }
+    if (changes.tags.length > 0) {
+      changes.tags.forEach((tag) => {
+        formData.append('tags', tag)
+      })
+    }
+    if (changes.url !== '') {
+      formData.append('url', `${changes.url}`)
+    }
+    if (changes.date !== '') {
+      formData.append('date', `${changes.date}`)
+    }
+    if (thumbnail.length !== 0) {
+      formData.append('thumbnail', thumbnail[0])
+    }
+    editMutation.mutate({ id: id, formData })
     setEditId(undefined)
     setChanges({
       name: '',
@@ -241,7 +244,7 @@ export function ManageProjects({ data }: ProjectArray) {
                 <button
                   aria-label="save changes"
                   value="save"
-                  onClick={() => handleSave(item.id, newChanges)}
+                  onClick={() => handleSave(item.id)}
                   className="rounded-full px-6 outline mb-3 mr-3 bg-[#304637] text-[#E7E6E0]"
                 >
                   Save

@@ -6,7 +6,6 @@ import { Project } from 'models/projects.ts'
 export function useAddProject() {
   const queryClient = useQueryClient()
   const { user, getAccessTokenSilently } = useAuth0()
-
   return useMutation({
     mutationFn: async (project: Project) => {
       if (!user?.sub) {

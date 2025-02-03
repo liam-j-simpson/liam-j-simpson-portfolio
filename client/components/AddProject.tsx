@@ -22,7 +22,7 @@ export function AddProject() {
     formData.append('name', `${form.name}`)
     formData.append('summary', `${form.summary}`)
     formData.append('description', `${form.description}`)
-    formData.append('url', `${form.url}`)
+    formData.append('url', `https://${form.url}`)
     formData.append('date', `${form.date}`)
     form.tags.forEach((tag) => {
       formData.append('tags', tag)

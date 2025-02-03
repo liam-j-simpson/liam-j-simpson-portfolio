@@ -38,10 +38,17 @@ export async function deleteProject(id: number) {
   return await db('projects').where('id', id).del()
 }
 
-export async function editProject(id: number, changes: EditProject) {
+export async function editProject(
+  id: number,
+  changes: EditProject,
+  thumbnail: string | undefined,
+) {
   const { name, date, summary, description, url, tags } = changes
+
   if (tags !== undefined) {
-    const tagsJson = JSON.stringify(tags)
+    const tagsJson = Array.isArray(tags)
+      ? JSON.stringify(tags)
+      : JSON.stringify([tags])
     return await db('projects').where('id', id).update({
       name,
       date,
@@ -49,6 +56,10 @@ export async function editProject(id: number, changes: EditProject) {
       description,
       url,
       tags: tagsJson,
+      thumbnail,
     })
-  } else await db('projects').where('id', id).update(changes)
+  } else
+    await db('projects')
+      .where('id', id)
+      .update({ name, date, summary, description, url, tags, thumbnail })
 }
