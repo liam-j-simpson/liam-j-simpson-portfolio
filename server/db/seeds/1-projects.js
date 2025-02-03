@@ -9,6 +9,7 @@ export async function seed(knex) {
         'A common problem for outdoors people is that they love adventure but due to other commitments are time-poor and dont get to enjoy their passions as much as theyd hope.',
       url: 'https://www.pakt.co.nz',
       tags: JSON.stringify(['React', 'Typescript', 'Tailwind']),
+      thumbnail: 'uploads/1738551497209_Job Interview Cheat Sheet.jpeg',
     },
     {
       id: 2,
@@ -19,6 +20,7 @@ export async function seed(knex) {
         'Circa likes to stand out of the crowd as the agency thats purely focussed on its customers. Using fun imagery and videos of past clients plus colourful grids that representive each properties unique style. This website gives personality to an industry that often lacks it.',
       url: 'https://www.circarealestate.co.nz/',
       tags: JSON.stringify(['Webflow']),
+      thumbnail: 'uploads/1738551497209_Job Interview Cheat Sheet.jpeg',
     },
   ])
 }

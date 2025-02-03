@@ -22,7 +22,7 @@ export async function getProject(id: number) {
 }
 
 //Add Project
-export async function addProject(project: Project, accessToken: string) {
+export async function addProject(project, accessToken: string) {
   try {
     const res = await request
       .post('/api/v1/projects/')

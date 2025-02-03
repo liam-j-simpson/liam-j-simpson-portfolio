@@ -8,7 +8,15 @@ import {
 } from 'server/db/projects'
 
 import multer from 'multer'
-const upload = multer({ dest: 'uploads/' })
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '_' + file.originalname)
+  },
+})
+const upload = multer({ storage })
 
 const router = Router()
 
@@ -48,10 +56,10 @@ router.post(
   upload.single('thumbnail'),
   async (req, res, next) => {
     const project = req.body
+    const thumbnail = req.file?.path
+    console.log(req.file)
     try {
-      console.log('file',req.file)
-      console.log(req.body)
-      await addProject(project)
+      await addProject(project, thumbnail)
       res.sendStatus(201)
     } catch (error) {
       next(error)

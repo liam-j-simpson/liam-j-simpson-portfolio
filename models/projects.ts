@@ -8,9 +8,10 @@ export interface ProjectDb {
   tags: string[]
 }
 
+
 export interface Project {
   name: string
-  thumbnail: Blob
+  thumbnail: string
   date: string
   summary: string
   description: string

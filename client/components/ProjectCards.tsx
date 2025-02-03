@@ -1,13 +1,14 @@
-import { ProjectArray, ProjectData } from 'models/projects'
+import { ProjectArray } from 'models/projects'
 import { Link } from 'react-router-dom'
 
 export function ProjectCards({ data }: ProjectArray) {
   return (
     <>
       <ul>
-        {data.map((item: ProjectData) => (
+        {data.map((item) => (
           <li key={item.id}>
             <Link to={`/${item.id}`}>
+              <img src={`${item.thumbnail}`} alt="represents the project" />
               <h2 className="text-s mb-3">{item.name}</h2>
 
               <ul className="flex">

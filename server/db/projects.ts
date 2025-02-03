@@ -15,7 +15,7 @@ export async function getProjectById(id: number) {
   return updatedProject
 }
 
-export async function addProject(project: Project) {
+export async function addProject(project: Project, thumbnail) {
   const { name, date, summary, description, url, tags } = project
   const tagsJson = JSON.stringify(tags)
   return await db('projects').insert({
@@ -25,6 +25,7 @@ export async function addProject(project: Project) {
     description,
     url,
     tags: tagsJson,
+    thumbnail,
   })
 }
 

@@ -14,10 +14,24 @@ export function AddProject() {
     url: '',
     date: '',
   })
+  const [thumbnail, setThumbnail] = useState([])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    addProjectMutation.mutate(form)
+    const formData = new FormData()
+    formData.append('name', `${form.name}`)
+    formData.append('summary', `${form.summary}`)
+    formData.append('description', `${form.description}`)
+    formData.append('url', `${form.url}`)
+    formData.append('date', `${form.date}`)
+    form.tags.forEach((tag) => {
+      formData.append('tags', tag)
+    })
+    if (thumbnail.length !== 0) {
+      formData.append('thumbnail', thumbnail[0])
+    }
+
+    addProjectMutation.mutate(formData)
     setForm({
       name: '',
       summary: '',
@@ -39,6 +53,12 @@ export function AddProject() {
       const newTags = e.currentTarget.value
       setForm({ ...form, tags: [...form.tags, newTags] })
       e.currentTarget.value = ''
+    }
+  }
+
+  const handleChangeThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setThumbnail(e.target.files)
     }
   }
 
@@ -88,7 +108,12 @@ export function AddProject() {
           ></Input>
         </div>
         <div>
-          <input type="file" name="thumbnail"></input>
+          <input
+            type="file"
+            name="thumbnail"
+            onChange={handleChangeThumbnail}
+            accept="image/*"
+          ></input>
         </div>
 
         <div>
