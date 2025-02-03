@@ -15,6 +15,7 @@ export function AddProject() {
     date: '',
   })
   const [thumbnail, setThumbnail] = useState<File[]>([])
+  const [gallery, setGallery] = useState<File[]>([])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -29,6 +30,9 @@ export function AddProject() {
     })
     if (thumbnail.length !== 0) {
       formData.append('thumbnail', thumbnail[0])
+    }
+    if (gallery.length !== 0) {
+      formData.append('gallery', gallery[0])
     }
 
     addProjectMutation.mutate(formData)
@@ -61,6 +65,11 @@ export function AddProject() {
       setThumbnail(Array.from(e.target.files))
     }
   }
+  const handleChangeGallery = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setGallery(Array.from(e.target.files))
+    }
+  }
 
   return (
     <form
@@ -73,7 +82,7 @@ export function AddProject() {
       <h2 className="text-l border-black border-t-2">Add Project</h2>
       <p className="mb-3">Fill out the form below to add a project.</p>
 
-      <div className="grid grid-cols-8 gap-3 pb-24">
+      <div className="grid grid-cols-9 gap-3 pb-24">
         <div>
           <h3 className="text-s">Project Name</h3>
         </div>
@@ -85,6 +94,9 @@ export function AddProject() {
         </div>
         <div>
           <h3 className="text-s">Description</h3>
+        </div>
+        <div>
+          <h3 className="text-s">Gallery</h3>
         </div>
         <div>
           <h3 className="text-s">Tags</h3>
@@ -137,6 +149,14 @@ export function AddProject() {
             value={form.description}
             className="px-3"
           ></Input>
+        </div>
+        <div>
+          <input
+            type="file"
+            name="gallery"
+            onChange={handleChangeGallery}
+            accept="image/*"
+          ></input>
         </div>
         <div>
           <Input

@@ -8,6 +8,7 @@ export async function up(knex) {
     table.string('url')
     table.text('tags')
     table.string('thumbnail')
+    table.text('gallery')
   })
 }
 

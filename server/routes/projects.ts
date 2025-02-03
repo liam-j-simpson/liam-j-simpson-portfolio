@@ -54,12 +54,14 @@ router.post(
   checkJwt,
   checkPermissions('add:project'),
   upload.single('thumbnail'),
+  upload.array('gallery'),
   async (req, res, next) => {
     const project = req.body
     const thumbnail = req.file?.path
-    console.log(req.file)
+    const gallery = req.files
+    console.log(req.files)
     try {
-      await addProject(project, thumbnail)
+      await addProject(project, thumbnail, gallery)
       res.sendStatus(201)
     } catch (error) {
       next(error)

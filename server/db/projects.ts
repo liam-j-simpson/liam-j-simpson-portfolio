@@ -4,20 +4,29 @@ import db from './connection'
 export async function getAllProjects() {
   const projects = await db('projects').select()
   const updatedProjects = projects.map((project) => {
-    return { ...project, tags: JSON.parse(project.tags) }
+    return {
+      ...project,
+      tags: JSON.parse(project.tags),
+      gallery: JSON.parse(project.gallery),
+    }
   })
   return updatedProjects
 }
 
 export async function getProjectById(id: number) {
   const project = await db('projects').where({ id }).select().first()
-  const updatedProject = { ...project, tags: JSON.parse(project.tags) }
+  const updatedProject = {
+    ...project,
+    tags: JSON.parse(project.tags),
+    gallery: JSON.parse(project.gallery),
+  }
   return updatedProject
 }
 
 export async function addProject(
   project: Project,
   thumbnail: string | undefined,
+  gallery: string | undefined,
 ) {
   const { name, date, summary, description, url, tags } = project
   const tagsJson = Array.isArray(tags)
@@ -31,6 +40,7 @@ export async function addProject(
     url,
     tags: tagsJson,
     thumbnail,
+    gallery,
   })
 }
 

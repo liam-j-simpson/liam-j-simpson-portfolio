@@ -10,6 +10,7 @@ export async function seed(knex) {
       url: 'https://www.pakt.co.nz',
       tags: JSON.stringify(['React', 'Typescript', 'Tailwind']),
       thumbnail: 'uploads/monarch.png',
+      gallery: JSON.stringify(['uploads/monarch2.png', 'uploads/monarch.png']),
     },
     {
       id: 2,
@@ -21,6 +22,7 @@ export async function seed(knex) {
       url: 'https://www.circarealestate.co.nz/',
       tags: JSON.stringify(['Webflow']),
       thumbnail: 'uploads/monarch2.png',
+      gallery: JSON.stringify(['uploads/monarch2.png', 'uploads/monarch.png']),
     },
   ])
 }

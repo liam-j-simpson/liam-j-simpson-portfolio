@@ -6,7 +6,7 @@ export function ProjectPage() {
   const { id } = useParams()
   const { isPending, isError, error, data } = useGetProject(Number(id))
   if (isPending) {
-    return <PageLoader/>
+    return <PageLoader />
   }
   if (isError) {
     return <h2>Error: {error.message}</h2>
@@ -33,8 +33,13 @@ export function ProjectPage() {
             </button>
           </a>
         )}
-
-        <h1 className="text-xl">image gallery</h1>
+        <ul>
+          {data.gallery.map((item: string) => (
+            <li key={item}>
+              <img src={item} alt="project gallery" className="mb-6" />
+            </li>
+          ))}
+        </ul>
       </>
     )
   }
