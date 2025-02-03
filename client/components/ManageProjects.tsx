@@ -23,6 +23,7 @@ export function ManageProjects({ data }: ProjectArray) {
     url: '',
     date: '',
   })
+  const [thumbnail, setThumbnail] = useState([])
 
   const newChanges: EditProject = {}
   if (changes.name !== '') {
@@ -65,6 +66,12 @@ export function ManageProjects({ data }: ProjectArray) {
       e.currentTarget.value = ''
     }
   }
+
+  const handleChangeThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setThumbnail(e.target.files)
+    }
+  }
   function handleSave(id: number, newChanges: EditProject) {
     editMutation.mutate({ id: id, changes: newChanges })
     setEditId(undefined)
@@ -82,9 +89,12 @@ export function ManageProjects({ data }: ProjectArray) {
     <>
       <h2 className="text-l pb-3 border-black border-t-2">Manage Projects</h2>
 
-      <div className="grid grid-cols-8 gap-3 pb-24">
+      <div className="grid grid-cols-9 gap-3 pb-24">
         <div>
           <h3 className="text-s">Project Name</h3>
+        </div>
+        <div>
+          <h3 className="text-s">Thumbnail</h3>
         </div>
         <div>
           <h3 className="text-s">Summary</h3>
@@ -118,6 +128,19 @@ export function ManageProjects({ data }: ProjectArray) {
                 item.name
               )}
             </div>
+            <div className="break-words">
+              {item.id === editId ? (
+                <input
+                  type="file"
+                  name="thumbnail"
+                  onChange={handleChangeThumbnail}
+                  accept="image/*"
+                ></input>
+              ) : (
+                <img src={item.thumbnail} alt="project thumbnail"></img>
+              )}
+            </div>
+
             <div className="break-words">
               {item.id === editId ? (
                 <Input
