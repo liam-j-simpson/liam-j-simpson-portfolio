@@ -14,7 +14,7 @@ export function AddProject() {
     url: '',
     date: '',
   })
-  const [thumbnail, setThumbnail] = useState([])
+  const [thumbnail, setThumbnail] = useState<File[]>([])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -57,8 +57,8 @@ export function AddProject() {
   }
 
   const handleChangeThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setThumbnail(e.target.files)
+    if (e.target.files) {
+      setThumbnail(Array.from(e.target.files))
     }
   }
 

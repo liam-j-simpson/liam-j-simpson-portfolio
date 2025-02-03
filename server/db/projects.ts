@@ -15,7 +15,10 @@ export async function getProjectById(id: number) {
   return updatedProject
 }
 
-export async function addProject(project: Project, thumbnail) {
+export async function addProject(
+  project: Project,
+  thumbnail: string | undefined,
+) {
   const { name, date, summary, description, url, tags } = project
   const tagsJson = Array.isArray(tags)
     ? JSON.stringify(tags)

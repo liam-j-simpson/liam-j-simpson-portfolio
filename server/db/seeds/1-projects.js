@@ -20,7 +20,7 @@ export async function seed(knex) {
         'Circa likes to stand out of the crowd as the agency thats purely focussed on its customers. Using fun imagery and videos of past clients plus colourful grids that representive each properties unique style. This website gives personality to an industry that often lacks it.',
       url: 'https://www.circarealestate.co.nz/',
       tags: JSON.stringify(['Webflow']),
-      thumbnail: 'uploads/monarch.png',
+      thumbnail: 'uploads/monarch2.png',
     },
   ])
 }
