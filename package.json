@@ -7,14 +7,19 @@
   "repository": "https://github.com/dev-academy-challenges/react-boilerplate.git",
   "main": "server/index.js",
   "scripts": {
+    "build": "npm run build:client && npm run build:server && npm run build:css",
     "start": "node dist/server.js",
+
     "dev": "run-p dev:client dev:server tailwind:watch",
     "dev:client": "vite",
     "dev:server": "tsx watch server/index.ts",
-    "tailwind:watch": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
-    "build": "run-s build:client build:server",
+
+    "build:css":"tailwindcss -i ./src/input.css -o ./src/output.css",
     "build:client": "vite build",
     "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/index.ts",
+
+
+    "tailwind:watch": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
     "test": "vitest",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "format": "prettier -w '**/*.{js,jsx,ts,tsx}'",
