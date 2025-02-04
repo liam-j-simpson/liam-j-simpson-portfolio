@@ -7,8 +7,6 @@ const server = express()
 server.use(express.json())
 server.use('/api/v1/projects', projectsRoutes)
 
-server.use(express.static(Path.resolve('public')))
-
 if (process.env.NODE_ENV === 'production') {
   server.use('/assets', express.static(Path.resolve('./dist/assets')))
   server.get('*', (req, res) => {
