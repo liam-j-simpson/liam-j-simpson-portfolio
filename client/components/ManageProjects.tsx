@@ -92,7 +92,7 @@ export function ManageProjects({ data }: ProjectArray) {
     <>
       <h2 className="text-l pb-3 border-black border-t-2">Manage Projects</h2>
 
-      <div className="grid grid-cols-9 gap-3 pb-24">
+      <div className="grid grid-cols-10 gap-3 pb-24">
         <div>
           <h3 className="text-s">Project Name</h3>
         </div>
@@ -104,6 +104,9 @@ export function ManageProjects({ data }: ProjectArray) {
         </div>
         <div>
           <h3 className="text-s">Description</h3>
+        </div>
+        <div>
+          <h3 className="text-s">Gallery</h3>
         </div>
         <div>
           <h3 className="text-s">Tags</h3>
@@ -166,6 +169,25 @@ export function ManageProjects({ data }: ProjectArray) {
                 />
               ) : (
                 item.description
+              )}
+            </div>
+            <div className="break-words">
+              {/* ADD CHANGE GALLERY FUNCTIONALITY HERE */}
+              {item.id === editId ? (
+                <input
+                  type="file"
+                  name="thumbnail"
+                  onChange={handleChangeThumbnail}
+                  accept="image/*"
+                ></input>
+              ) : (
+                <ul>
+                  {item.gallery.map((item) => (
+                    <li key={item}>
+                      <img src={item} alt="project gallery" className="mb-1" />
+                    </li>
+                  ))}
+                </ul>
               )}
             </div>
             <div className="break-words">

@@ -32,6 +32,8 @@ export async function addProject(
   const tagsJson = Array.isArray(tags)
     ? JSON.stringify(tags)
     : JSON.stringify([tags])
+  const galleryJson = JSON.stringify(gallery)
+
   return await db('projects').insert({
     name,
     date,
@@ -40,7 +42,7 @@ export async function addProject(
     url,
     tags: tagsJson,
     thumbnail,
-    gallery,
+    gallery: galleryJson,
   })
 }
 
@@ -59,6 +61,7 @@ export async function editProject(
     const tagsJson = Array.isArray(tags)
       ? JSON.stringify(tags)
       : JSON.stringify([tags])
+
     return await db('projects').where('id', id).update({
       name,
       date,

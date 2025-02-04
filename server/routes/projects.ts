@@ -22,7 +22,6 @@ const router = Router()
 
 import { auth } from 'express-oauth2-jwt-bearer'
 import { checkPermissions } from 'server/middleware/checkPermissions'
-import { log } from 'console'
 
 const checkJwt = auth({
   audience: 'https://liamsimpsonportfolio/api',
@@ -61,9 +60,8 @@ router.post(
   async (req, res, next) => {
     const project = req.body
     const thumbnail = req.files?.thumbnail?.[0].path
-    const gallery = JSON.stringify(
-      req.files?.gallery?.map((item) => item.path) || [],
-    )
+    const gallery = req.files?.gallery?.map((item) => item.path) || []
+
     try {
       await addProject(project, thumbnail, gallery)
       res.sendStatus(201)
