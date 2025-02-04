@@ -7,8 +7,8 @@
   "repository": "https://github.com/dev-academy-challenges/react-boilerplate.git",
   "main": "server/index.js",
   "scripts": {
-    "build": "npm run build:client && npm run build:server && npm run build:css",
-    "start": "node dist/server.js",
+    "clean": "rm -rf node_modules package-lock.json",
+    "build": "npm run clean && npm install && npm run build:client && npm run build:server && npm run build:css",    "start": "node dist/server.js",
 
     "dev": "run-p dev:client dev:server tailwind:watch",
     "dev:client": "vite",
