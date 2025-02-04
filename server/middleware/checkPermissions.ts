@@ -4,7 +4,7 @@ export const checkPermissions = (requiredPermission: string) => {
   return (req: Request, res: Response, next: NextFunction) => {
     const userPermissions = req.auth?.payload.permissions || []
     if (userPermissions.includes(requiredPermission)) {
-      next()
+      return next()
     } else {
       res.status(403).json({
         error: 'Incorrect Permissions',

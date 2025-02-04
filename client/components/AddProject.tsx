@@ -32,7 +32,9 @@ export function AddProject() {
       formData.append('thumbnail', thumbnail[0])
     }
     if (gallery.length !== 0) {
-      formData.append('gallery', gallery[0])
+      gallery.forEach((item) => {
+        formData.append('gallery', item)
+      })
     }
 
     addProjectMutation.mutate(formData)
@@ -156,6 +158,7 @@ export function AddProject() {
             name="gallery"
             onChange={handleChangeGallery}
             accept="image/*"
+            multiple
           ></input>
         </div>
         <div>
