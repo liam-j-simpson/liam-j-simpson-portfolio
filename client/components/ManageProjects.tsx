@@ -56,7 +56,7 @@ export function ManageProjects({ data }: ProjectArray) {
   }
 
   function handleSave(id: number) {
-    const formData = new FormData()
+    const formData: FormData = new FormData()
     if (changes.name !== '') {
       formData.append('name', `${changes.name}`)
     }
@@ -192,11 +192,16 @@ export function ManageProjects({ data }: ProjectArray) {
                 ></input>
               ) : (
                 <ul>
-                  {item.gallery.map((item) => (
-                    <li key={item}>
-                      <img src={item} alt="project gallery" className="mb-1" />
-                    </li>
-                  ))}
+                  {item.gallery &&
+                    item.gallery.map((item) => (
+                      <li key={item}>
+                        <img
+                          src={item}
+                          alt="project gallery"
+                          className="mb-1"
+                        />
+                      </li>
+                    ))}
                 </ul>
               )}
             </div>

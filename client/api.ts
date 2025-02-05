@@ -1,4 +1,3 @@
-import { EditProject, Project } from 'models/projects'
 import request from 'superagent'
 
 //Get All Projects
@@ -22,12 +21,12 @@ export async function getProject(id: number) {
 }
 
 //Add Project
-export async function addProject(project: Project, accessToken: string) {
+export async function addProject(formData: FormData, accessToken: string) {
   try {
     const res = await request
       .post('/api/v1/projects/')
       .set('Authorization', `Bearer ${accessToken}`)
-      .send(project)
+      .send(formData)
     return res.body
   } catch (error) {
     console.error(error)
@@ -49,7 +48,7 @@ export async function deleteProject(id: number, token: string) {
 //Edit Project
 export async function editProject(
   id: number,
-  formData: EditProject,
+  formData: FormData,
   accessToken: string,
 ) {
   try {

@@ -1,18 +1,16 @@
 export interface Project {
   name: string
-  date: string
   summary: string
   description: string
-  url?: string
   tags: string[]
+  url?: string
+  date: string
 }
-
 export interface ProjectData extends Project {
+  thumbnail: string
+  gallery?: string[]
   id: number
 }
-
 export interface ProjectArray {
   data: ProjectData[]
 }
-
-export type EditProject = Partial<Project>

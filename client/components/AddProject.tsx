@@ -19,7 +19,7 @@ export function AddProject() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const formData = new FormData()
+    const formData: FormData = new FormData()
     formData.append('name', form.name)
     formData.append('thumbnail', thumbnail[0])
     formData.append('summary', form.summary)

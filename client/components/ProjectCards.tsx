@@ -6,22 +6,21 @@ export function ProjectCards({ data }: ProjectArray) {
     <>
       <ul>
         {data.map((item) => (
-          <li key={item.id}>
+          <li key={item.id} className="mb-12">
             <Link to={`/${item.id}`}>
-              <img src={item.thumbnail} alt="represents the project" />
               <h2 className="text-s mb-3">{item.name}</h2>
 
               <ul className="flex">
                 {item.tags.map((item) => (
                   <li key={item}>
-                    <button className="rounded-full px-6 outline mb-3 mr-3">
+                    <button className="rounded-full px-3 outline outline-1 mb-3 mr-3">
                       {item}
                     </button>
                   </li>
                 ))}
               </ul>
-
               <p className="mb-3">{item.summary}</p>
+              <img src={item.thumbnail} alt="represents the project" />
             </Link>
           </li>
         ))}
