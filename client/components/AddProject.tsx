@@ -84,7 +84,7 @@ export function AddProject() {
       <h2 className="text-l border-black border-t-2">Add Project</h2>
       <p className="mb-3">Fill out the form below to add a project.</p>
 
-      <div className="grid grid-cols-9 gap-3 pb-24">
+      <div className="grid grid-cols-10 gap-3 pb-24">
         <div>
           <h3 className="text-s">Project Name</h3>
         </div>
@@ -109,6 +109,7 @@ export function AddProject() {
         <div>
           <h3 className="text-s">Date</h3>
         </div>
+        <div></div>
         <div></div>
         <div>
           <Input

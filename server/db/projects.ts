@@ -54,9 +54,10 @@ export async function editProject(
   id: number,
   changes: EditProject,
   thumbnail: string | undefined,
+  gallery: string | undefined,
 ) {
   const { name, date, summary, description, url, tags } = changes
-
+  const galleryJson = JSON.stringify(gallery)
   if (tags !== undefined) {
     const tagsJson = Array.isArray(tags)
       ? JSON.stringify(tags)
@@ -70,9 +71,17 @@ export async function editProject(
       url,
       tags: tagsJson,
       thumbnail,
+      gallery: galleryJson,
     })
   } else
-    await db('projects')
-      .where('id', id)
-      .update({ name, date, summary, description, url, tags, thumbnail })
+    await db('projects').where('id', id).update({
+      name,
+      date,
+      summary,
+      description,
+      url,
+      tags,
+      thumbnail,
+      gallery: galleryJson,
+    })
 }

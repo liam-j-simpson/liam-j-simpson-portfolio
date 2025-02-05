@@ -90,19 +90,23 @@ router.patch(
   '/:id',
   checkJwt,
   checkPermissions('edit:project'),
-  upload.single('thumbnail'),
+  upload.fields([
+    { name: 'thumbnail', maxCount: 1 },
+    { name: 'gallery', maxCount: 10 },
+  ]),
   async (req, res, next) => {
     const id = Number(req.params.id)
     const changes = req.body
-    const thumbnail = req.file?.path
+    const thumbnail = req.files?.thumbnail?.[0].path
+    const gallery = req.files?.gallery?.map((item) => item.path) || []
+
     try {
-      await editProject(id, changes, thumbnail)
+      await editProject(id, changes, thumbnail, gallery)
       res.sendStatus(201)
     } catch (error) {
       next(error)
     }
   },
 )
-
 
 export default router

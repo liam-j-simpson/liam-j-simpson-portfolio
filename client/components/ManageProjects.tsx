@@ -23,7 +23,9 @@ export function ManageProjects({ data }: ProjectArray) {
     url: '',
     date: '',
   })
+  const [gallery, setGallery] = useState<File[]>([])
   const [thumbnail, setThumbnail] = useState<File[]>([])
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setChanges({ ...changes, [name]: value })
@@ -51,6 +53,13 @@ export function ManageProjects({ data }: ProjectArray) {
       setThumbnail(Array.from(e.target.files))
     }
   }
+
+  const handleChangeGallery = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setGallery(Array.from(e.target.files))
+    }
+  }
+
   function handleSave(id: number) {
     const formData = new FormData()
     if (changes.name !== '') {
@@ -67,6 +76,7 @@ export function ManageProjects({ data }: ProjectArray) {
         formData.append('tags', tag)
       })
     }
+
     if (changes.url !== '') {
       formData.append('url', `${changes.url}`)
     }
@@ -75,6 +85,11 @@ export function ManageProjects({ data }: ProjectArray) {
     }
     if (thumbnail.length !== 0) {
       formData.append('thumbnail', thumbnail[0])
+    }
+    if (gallery.length !== 0) {
+      gallery.forEach((item) => {
+        formData.append('gallery', item)
+      })
     }
     editMutation.mutate({ id: id, formData })
     setEditId(undefined)
@@ -172,13 +187,13 @@ export function ManageProjects({ data }: ProjectArray) {
               )}
             </div>
             <div className="break-words">
-              {/* ADD CHANGE GALLERY FUNCTIONALITY HERE */}
               {item.id === editId ? (
                 <input
                   type="file"
                   name="thumbnail"
-                  onChange={handleChangeThumbnail}
+                  onChange={handleChangeGallery}
                   accept="image/*"
+                  multiple
                 ></input>
               ) : (
                 <ul>
