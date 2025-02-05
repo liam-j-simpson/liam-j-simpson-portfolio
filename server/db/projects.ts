@@ -29,10 +29,11 @@ export async function addProject(
   gallery: string | undefined,
 ) {
   const { name, date, summary, description, url, tags } = project
+  const galleryJson = JSON.stringify(gallery)
+
   const tagsJson = Array.isArray(tags)
     ? JSON.stringify(tags)
     : JSON.stringify([tags])
-  const galleryJson = JSON.stringify(gallery)
 
   return await db('projects').insert({
     name,
@@ -58,6 +59,7 @@ export async function editProject(
 ) {
   const { name, date, summary, description, url, tags } = changes
   const galleryJson = JSON.stringify(gallery)
+
   if (tags !== undefined) {
     const tagsJson = Array.isArray(tags)
       ? JSON.stringify(tags)

@@ -20,16 +20,20 @@ export function AddProject() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData()
-    formData.append('name', `${form.name}`)
-    formData.append('summary', `${form.summary}`)
-    formData.append('description', `${form.description}`)
-    formData.append('url', `https://${form.url}`)
-    formData.append('date', `${form.date}`)
-    form.tags.forEach((tag) => {
-      formData.append('tags', tag)
-    })
-    if (thumbnail.length !== 0) {
-      formData.append('thumbnail', thumbnail[0])
+    formData.append('name', form.name)
+    formData.append('thumbnail', thumbnail[0])
+    formData.append('summary', form.summary)
+    formData.append('description', form.description)
+    formData.append('date', form.date)
+
+    if (form.url !== '') {
+      formData.append('url', `https://${form.url}`)
+    }
+
+    if (form.tags.length !== 0) {
+      form.tags.forEach((tag) => {
+        formData.append('tags', tag)
+      })
     }
     if (gallery.length !== 0) {
       gallery.forEach((item) => {
@@ -86,16 +90,16 @@ export function AddProject() {
 
       <div className="grid grid-cols-10 gap-3 pb-24">
         <div>
-          <h3 className="text-s">Project Name</h3>
+          <h3 className="text-s">Project Name*</h3>
         </div>
         <div>
-          <h3 className="text-s">Thumbnail</h3>
+          <h3 className="text-s">Thumbnail*</h3>
         </div>
         <div>
-          <h3 className="text-s">Summary</h3>
+          <h3 className="text-s">Summary*</h3>
         </div>
         <div>
-          <h3 className="text-s">Description</h3>
+          <h3 className="text-s">Description*</h3>
         </div>
         <div>
           <h3 className="text-s">Gallery</h3>
@@ -107,7 +111,7 @@ export function AddProject() {
           <h3 className="text-s">URL</h3>
         </div>
         <div>
-          <h3 className="text-s">Date</h3>
+          <h3 className="text-s">Date*</h3>
         </div>
         <div></div>
         <div></div>
@@ -120,6 +124,7 @@ export function AddProject() {
             onChange={handleChange}
             value={form.name}
             className="px-3"
+            required
           ></Input>
         </div>
         <div>
@@ -128,6 +133,7 @@ export function AddProject() {
             name="thumbnail"
             onChange={handleChangeThumbnail}
             accept="image/*"
+            required
           ></input>
         </div>
 
@@ -140,6 +146,7 @@ export function AddProject() {
             onChange={handleChange}
             value={form.summary}
             className="px-3"
+            required
           ></Input>
         </div>
         <div>
@@ -151,6 +158,7 @@ export function AddProject() {
             onChange={handleChange}
             value={form.description}
             className="px-3"
+            required
           ></Input>
         </div>
         <div>
@@ -194,6 +202,7 @@ export function AddProject() {
             onChange={handleChange}
             value={form.date}
             className="px-3"
+            required
           ></Input>
         </div>
         <div>

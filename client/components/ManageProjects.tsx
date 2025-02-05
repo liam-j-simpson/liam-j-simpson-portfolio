@@ -1,9 +1,4 @@
-import {
-  EditProject,
-  Project,
-  ProjectArray,
-  ProjectData,
-} from 'models/projects'
+import { Project, ProjectArray, ProjectData } from 'models/projects'
 import { useDeleteProject } from './hooks/useDeleteProject'
 import { useState } from 'react'
 import { useEditProject } from './hooks/useEditProject'

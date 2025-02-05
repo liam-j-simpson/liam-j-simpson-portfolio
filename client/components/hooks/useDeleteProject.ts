@@ -2,6 +2,7 @@ import { useQueryClient, useMutation } from '@tanstack/react-query'
 import * as api from '../../api.ts'
 import { useAuth0 } from '@auth0/auth0-react'
 
+
 export function useDeleteProject() {
   const queryClient = useQueryClient()
   const { user, getAccessTokenSilently } = useAuth0()

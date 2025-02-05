@@ -8,11 +8,8 @@ export function useAddProject() {
   const { user, getAccessTokenSilently } = useAuth0()
   return useMutation({
     mutationFn: async (project: Project) => {
-      if (!user?.sub) {
-        throw new Error('User not authenticated')
-      }
       const accessToken = await getAccessTokenSilently()
-
+      if (!user?.sub) throw new Error('User not authenticated')
       return await api.addProject(project, accessToken)
     },
     onSuccess: () => {
