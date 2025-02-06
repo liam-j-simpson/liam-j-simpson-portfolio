@@ -43,7 +43,6 @@ router.get('/:id', async (req, res, next) => {
     const id = Number(req.params.id)
     const project = await getProjectById(id)
     res.json({ project })
-    res.sendStatus(200)
   } catch (error) {
     next(error)
   }

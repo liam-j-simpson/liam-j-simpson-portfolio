@@ -1,4 +1,4 @@
-import { EditProject, Project } from 'models/projects'
+import { Project } from 'models/projects'
 import db from './connection'
 
 export async function getAllProjects() {
@@ -53,7 +53,7 @@ export async function deleteProject(id: number) {
 
 export async function editProject(
   id: number,
-  changes: EditProject,
+  changes: Project,
   thumbnail: string | undefined,
   gallery: string | undefined,
 ) {

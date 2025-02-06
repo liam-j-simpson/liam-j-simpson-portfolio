@@ -17,13 +17,8 @@ export function Admin() {
     return (
       <>
         <h1 className="text-xl">ADMIN</h1>
-
-        <>
-          <div>
-            <ManageProjects data={data} />
-          </div>
-          <AddProject />
-        </>
+        <ManageProjects data={data} />
+        <AddProject />
       </>
     )
   }

@@ -198,7 +198,7 @@ export function ManageProjects({ data }: ProjectArray) {
                         <img
                           src={item}
                           alt="project gallery"
-                          className="mb-1"
+                          className="mb-3"
                         />
                       </li>
                     ))}

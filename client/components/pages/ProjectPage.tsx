@@ -24,6 +24,7 @@ export function ProjectPage() {
             </li>
           ))}
         </ul>
+        <p className="mb-3">{`Deployed on ${data.date}`}</p>
         <p className="mb-3">{data.description}</p>
         {data.url && (
           <a href={data.url}>

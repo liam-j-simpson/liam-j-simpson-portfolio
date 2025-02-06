@@ -27,7 +27,11 @@ export function AddProject() {
     formData.append('date', form.date)
 
     if (form.url !== '') {
-      formData.append('url', `https://${form.url}`)
+      if (form.url?.includes('https://')) {
+        formData.append('url', form.url)
+      } else {
+        formData.append('url', `https://${form.url}`)
+      }
     }
 
     if (form.tags.length !== 0) {
@@ -136,7 +140,6 @@ export function AddProject() {
             required
           ></input>
         </div>
-
         <div>
           <Input
             id="summary"
@@ -189,6 +192,7 @@ export function AddProject() {
             placeholder="Enter url"
             onChange={handleChange}
             value={form.url}
+            defaultValue="https://"
             className="px-3"
           ></Input>
         </div>
