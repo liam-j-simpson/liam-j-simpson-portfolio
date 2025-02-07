@@ -81,7 +81,7 @@ export function ManageProjects({ data }: ProjectArray) {
     if (thumbnail.length !== 0) {
       formData.append('thumbnail', thumbnail[0])
     }
-    if (gallery.length !== 0) {
+    if (gallery.length > 0) {
       gallery.forEach((item) => {
         formData.append('gallery', item)
       })
