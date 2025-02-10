@@ -6,6 +6,8 @@ import {
   getAllProjects,
   getProjectById,
 } from 'server/db/projects'
+import dotenv from 'dotenv'
+dotenv.config()
 
 import multer from 'multer'
 const storage = multer.diskStorage({
@@ -24,9 +26,9 @@ import { auth } from 'express-oauth2-jwt-bearer'
 import { checkPermissions } from 'server/middleware/checkPermissions'
 
 const checkJwt = auth({
-  audience: 'https://liamsimpsonportfolio/api',
-  issuerBaseURL: 'https://dev-wboo3txpyqmiudzh.au.auth0.com/',
-  tokenSigningAlg: 'RS256',
+  audience: process.env.AUTH0_AUDIENCE,
+  issuerBaseURL: process.env.AUTH0_ISSUER_URL,
+  tokenSigningAlg: process.env.AUTH0_SIGNING_ALG,
 })
 
 router.get('/', async (_req, res, next) => {
