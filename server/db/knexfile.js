@@ -15,6 +15,26 @@ const developmentConfig = {
   database: process.env.DEV_DATABASE_NAME || 'portfolio_dev',
 }
 
+const productionConfig = {
+  host: process.env.MYSQLHOST || process.env.RAILWAY_DATABASE_HOST,
+  port: process.env.MYSQLPORT || process.env.RAILWAY_DATABASE_PORT,
+  user: process.env.MYSQLUSER || process.env.RAILWAY_DATABASE_USER,
+  password: process.env.MYSQLPASSWORD || process.env.RAILWAY_DATABASE_PASSWORD,
+  database:
+    process.env.MYSQLDATABASE || process.env.RAILWAY_DATABASE_NAME || 'railway',
+}
+
+// Add more detailed logging
+console.log('Node Environment:', process.env.NODE_ENV)
+console.log('Production Database Config:', {
+  host: productionConfig.host,
+  port: productionConfig.port,
+  user: productionConfig.user,
+  database: productionConfig.database,
+  mysqlHostExists: !!process.env.MYSQLHOST,
+  railwayHostExists: !!process.env.RAILWAY_DATABASE_HOST,
+})
+
 export default {
   development: {
     client: 'mysql2',
@@ -54,17 +74,7 @@ export default {
 
   production: {
     client: 'mysql2',
-    connection: {
-      host: process.env.MYSQLHOST || process.env.RAILWAY_DATABASE_HOST,
-      port: process.env.MYSQLPORT || process.env.RAILWAY_DATABASE_PORT,
-      user: process.env.MYSQLUSER || process.env.RAILWAY_DATABASE_USER,
-      password:
-        process.env.MYSQLPASSWORD || process.env.RAILWAY_DATABASE_PASSWORD,
-      database:
-        process.env.MYSQLDATABASE ||
-        process.env.RAILWAY_DATABASE_NAME ||
-        'railway',
-    },
+    connection: productionConfig,
     migrations: {
       directory: Path.join(__dirname, 'migrations'),
     },
@@ -75,5 +85,6 @@ export default {
       min: 2,
       max: 10,
     },
+    debug: true, // Add this line to see query debugging
   },
 }
