@@ -4,41 +4,18 @@ import dotenv from 'dotenv'
 
 const __filename = URL.fileURLToPath(import.meta.url)
 const __dirname = Path.dirname(__filename)
-
 dotenv.config({ path: Path.join(__dirname, '../../.env') })
-
-const developmentConfig = {
-  host: process.env.DEV_DATABASE_HOST || 'localhost',
-  port: process.env.DEV_DATABASE_PORT || 3306,
-  user: process.env.DEV_DATABASE_USER || 'root',
-  password: process.env.DEV_DATABASE_PASSWORD,
-  database: process.env.DEV_DATABASE_NAME || 'portfolio_dev',
-}
-
-const productionConfig = {
-  host: process.env.MYSQLHOST || process.env.RAILWAY_DATABASE_HOST,
-  port: process.env.MYSQLPORT || process.env.RAILWAY_DATABASE_PORT,
-  user: process.env.MYSQLUSER || process.env.RAILWAY_DATABASE_USER,
-  password: process.env.MYSQLPASSWORD || process.env.RAILWAY_DATABASE_PASSWORD,
-  database:
-    process.env.MYSQLDATABASE || process.env.RAILWAY_DATABASE_NAME || 'railway',
-}
-
-// Add more detailed logging
-console.log('Node Environment:', process.env.NODE_ENV)
-console.log('Production Database Config:', {
-  host: productionConfig.host,
-  port: productionConfig.port,
-  user: productionConfig.user,
-  database: productionConfig.database,
-  mysqlHostExists: !!process.env.MYSQLHOST,
-  railwayHostExists: !!process.env.RAILWAY_DATABASE_HOST,
-})
 
 export default {
   development: {
     client: 'mysql2',
-    connection: developmentConfig,
+    connection: {
+      host: process.env.DEV_DATABASE_HOST || 'localhost',
+      port: process.env.DEV_DATABASE_PORT || 3306,
+      user: process.env.DEV_DATABASE_USER || 'root',
+      password: process.env.DEV_DATABASE_PASSWORD,
+      database: process.env.DEV_DATABASE_NAME || 'portfolio_dev',
+    },
     migrations: {
       directory: Path.join(__dirname, 'migrations'),
     },
@@ -57,7 +34,7 @@ export default {
       host: process.env.TEST_DATABASE_HOST || 'localhost',
       port: process.env.TEST_DATABASE_PORT || 3306,
       user: process.env.TEST_DATABASE_USER || 'root',
-      password: process.env.TEST_DATABASE_PASSWORD || '',
+      password: process.env.TEST_DATABASE_PASSWORD,
       database: process.env.TEST_DATABASE_NAME || 'portfolio_test',
     },
     migrations: {
@@ -74,7 +51,14 @@ export default {
 
   production: {
     client: 'mysql2',
-    connection: productionConfig,
+    connection: {
+      database: process.env.MYSQLDATABASE,
+      host: process.env.MYSQLHOST,
+      password: process.env.MYSQLPASSWORD,
+      port: process.env.MYSQLPORT,
+      user: process.env.MYSQLUSER,
+    },
+
     migrations: {
       directory: Path.join(__dirname, 'migrations'),
     },
@@ -85,6 +69,5 @@ export default {
       min: 2,
       max: 10,
     },
-    debug: true, // Add this line to see query debugging
   },
 }
