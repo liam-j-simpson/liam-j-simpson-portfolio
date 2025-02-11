@@ -33,13 +33,12 @@ const checkJwt = auth({
 
 router.get('/projects', async (_req, res, next) => {
   try {
-    console.log('About to query database...')
+    console.log('Attempting to fetch projects...')
     const projects = await getAllProjects()
-    console.log('Database query successful')
-    console.log('Projects retrieved:', projects)
+    console.log('Projects fetched successfully:', projects.length)
     res.json({ projects })
   } catch (error) {
-    console.error('Database error:', error)
+    console.error('Error fetching projects:', error)
     next(error)
   }
 })
