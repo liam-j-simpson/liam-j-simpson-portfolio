@@ -1,10 +1,10 @@
 {
-  "name": "liam-j-simpson-portfolio",
+  "name": "boilerplate-react",
   "homepage": "https://liamsimpson.co.nz",
   "type": "module",
-  "version": "1.0.0",
-  "description": "My design and development portfolio",
-  "repository": "https://github.com/liam-j-simpson/liam-j-simpson-portfolio",
+  "version": "0.2.0",
+  "description": "React!",
+  "repository": "https://github.com/dev-academy-challenges/react-boilerplate.git",
   "main": "server/index.js",
   "scripts": {
     "build": "run-s build:client build:server",
@@ -27,7 +27,7 @@
       "bundle.js"
     ]
   },
-  "author": "Liam Simpson",
+  "author": "Dev Academy Aotearoa",
   "license": "ISC",
   "devDependencies": {
     "@devacademy/eslint-config": "^1.10.1",
