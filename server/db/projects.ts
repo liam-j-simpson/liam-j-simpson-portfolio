@@ -2,6 +2,7 @@ import { Project } from 'models/projects'
 import db from './connection'
 
 export async function getAllProjects() {
+  console.log('🔍 Starting getAllProjects database query')
   const projects = await db('projects').select()
   const updatedProjects = projects.map((project) => {
     return {
@@ -10,6 +11,7 @@ export async function getAllProjects() {
       gallery: JSON.parse(project.gallery),
     }
   })
+  console.log('🔄 Processed projects:', updatedProjects)
   return updatedProjects
 }
 

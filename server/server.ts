@@ -3,7 +3,14 @@ import * as Path from 'node:path'
 import projectsRoutes from './routes/projects'
 
 const server = express()
-
+server.use((req, res, next) => {
+  console.log('💡 Incoming request:', {
+    url: req.url,
+    method: req.method,
+    time: new Date().toISOString(),
+  })
+  next()
+})
 server.use(express.json())
 server.use(express.urlencoded({ extended: false }))
 
@@ -19,6 +26,3 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 export default server
-
-
-

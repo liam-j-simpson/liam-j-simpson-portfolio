@@ -32,10 +32,18 @@ const checkJwt = auth({
 })
 
 router.get('/', async (_req, res, next) => {
+  console.log('Projects route hit')
   try {
+    console.log('Attempting database query...')
     const projects = await getAllProjects()
+    console.log(
+      '✅ Database query successful, found',
+      projects.length,
+      'projects',
+    )
     res.json({ projects })
   } catch (error) {
+    console.error('❌ Database error:', error)
     next(error)
   }
 })
