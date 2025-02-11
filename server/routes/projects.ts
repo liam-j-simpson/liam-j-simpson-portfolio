@@ -24,6 +24,7 @@ const router = Router()
 
 import { auth } from 'express-oauth2-jwt-bearer'
 import { checkPermissions } from 'server/middleware/checkPermissions'
+import connection from 'server/db/connection'
 
 const checkJwt = auth({
   audience: process.env.AUTH0_AUDIENCE,
@@ -31,9 +32,24 @@ const checkJwt = auth({
   tokenSigningAlg: process.env.AUTH0_SIGNING_ALG,
 })
 
+router.get('/debug-db', async (req, res) => {
+  try {
+    const result = await connection.raw('SELECT 1+1 as result')
+    res.json({
+      dbConnected: true,
+      testQuery: result,
+      timestamp: new Date().toISOString(),
+    })
+  } catch (error) {
+    res.status(500).json({
+      dbConnected: false,
+      error: error.message,
+      timestamp: new Date().toISOString(),
+    })
+  }
+})
+
 router.get('/health', (req, res) => {
-  console.error('==========================================')
-  console.error('💓 HEALTH CHECK HIT')
   res.json({
     status: 'alive',
     time: new Date().toISOString(),
@@ -42,19 +58,10 @@ router.get('/health', (req, res) => {
 })
 
 router.get('/', async (_req, res, next) => {
-  console.error('==========================================')
-  console.error('📊 PROJECTS ROUTE HIT')
   try {
-    console.error('🔍 Attempting to get projects...')
     const projects = await getAllProjects()
-    console.log(
-      '✅ Database query successful, found',
-      projects.length,
-      'projects',
-    )
     res.json({ projects })
   } catch (error) {
-    console.error('❌ Database error:', error)
     next(error)
   }
 })
