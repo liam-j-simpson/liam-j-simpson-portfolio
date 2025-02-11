@@ -4,13 +4,8 @@ import projectsRoutes from './routes/projects'
 
 const server = express()
 
-server.use((req, res, next) => {
-  console.error('==========================================')
-  console.error('🔍 REQUEST RECEIVED:')
-  console.error('📍 URL:', req.url)
-  console.error('📝 Method:', req.method)
-  console.error('==========================================')
-  next()
+server.get('/test', (req, res) => {
+  res.send('Server is running!')
 })
 
 server.use(express.json())

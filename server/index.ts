@@ -1,10 +1,10 @@
 import dotenv from 'dotenv'
 dotenv.config()
-
 import server from './server.ts'
 
-console.log('🚀 SERVER STARTING UP!!!')
-console.log('==========================')
+process.on('uncaughtException', (err) => {
+  console.error('UNCAUGHT EXCEPTION:', err)
+})
 
 const port = process.env.PORT || 3000
 
