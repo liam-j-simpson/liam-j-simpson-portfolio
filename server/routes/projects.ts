@@ -31,11 +31,15 @@ const checkJwt = auth({
   tokenSigningAlg: process.env.AUTH0_SIGNING_ALG,
 })
 
-router.get('/', async (_req, res, next) => {
+router.get('/projects', async (_req, res, next) => {
   try {
+    console.log('About to query database...')
     const projects = await getAllProjects()
+    console.log('Database query successful')
+    console.log('Projects retrieved:', projects)
     res.json({ projects })
   } catch (error) {
+    console.error('Database error:', error)
     next(error)
   }
 })
