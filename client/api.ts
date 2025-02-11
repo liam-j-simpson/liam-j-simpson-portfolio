@@ -3,9 +3,12 @@ import request from 'superagent'
 //Get All Projects
 export async function getAllProjects() {
   try {
+    console.log('fetching data')
     const res = await request.get('/api/v1/projects')
+    console.log('fetching data successfull')
     return res.body.projects
   } catch (error) {
+    console.log('fetching data unsuccessfull')
     console.error(error)
   }
 }

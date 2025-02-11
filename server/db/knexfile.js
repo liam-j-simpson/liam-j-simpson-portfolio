@@ -8,23 +8,12 @@ const __dirname = Path.dirname(__filename)
 dotenv.config({ path: Path.join(__dirname, '../../.env') })
 
 const productionConfig = {
-  host: process.env.MYSQLHOST || process.env.RAILWAY_DATABASE_HOST,
-  port: process.env.MYSQLPORT || process.env.RAILWAY_DATABASE_PORT,
-  user: process.env.MYSQLUSER || process.env.RAILWAY_DATABASE_USER,
-  password: process.env.MYSQLPASSWORD || process.env.RAILWAY_DATABASE_PASSWORD,
-  database:
-    process.env.MYSQLDATABASE || process.env.RAILWAY_DATABASE_NAME || 'railway',
+  host: process.env.MYSQLHOST,
+  port: process.env.MYSQLPORT,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
 }
-
-console.log('Node Environment:', process.env.NODE_ENV)
-console.log('Production Database Config:', {
-  host: productionConfig.host,
-  port: productionConfig.port,
-  user: productionConfig.user,
-  database: productionConfig.database,
-  mysqlHostExists: !!process.env.MYSQLHOST,
-  railwayHostExists: !!process.env.RAILWAY_DATABASE_HOST,
-})
 
 export default {
   development: {
@@ -82,6 +71,6 @@ export default {
       min: 2,
       max: 10,
     },
-    debug: true, // Add this line to see query debugging
+    debug: true,
   },
 }
