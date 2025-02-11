@@ -24,29 +24,11 @@ const router = Router()
 
 import { auth } from 'express-oauth2-jwt-bearer'
 import { checkPermissions } from 'server/middleware/checkPermissions'
-import connection from 'server/db/connection'
 
 const checkJwt = auth({
   audience: process.env.AUTH0_AUDIENCE,
   issuerBaseURL: process.env.AUTH0_ISSUER_URL,
   tokenSigningAlg: process.env.AUTH0_SIGNING_ALG,
-})
-
-router.get('/debug-db', async (req, res) => {
-  try {
-    const result = await connection.raw('SELECT 1+1 as result')
-    res.json({
-      dbConnected: true,
-      testQuery: result,
-      timestamp: new Date().toISOString(),
-    })
-  } catch (error) {
-    res.status(500).json({
-      dbConnected: false,
-      error: error.message,
-      timestamp: new Date().toISOString(),
-    })
-  }
 })
 
 router.get('/health', (req, res) => {

@@ -4,20 +4,6 @@ import projectsRoutes from './routes/projects'
 
 const server = express()
 
-server.get('/debug', (req, res) => {
-  const debugInfo = {
-    serverStarted: true,
-    environment: process.env.NODE_ENV,
-    databaseConfig: {
-      host: process.env.MYSQLHOST,
-      database: process.env.MYSQLDATABASE,
-      hasPassword: !!process.env.MYSQLPASSWORD,
-    },
-    timestamp: new Date().toISOString(),
-  }
-  res.json(debugInfo)
-})
-
 server.use(express.json())
 server.use(express.urlencoded({ extended: false }))
 
