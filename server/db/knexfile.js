@@ -7,14 +7,6 @@ const __dirname = Path.dirname(__filename)
 
 dotenv.config({ path: Path.join(__dirname, '../../.env') })
 
-const developmentConfig = {
-  host: process.env.DEV_DATABASE_HOST || 'localhost',
-  port: process.env.DEV_DATABASE_PORT || 3306,
-  user: process.env.DEV_DATABASE_USER || 'root',
-  password: process.env.DEV_DATABASE_PASSWORD,
-  database: process.env.DEV_DATABASE_NAME || 'portfolio_dev',
-}
-
 const productionConfig = {
   host: process.env.MYSQLHOST || process.env.RAILWAY_DATABASE_HOST,
   port: process.env.MYSQLPORT || process.env.RAILWAY_DATABASE_PORT,
@@ -24,7 +16,6 @@ const productionConfig = {
     process.env.MYSQLDATABASE || process.env.RAILWAY_DATABASE_NAME || 'railway',
 }
 
-// Add more detailed logging
 console.log('Node Environment:', process.env.NODE_ENV)
 console.log('Production Database Config:', {
   host: productionConfig.host,
@@ -38,7 +29,13 @@ console.log('Production Database Config:', {
 export default {
   development: {
     client: 'mysql2',
-    connection: developmentConfig,
+    connection: {
+      host: process.env.DEV_DATABASE_HOST || 'localhost',
+      port: process.env.DEV_DATABASE_PORT || 3306,
+      user: process.env.DEV_DATABASE_USER || 'root',
+      password: process.env.DEV_DATABASE_PASSWORD,
+      database: process.env.DEV_DATABASE_NAME || 'portfolio_dev',
+    },
     migrations: {
       directory: Path.join(__dirname, 'migrations'),
     },

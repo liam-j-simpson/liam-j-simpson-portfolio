@@ -1,9 +1,7 @@
 import config from './knexfile'
 import knex from 'knex'
 
-type Environment = 'development' | 'test' | 'production'
-
-const environment = (process.env.NODE_ENV || 'development') as Environment
+const environment = process.env.NODE_ENV || 'development'
 const connection = knex(config[environment])
 
 export default connection
