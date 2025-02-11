@@ -31,10 +31,21 @@ const checkJwt = auth({
   tokenSigningAlg: process.env.AUTH0_SIGNING_ALG,
 })
 
+router.get('/health', (req, res) => {
+  console.error('==========================================')
+  console.error('💓 HEALTH CHECK HIT')
+  res.json({
+    status: 'alive',
+    time: new Date().toISOString(),
+    env: process.env.NODE_ENV,
+  })
+})
+
 router.get('/', async (_req, res, next) => {
-  console.log('Projects route hit')
+  console.error('==========================================')
+  console.error('📊 PROJECTS ROUTE HIT')
   try {
-    console.log('Attempting database query...')
+    console.error('🔍 Attempting to get projects...')
     const projects = await getAllProjects()
     console.log(
       '✅ Database query successful, found',
