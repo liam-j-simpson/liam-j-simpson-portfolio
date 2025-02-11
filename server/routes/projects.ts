@@ -31,13 +31,6 @@ const checkJwt = auth({
   tokenSigningAlg: process.env.AUTH0_SIGNING_ALG,
 })
 
-router.get('/health', (req, res) => {
-  res.json({
-    status: 'alive',
-    time: new Date().toISOString(),
-    env: process.env.NODE_ENV,
-  })
-})
 
 router.get('/', async (_req, res, next) => {
   try {

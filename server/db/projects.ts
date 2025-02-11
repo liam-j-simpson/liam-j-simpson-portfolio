@@ -1,6 +1,7 @@
 import { Project } from 'models/projects'
 import db from './connection'
 
+
 export async function getAllProjects() {
   const projects = await db('projects').select()
   const updatedProjects = projects.map((project) => {
