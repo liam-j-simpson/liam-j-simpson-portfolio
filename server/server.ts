@@ -1,10 +1,9 @@
 import express from 'express'
 import * as Path from 'node:path'
 import projectsRoutes from './routes/projects'
-import cors from 'cors'
+
 const server = express()
 
-server.use(cors())
 server.use(express.json())
 server.use(express.urlencoded({ extended: false }))
 
