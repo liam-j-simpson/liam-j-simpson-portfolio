@@ -31,14 +31,7 @@ const checkJwt = auth({
   tokenSigningAlg: process.env.AUTH0_SIGNING_ALG,
 })
 
-router.get('/health', (req, res) => {
-  res.json({
-    status: 'alive',
-    time: new Date().toISOString(),
-    env: process.env.NODE_ENV,
-  })
-})
-
+// GET ALL PROJECTS
 router.get('/', async (_req, res, next) => {
   try {
     const projects = await getAllProjects()
@@ -48,6 +41,7 @@ router.get('/', async (_req, res, next) => {
   }
 })
 
+// GET ONE PROJECT
 router.get('/:id', async (req, res, next) => {
   try {
     const id = Number(req.params.id)
@@ -58,6 +52,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+// CREATE PROJECT
 router.post(
   '/',
   checkJwt,
@@ -80,6 +75,7 @@ router.post(
   },
 )
 
+// DELETE PROJECT
 router.delete(
   '/:id',
   checkJwt,
@@ -95,6 +91,7 @@ router.delete(
   },
 )
 
+//EDIT PROJECT
 router.patch(
   '/:id',
   checkJwt,
