@@ -4,25 +4,37 @@ import { PageLoader } from '../authentication/PageLoader'
 
 export function ProjectPage() {
   const { id } = useParams()
-  const { isPending, isError, error, data } = useGetProject(Number(id))
+  const { isPending, isError, error, data } = useGetProject(id)
   if (isPending) {
     return <PageLoader />
   }
   if (isError) {
-    return <h2>Error: {error.message}</h2>
+    return (
+      <>
+        <h2>Error: {error.message}</h2>
+        <h1>Error</h1>
+      </>
+    )
   }
   if (data) {
     return (
       <>
         <h1 className="text-xl">{data.name.toUpperCase()}</h1>
         <ul className="flex">
-          {data.tags.map((item: string) => (
-            <li key={item}>
-              <button className="rounded-full px-6 outline outline-1 mb-3 mr-3">
-                {item}
-              </button>
-            </li>
-          ))}
+          {Array.isArray(data.tags) ? (
+            data.tags.map((item: string) => (
+              <li key={item}>
+                <button className="rounded-full px-6 outline outline-1 mb-3 mr-3">
+                  {item}
+                </button>
+              </li>
+            ))
+          ) : (
+            <button className="rounded-full px-6 outline mb-3 mr-3">
+              {data.tags}
+              <button className="pl-2">x</button>
+            </button>
+          )}
         </ul>
         <p className="mb-3">{`Deployed on ${data.date}`}</p>
         <p className="mb-3">{data.description}</p>

@@ -4,6 +4,9 @@ import path from 'path'
 
 export default defineConfig({
   base: '/',
+  build: {
+    outDir: 'dist/client',
+  },
   plugins: [react()],
   server: {
     proxy: {

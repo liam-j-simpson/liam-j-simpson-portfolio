@@ -1,28 +1,37 @@
 import { Project } from 'models/projects'
-import db from './connection'
+import { connectToDb } from './connection'
+import { ObjectId } from 'mongodb'
+
+//GET PROJECTS COLLECTION
+export async function getProjectsCollection() {
+  const db = await connectToDb()
+  const collection = db.collection('projects')
+  return collection
+}
 
 // GET ALL PROJECTS
 export async function getAllProjects() {
-  const projects = await db('projects').select()
-  const updatedProjects = projects.map((project) => {
-    return {
-      ...project,
-      tags: JSON.parse(project.tags),
-      gallery: JSON.parse(project.gallery),
-    }
-  })
-  return updatedProjects
+  const collection = await getProjectsCollection()
+  try {
+    const projects = await collection.find({}).toArray()
+    const projectsWithId = projects.map((project) => {
+      const { _id, ...rest } = project
+      return { id: _id, ...rest }
+    })
+    return projectsWithId
+  } catch (error) {
+    throw new Error(`Error getting projects, ${error}`)
+  }
 }
 
 // GET ONE PROJECT
-export async function getProjectById(id: number) {
-  const project = await db('projects').where({ id }).select().first()
-  const updatedProject = {
-    ...project,
-    tags: JSON.parse(project.tags),
-    gallery: JSON.parse(project.gallery),
+export async function getProjectById(id: string) {
+  const collection = await getProjectsCollection()
+  try {
+    return await collection.findOne({ _id: new ObjectId(id) })
+  } catch (error) {
+    throw new Error(`Error getting Project:${id}, ${error}`)
   }
-  return updatedProject
 }
 
 // CREATE PROJECT
@@ -32,63 +41,35 @@ export async function addProject(
   gallery: string | undefined,
 ) {
   const { name, date, summary, description, url, tags } = project
-  const galleryJson = JSON.stringify(gallery)
 
-  const tagsJson = Array.isArray(tags)
-    ? JSON.stringify(tags)
-    : JSON.stringify([tags])
-
-  return await db('projects').insert({
+  const collection = await getProjectsCollection()
+  collection.insertOne({
     name,
     date,
     summary,
     description,
     url,
-    tags: tagsJson,
+    tags,
     thumbnail,
-    gallery: galleryJson,
+    gallery,
   })
 }
 
 // DELETE PROJECT
-export async function deleteProject(id: number) {
-  return await db('projects').where('id', id).del()
+export async function deleteProject(id: string) {
+  const collection = await getProjectsCollection()
+  return await collection.deleteOne({ _id: new ObjectId(id) })
+  // return await db('projects').where('id', id).del()
 }
 
 //EDIT PROJECT
 export async function editProject(
-  id: number,
+  id: string,
   changes: Project,
   thumbnail: string | undefined,
   gallery: string | undefined,
 ) {
-  const { name, date, summary, description, url, tags } = changes
-  const galleryJson = JSON.stringify(gallery)
-
-  if (tags !== undefined) {
-    const tagsJson = Array.isArray(tags)
-      ? JSON.stringify(tags)
-      : JSON.stringify([tags])
-
-    return await db('projects').where('id', id).update({
-      name,
-      date,
-      summary,
-      description,
-      url,
-      tags: tagsJson,
-      thumbnail,
-      gallery: galleryJson,
-    })
-  } else
-    await db('projects').where('id', id).update({
-      name,
-      date,
-      summary,
-      description,
-      url,
-      tags,
-      thumbnail,
-      gallery: galleryJson,
-    })
+  const allChanges = { changes, thumbnail, gallery }
+  const collection = await getProjectsCollection()
+  collection.updateOne({ _id: new ObjectId(id) }, { $set: allChanges })
 }

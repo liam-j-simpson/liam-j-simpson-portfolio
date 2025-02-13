@@ -11,13 +11,20 @@ export function ProjectCards({ data }: ProjectArray) {
               <h2 className="text-s mb-3">{item.name}</h2>
 
               <ul className="flex">
-                {item.tags.map((item) => (
-                  <li key={item}>
-                    <button className="rounded-full px-3 outline outline-1 mb-3 mr-3">
-                      {item}
-                    </button>
-                  </li>
-                ))}
+                {Array.isArray(item.tags) ? (
+                  item.tags.map((item) => (
+                    <li key={item}>
+                      <button className="rounded-full px-3 outline outline-1 mb-3 mr-3">
+                        {item}
+                      </button>
+                    </li>
+                  ))
+                ) : (
+                  <button className="rounded-full px-6 outline mb-3 mr-3">
+                    {item.tags}
+                    <button className="pl-2">x</button>
+                  </button>
+                )}
               </ul>
               <p className="mb-3">{item.summary}</p>
               <img src={item.thumbnail} alt="represents the project" />

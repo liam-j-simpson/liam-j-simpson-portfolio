@@ -35,8 +35,8 @@ export function AddProject() {
     }
 
     if (form.tags.length !== 0) {
-      form.tags.forEach((tag) => {
-        formData.append('tags', tag)
+      form.tags.forEach((item) => {
+        formData.append('tags', item)
       })
     }
     if (gallery.length !== 0) {

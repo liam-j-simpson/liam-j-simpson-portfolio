@@ -44,7 +44,7 @@ router.get('/', async (_req, res, next) => {
 // GET ONE PROJECT
 router.get('/:id', async (req, res, next) => {
   try {
-    const id = Number(req.params.id)
+    const id = req.params.id
     const project = await getProjectById(id)
     res.json({ project })
   } catch (error) {
@@ -81,7 +81,7 @@ router.delete(
   checkJwt,
   checkPermissions('delete:project'),
   async (req, res, next) => {
-    const id = Number(req.params.id)
+    const id = req.params.id
     try {
       await deleteProject(id)
       res.sendStatus(204)
@@ -101,7 +101,7 @@ router.patch(
     { name: 'gallery', maxCount: 10 },
   ]),
   async (req, res, next) => {
-    const id = Number(req.params.id)
+    const id = req.params.id
     const changes = req.body
     const thumbnail = req.files?.thumbnail?.[0].path
     const gallery = req.files?.gallery?.map((item) => item.path) || []

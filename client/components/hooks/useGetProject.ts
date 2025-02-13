@@ -11,7 +11,7 @@ export function useGetAllProjects() {
   })
 }
 
-export function useGetProject(id: number) {
+export function useGetProject(id) {
   return useQuery({
     queryKey: ['project', id],
     queryFn: async () => {
