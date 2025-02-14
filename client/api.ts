@@ -11,7 +11,7 @@ export async function getAllProjects() {
 }
 
 //Get Projects By ID
-export async function getProject(id: number) {
+export async function getProject(id: string) {
   try {
     const res = await request.get(`/api/v1/projects/${id}`)
     return res.body.project
