@@ -21,20 +21,14 @@ export function ProjectPage() {
       <>
         <h1 className="text-xl">{data.name.toUpperCase()}</h1>
         <ul className="flex">
-          {Array.isArray(data.tags) ? (
+          {Array.isArray(data.tags) &&
             data.tags.map((item: string) => (
               <li key={item}>
                 <button className="rounded-full px-6 outline outline-1 mb-3 mr-3">
                   {item}
                 </button>
               </li>
-            ))
-          ) : (
-            <button className="rounded-full px-6 outline mb-3 mr-3">
-              {data.tags}
-              <button className="pl-2">x</button>
-            </button>
-          )}
+            ))}
         </ul>
         <p className="mb-3">{`Deployed on ${data.date}`}</p>
         <p className="mb-3">{data.description}</p>

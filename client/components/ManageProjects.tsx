@@ -38,7 +38,7 @@ export function ManageProjects({ data }: ProjectArray) {
     if (e.key === 'Enter') {
       e.preventDefault()
       const newTags = e.currentTarget.value
-      setChanges({ ...changes, tags: [...changes.tags, newTags] })
+      setChanges({ ...changes, tags: [...(changes.tags || []), newTags] })
       e.currentTarget.value = ''
     }
   }
@@ -66,7 +66,7 @@ export function ManageProjects({ data }: ProjectArray) {
     if (changes.description !== '') {
       formData.append('description', `${changes.description}`)
     }
-    if (changes.tags.length > 0) {
+    if (changes.tags) {
       changes.tags.forEach((tag) => {
         formData.append('tags', tag)
       })
@@ -214,40 +214,18 @@ export function ManageProjects({ data }: ProjectArray) {
                     placeholder="Submit with <Enter>"
                     onKeyDown={handleChangeTags}
                   />
-                  <ul>
-                    {Array.isArray(item.tags) ? (
-                      item.tags.map((item) => (
-                        <li key={item}>
-                          <button className="rounded-full px-6 outline mb-3 mr-3">
-                            {item}
-                            <button className="pl-2">x</button>
-                          </button>
-                        </li>
-                      ))
-                    ) : (
-                      <button className="rounded-full px-6 outline mb-3 mr-3">
-                        {item.tags}
-                        <button className="pl-2">x</button>
-                      </button>
-                    )}
-                  </ul>
+                  <p>{changes.tags.join(', ')}</p>
                 </>
               ) : (
                 <ul>
-                  {Array.isArray(item.tags) ? (
+                  {Array.isArray(item.tags) &&
                     item.tags.map((item) => (
                       <li key={item}>
                         <button className="rounded-full px-6 outline mb-3 mr-3">
                           {item}
                         </button>
                       </li>
-                    ))
-                  ) : (
-                    <button className="rounded-full px-6 outline mb-3 mr-3">
-                      {item.tags}
-                      <button className="pl-2">x</button>
-                    </button>
-                  )}
+                    ))}
                 </ul>
               )}
             </div>

@@ -14,6 +14,8 @@ export function AddProject() {
     url: '',
     date: '',
   })
+  console.log(form.tags)
+
   const [thumbnail, setThumbnail] = useState<File[]>([])
   const [gallery, setGallery] = useState<File[]>([])
 
@@ -34,7 +36,7 @@ export function AddProject() {
       }
     }
 
-    if (form.tags?.length !== 0) {
+    if (form.tags) {
       form.tags?.forEach((item) => {
         formData.append('tags', item)
       })
@@ -65,7 +67,7 @@ export function AddProject() {
     if (e.key === 'Enter') {
       e.preventDefault()
       const newTags = e.currentTarget.value
-      setForm({ ...form, tags: [...form.tags, newTags] })
+      setForm({ ...form, tags: [...(form.tags || []), newTags] })
       e.currentTarget.value = ''
     }
   }
@@ -182,7 +184,7 @@ export function AddProject() {
             placeholder="Submit with <Enter>"
             onKeyDown={handleChangeTags}
           ></Input>
-          <p>{form.tags}</p>
+          <p>{form.tags.join(', ')}</p>
         </div>
         <div>
           <Input

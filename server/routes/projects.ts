@@ -62,7 +62,7 @@ router.post(
     { name: 'gallery', maxCount: 10 },
   ]),
   async (req, res, next) => {
-    const project = req.body
+    const  project  = req.body
     const thumbnail = req.files?.thumbnail?.[0].path
     const gallery = req.files?.gallery?.map((item) => item.path) || []
 
@@ -103,6 +103,7 @@ router.patch(
   async (req, res, next) => {
     const id = req.params.id
     const changes = req.body
+
     const thumbnail = req.files?.thumbnail?.[0].path
     const gallery = req.files?.gallery?.map((item) => item.path) || []
 
