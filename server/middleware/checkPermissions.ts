@@ -2,8 +2,6 @@ import { NextFunction, Request, Response } from 'express'
 
 export const checkPermissions = (requiredPermission: string) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    console.log('permissions', req.auth?.payload)
-
     const userPermissions = req.auth?.payload.permissions as string[]
     if (userPermissions.includes(requiredPermission)) {
       return next()
