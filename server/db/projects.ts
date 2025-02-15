@@ -38,7 +38,7 @@ export async function getProjectById(id: string) {
 export async function addProject(
   project: Project,
   thumbnail: string | undefined,
-  gallery: string | undefined,
+  gallery: string[] | undefined,
 ) {
   const { name, date, summary, description, url, tags } = project
 
@@ -55,21 +55,24 @@ export async function addProject(
   })
 }
 
-// DELETE PROJECT
-export async function deleteProject(id: string) {
-  const collection = await getProjectsCollection()
-  return await collection.deleteOne({ _id: new ObjectId(id) })
-  // return await db('projects').where('id', id).del()
-}
-
 //EDIT PROJECT
 export async function editProject(
   id: string,
   changes: Project,
   thumbnail: string | undefined,
-  gallery: string | undefined,
+  gallery: string[] | undefined,
 ) {
-  const allChanges = { changes, thumbnail, gallery }
+  const { name, date, summary, description, url, tags } = changes
   const collection = await getProjectsCollection()
-  collection.updateOne({ _id: new ObjectId(id) }, { $set: allChanges })
+  collection.updateOne(
+    { _id: new ObjectId(id) },
+    { $set: name, date, summary, description, url, tags, thumbnail, gallery },
+  )
+}
+
+// DELETE PROJECT
+export async function deleteProject(id: string) {
+  const collection = await getProjectsCollection()
+  return await collection.deleteOne({ _id: new ObjectId(id) })
+  // return await db('projects').where('id', id).del()
 }

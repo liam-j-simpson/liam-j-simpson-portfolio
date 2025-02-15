@@ -27,7 +27,9 @@ export function AddProject() {
     formData.append('summary', form.summary)
     formData.append('description', form.description)
     formData.append('date', form.date)
-
+    form.tags?.forEach((item) => {
+      formData.append('tags[]', item)
+    })
     if (form.url !== '') {
       if (form.url?.includes('https://')) {
         formData.append('url', form.url)
@@ -36,11 +38,6 @@ export function AddProject() {
       }
     }
 
-    if (form.tags) {
-      form.tags?.forEach((item) => {
-        formData.append('tags', item)
-      })
-    }
     if (gallery.length !== 0) {
       gallery.forEach((item) => {
         formData.append('gallery', item)

@@ -14,3 +14,7 @@ export interface ProjectData extends Project {
 export interface ProjectArray {
   data: ProjectData[]
 }
+
+export interface MulterFiles {
+  [key: string]: Express.Multer.File[]
+}

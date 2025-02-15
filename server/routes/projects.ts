@@ -6,6 +6,7 @@ import {
   getAllProjects,
   getProjectById,
 } from 'server/db/projects'
+import { MulterFiles } from 'models/projects'
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -59,32 +60,17 @@ router.post(
   checkPermissions('add:project'),
   upload.fields([
     { name: 'thumbnail', maxCount: 1 },
-    { name: 'gallery', maxCount: 10 },
+    { name: 'gallery', maxCount: 5 },
   ]),
   async (req, res, next) => {
-    const  project  = req.body
-    const thumbnail = req.files?.thumbnail?.[0].path
-    const gallery = req.files?.gallery?.map((item) => item.path) || []
+    const project = req.body
+    const files = req.files as MulterFiles
+    const thumbnail = files.thumbnail?.[0].path
+    const gallery = files.gallery?.map((item) => item.path) || []
 
     try {
       await addProject(project, thumbnail, gallery)
       res.sendStatus(201)
-    } catch (error) {
-      next(error)
-    }
-  },
-)
-
-// DELETE PROJECT
-router.delete(
-  '/:id',
-  checkJwt,
-  checkPermissions('delete:project'),
-  async (req, res, next) => {
-    const id = req.params.id
-    try {
-      await deleteProject(id)
-      res.sendStatus(204)
     } catch (error) {
       next(error)
     }
@@ -103,13 +89,29 @@ router.patch(
   async (req, res, next) => {
     const id = req.params.id
     const changes = req.body
-
-    const thumbnail = req.files?.thumbnail?.[0].path
-    const gallery = req.files?.gallery?.map((item) => item.path) || []
+    const files = req.files as MulterFiles
+    const thumbnail = files.thumbnail?.[0].path
+    const gallery = files.gallery?.map((item) => item.path) || []
 
     try {
       await editProject(id, changes, thumbnail, gallery)
       res.sendStatus(201)
+    } catch (error) {
+      next(error)
+    }
+  },
+)
+
+// DELETE PROJECT
+router.delete(
+  '/:id',
+  checkJwt,
+  checkPermissions('delete:project'),
+  async (req, res, next) => {
+    const id = req.params.id
+    try {
+      await deleteProject(id)
+      res.sendStatus(204)
     } catch (error) {
       next(error)
     }
