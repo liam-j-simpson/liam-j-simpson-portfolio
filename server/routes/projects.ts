@@ -8,9 +8,11 @@ import {
 } from 'server/db/projects'
 import { MulterFiles } from 'models/projects'
 import dotenv from 'dotenv'
-dotenv.config()
-
 import multer from 'multer'
+import { auth } from 'express-oauth2-jwt-bearer'
+import { checkPermissions } from 'server/middleware/checkPermissions'
+
+dotenv.config()
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/')
@@ -19,18 +21,13 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + '_' + file.originalname)
   },
 })
-const upload = multer({ storage })
-
-const router = Router()
-
-import { auth } from 'express-oauth2-jwt-bearer'
-import { checkPermissions } from 'server/middleware/checkPermissions'
-
 const checkJwt = auth({
   audience: process.env.AUTH0_AUDIENCE,
   issuerBaseURL: process.env.AUTH0_ISSUER_URL,
   tokenSigningAlg: process.env.AUTH0_SIGNING_ALG,
 })
+const upload = multer({ storage })
+const router = Router()
 
 // GET ALL PROJECTS
 router.get('/', async (_req, res, next) => {
@@ -63,13 +60,22 @@ router.post(
     { name: 'gallery', maxCount: 5 },
   ]),
   async (req, res, next) => {
-    const project = req.body
+    const { name, summary, description, tags, url, date } = req.body
     const files = req.files as MulterFiles
     const thumbnail = files.thumbnail?.[0].path
     const gallery = files.gallery?.map((item) => item.path) || []
-
+    const project = {
+      name,
+      summary,
+      description,
+      tags,
+      url,
+      date,
+      thumbnail,
+      gallery,
+    }
     try {
-      await addProject(project, thumbnail, gallery)
+      await addProject(project)
       res.sendStatus(201)
     } catch (error) {
       next(error)
@@ -88,11 +94,10 @@ router.patch(
   ]),
   async (req, res, next) => {
     const id = req.params.id
-
+    const changes = req.body
     const files = req.files as MulterFiles
     const thumbnail = files.thumbnail?.[0].path
     const gallery = files.gallery?.map((item) => item.path) || []
-    const changes = req.body
 
     if (gallery.length > 0) {
       changes.gallery = gallery
@@ -100,7 +105,6 @@ router.patch(
     if (thumbnail != undefined) {
       changes.thumbnail = thumbnail
     }
-
     try {
       await editProject(id, changes)
       res.sendStatus(201)
