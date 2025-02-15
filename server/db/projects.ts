@@ -62,11 +62,12 @@ export async function editProject(
   thumbnail: string | undefined,
   gallery: string[] | undefined,
 ) {
-  const { name, date, summary, description, url, tags } = changes
   const collection = await getProjectsCollection()
   collection.updateOne(
     { _id: new ObjectId(id) },
-    { $set: name, date, summary, description, url, tags, thumbnail, gallery },
+    {
+      $set: changes,
+    },
   )
 }
 
