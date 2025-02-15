@@ -56,19 +56,9 @@ export async function addProject(
 }
 
 //EDIT PROJECT
-export async function editProject(
-  id: string,
-  changes: Project,
-  thumbnail: string | undefined,
-  gallery: string[] | undefined,
-) {
+export async function editProject(id: string, changes: Project) {
   const collection = await getProjectsCollection()
-  collection.updateOne(
-    { _id: new ObjectId(id) },
-    {
-      $set: changes,
-    },
-  )
+  collection.updateOne({ _id: new ObjectId(id) }, { $set: changes })
 }
 
 // DELETE PROJECT

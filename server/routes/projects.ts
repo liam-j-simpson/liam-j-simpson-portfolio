@@ -88,13 +88,21 @@ router.patch(
   ]),
   async (req, res, next) => {
     const id = req.params.id
-    const changes = req.body
+
     const files = req.files as MulterFiles
     const thumbnail = files.thumbnail?.[0].path
     const gallery = files.gallery?.map((item) => item.path) || []
+    const changes = req.body
+
+    if (gallery.length > 0) {
+      changes.gallery = gallery
+    }
+    if (thumbnail != undefined) {
+      changes.thumbnail = thumbnail
+    }
 
     try {
-      await editProject(id, changes, thumbnail, gallery)
+      await editProject(id, changes)
       res.sendStatus(201)
     } catch (error) {
       next(error)
