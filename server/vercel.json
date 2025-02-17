@@ -1,10 +1,11 @@
 { 
   "version": 2,
-  "builds": [{ "src": "server/server.ts", "use": "@vercel/node"}],
+  "builds": [{ "src": "server.ts", "use": "@vercel/node"}],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "server/server.ts"
+      "dest": "server.ts"
     }
-  ]
+  ],
+  "buildCommand": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/index.ts"
 }
