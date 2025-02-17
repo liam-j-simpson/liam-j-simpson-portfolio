@@ -71,20 +71,18 @@ router.post(
   async (req, res, next) => {
     const { name, summary, description, tags, url, date } = req.body
     const files = req.files as MulterFiles
-    const thumbnail = files.thumbnail?.[0].path
-    const gallery = await files.gallery?.map((item) =>
-      cloudinary.uploader.upload(item.path),
+
+    // UPLOAD THUMBNAIL & SEND IMG PATH TO DB
+    const thumbnail = await cloudinary.uploader.upload(
+      files.thumbnail?.[0].path,
     )
-    // const galleryResult = gallery.map((item) => item.secure_url)
-    const result = await cloudinary.uploader.upload(thumbnail)
+    const thumbnailResult = thumbnail.secure_url
 
-    // async function galleryResult() {
-    //   return await gallery.map((item) => await cloudinary.uploader.upload(item))
-    // }
-
-    console.log('gallery', gallery)
-    // console.log('galleryResult', galleryResult)
-    // console.log('thumbnail url', result.secure_url)
+    // UPLOAD GALLERY & SEND IMG PATHS TO DB
+    const gallery = await Promise.all(
+      files.gallery?.map((item) => cloudinary.uploader.upload(item.path)),
+    )
+    const galleryResult = gallery.map((item) => item.secure_url)
 
     const project = {
       name,
@@ -93,12 +91,14 @@ router.post(
       tags,
       url,
       date,
-      thumbnail: result.secure_url,
-      gallery,
+      thumbnail: thumbnailResult,
+      gallery: galleryResult,
     }
     try {
       await addProject(project)
-      fs.unlinkSync(thumbnail)
+      // DELETE LOCAL IMAGE PATH
+      fs.unlinkSync(files.thumbnail?.[0].path)
+      files.gallery?.map((item) => fs.unlinkSync(item.path))
       res.sendStatus(201)
     } catch (error) {
       next(error)

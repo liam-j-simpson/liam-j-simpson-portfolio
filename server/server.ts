@@ -20,4 +20,6 @@ if (process.env.NODE_ENV === 'production') {
   server.use(express.static('./dist/client'))
 }
 
+
+
 export default server
