@@ -80,7 +80,6 @@ router.post(
     const thumbnailId = thumbnail.public_id
 
     // UPLOAD GALLERY & SEND IMG PATHS TO DB
-
     const gallery = await Promise.all(
       files.gallery?.map((item) => cloudinary.uploader.upload(item.path)),
     )
