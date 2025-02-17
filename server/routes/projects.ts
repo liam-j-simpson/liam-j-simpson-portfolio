@@ -77,12 +77,15 @@ router.post(
       files.thumbnail?.[0].path,
     )
     const thumbnailResult = thumbnail.secure_url
+    const thumbnailId = thumbnail.public_id
 
     // UPLOAD GALLERY & SEND IMG PATHS TO DB
     const gallery = await Promise.all(
       files.gallery?.map((item) => cloudinary.uploader.upload(item.path)),
     )
+
     const galleryResult = gallery.map((item) => item.secure_url)
+    const galleryId = gallery.map((item) => item.public_id)
 
     const project = {
       name,
@@ -92,7 +95,9 @@ router.post(
       url,
       date,
       thumbnail: thumbnailResult,
+      thumbnailId,
       gallery: galleryResult,
+      galleryId,
     }
     try {
       await addProject(project)
@@ -154,15 +159,15 @@ router.delete(
   checkPermissions('delete:project'),
   async (req, res, next) => {
     const id = req.params.id
-    // const project = await getProjectById(id)
-    // const thumbnail = project?.thumbnail
-    // const gallery = project?.gallery
-    // console.log('thumbnail', thumbnail)
-    // console.log('gallery', gallery)
+    const project = await getProjectById(id)
+    const thumbnail = project?.thumbnailId
+    const galleryId = project?.galleryId
 
     try {
-      // await cloudinary.uploader.destroy(thumbnail)
-      // await cloudinary.uploader.destroy(gallery)
+      await cloudinary.uploader.destroy(thumbnail)
+      await Promise.all(
+        galleryId.map((item: string) => cloudinary.uploader.destroy(item)),
+      )
 
       await deleteProject(id)
       res.sendStatus(204)
