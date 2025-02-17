@@ -11,8 +11,17 @@ import dotenv from 'dotenv'
 import multer from 'multer'
 import { auth } from 'express-oauth2-jwt-bearer'
 import { checkPermissions } from 'server/middleware/checkPermissions'
-
+import { v2 as cloudinary } from 'cloudinary'
+import fs from 'fs'
 dotenv.config()
+
+cloudinary.config({
+  cloud_name: 'dubbie1ur',
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+})
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/')
@@ -63,7 +72,20 @@ router.post(
     const { name, summary, description, tags, url, date } = req.body
     const files = req.files as MulterFiles
     const thumbnail = files.thumbnail?.[0].path
-    const gallery = files.gallery?.map((item) => item.path) || []
+    const gallery = await files.gallery?.map((item) =>
+      cloudinary.uploader.upload(item.path),
+    )
+    // const galleryResult = gallery.map((item) => item.secure_url)
+    const result = await cloudinary.uploader.upload(thumbnail)
+
+    // async function galleryResult() {
+    //   return await gallery.map((item) => await cloudinary.uploader.upload(item))
+    // }
+
+    console.log('gallery', gallery)
+    // console.log('galleryResult', galleryResult)
+    // console.log('thumbnail url', result.secure_url)
+
     const project = {
       name,
       summary,
@@ -71,11 +93,12 @@ router.post(
       tags,
       url,
       date,
-      thumbnail,
+      thumbnail: result.secure_url,
       gallery,
     }
     try {
       await addProject(project)
+      fs.unlinkSync(thumbnail)
       res.sendStatus(201)
     } catch (error) {
       next(error)
