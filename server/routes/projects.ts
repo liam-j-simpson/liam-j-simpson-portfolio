@@ -80,6 +80,7 @@ router.post(
     const thumbnailId = thumbnail.public_id
 
     // UPLOAD GALLERY & SEND IMG PATHS TO DB
+
     const gallery = await Promise.all(
       files.gallery?.map((item) => cloudinary.uploader.upload(item.path)),
     )
@@ -126,24 +127,35 @@ router.patch(
     const files = req.files as MulterFiles
     const thumbnail = files.thumbnail?.[0].path
     const gallery = files.gallery?.map((item) => item.path) || []
+    const project = await getProjectById(id)
 
     if (gallery.length > 0) {
+      const galleryId = project?.galleryId
+      await Promise.all(
+        galleryId.map((item: string) => cloudinary.uploader.destroy(item)),
+      )
       const gallery = await Promise.all(
         files.gallery?.map((item) => cloudinary.uploader.upload(item.path)),
       )
+      files.gallery?.map((item) => fs.unlinkSync(item.path))
       const galleryResult = gallery.map((item) => item.secure_url)
+      const newGalleryId = gallery.map((item) => item.public_id)
       changes.gallery = galleryResult
+      changes.galleryId = newGalleryId
     }
 
     if (thumbnail != undefined) {
+      const oldThumbnailId = project?.thumbnailId
+      await cloudinary.uploader.destroy(oldThumbnailId)
+
       const thumbnail = await cloudinary.uploader.upload(
         files.thumbnail?.[0].path,
       )
+      fs.unlinkSync(files.thumbnail?.[0].path)
       changes.thumbnail = thumbnail.secure_url
+      changes.thumbnailId = thumbnail.public_id
     }
     try {
-      fs.unlinkSync(files.thumbnail?.[0].path)
-      files.gallery?.map((item) => fs.unlinkSync(item.path))
       await editProject(id, changes)
       res.sendStatus(201)
     } catch (error) {
@@ -160,11 +172,11 @@ router.delete(
   async (req, res, next) => {
     const id = req.params.id
     const project = await getProjectById(id)
-    const thumbnail = project?.thumbnailId
+    const thumbnailId = project?.thumbnailId
     const galleryId = project?.galleryId
 
     try {
-      await cloudinary.uploader.destroy(thumbnail)
+      await cloudinary.uploader.destroy(thumbnailId)
       await Promise.all(
         galleryId.map((item: string) => cloudinary.uploader.destroy(item)),
       )
