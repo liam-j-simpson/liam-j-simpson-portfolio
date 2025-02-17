@@ -96,7 +96,7 @@ router.post(
     }
     try {
       await addProject(project)
-      // DELETE LOCAL IMAGE PATH
+      // DELETE LOCAL IMAGE PATHS
       fs.unlinkSync(files.thumbnail?.[0].path)
       files.gallery?.map((item) => fs.unlinkSync(item.path))
       res.sendStatus(201)
@@ -123,12 +123,22 @@ router.patch(
     const gallery = files.gallery?.map((item) => item.path) || []
 
     if (gallery.length > 0) {
-      changes.gallery = gallery
+      const gallery = await Promise.all(
+        files.gallery?.map((item) => cloudinary.uploader.upload(item.path)),
+      )
+      const galleryResult = gallery.map((item) => item.secure_url)
+      changes.gallery = galleryResult
     }
+
     if (thumbnail != undefined) {
-      changes.thumbnail = thumbnail
+      const thumbnail = await cloudinary.uploader.upload(
+        files.thumbnail?.[0].path,
+      )
+      changes.thumbnail = thumbnail.secure_url
     }
     try {
+      fs.unlinkSync(files.thumbnail?.[0].path)
+      files.gallery?.map((item) => fs.unlinkSync(item.path))
       await editProject(id, changes)
       res.sendStatus(201)
     } catch (error) {
@@ -144,7 +154,16 @@ router.delete(
   checkPermissions('delete:project'),
   async (req, res, next) => {
     const id = req.params.id
+    // const project = await getProjectById(id)
+    // const thumbnail = project?.thumbnail
+    // const gallery = project?.gallery
+    // console.log('thumbnail', thumbnail)
+    // console.log('gallery', gallery)
+
     try {
+      // await cloudinary.uploader.destroy(thumbnail)
+      // await cloudinary.uploader.destroy(gallery)
+
       await deleteProject(id)
       res.sendStatus(204)
     } catch (error) {
