@@ -1,12 +1,1 @@
-{ 
-  "version": 2,
-  "builds": [{ "src": "server.ts", "use": "@vercel/node"}],
-  "outputDirectory": "../dist/",
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "server.ts"
-    }
-  ],
-  "buildCommand": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/index.ts"
-}
+{ "version": 2, "rewrites": [{ "source": "/(.*)", "destination": "/api" }]}

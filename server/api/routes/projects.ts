@@ -5,12 +5,12 @@ import {
   editProject,
   getAllProjects,
   getProjectById,
-} from 'server/db/projects'
+} from 'server/api/db/projects'
 import { MulterFiles } from 'models/projects'
 import dotenv from 'dotenv'
 import multer from 'multer'
 import { auth } from 'express-oauth2-jwt-bearer'
-import { checkPermissions } from 'server/middleware/checkPermissions'
+import { checkPermissions } from 'server/api/middleware/checkPermissions'
 import { v2 as cloudinary } from 'cloudinary'
 import fs from 'fs'
 
