@@ -6,13 +6,13 @@ const app = express()
 
 // app.use(express.json())
 
-app.use('/api/v1/projects', projectsRoutes)
-
 // app.use(express.static(Path.resolve('public')))
 
 app.get('/', (req, res) => {
   res.send('Express on Vercel')
 })
+
+app.use('/api/v1/projects', projectsRoutes)
 
 app.listen(3000, () => {
   console.log('Server ready on port 3000')

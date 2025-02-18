@@ -5,12 +5,12 @@ import {
   editProject,
   getAllProjects,
   getProjectById,
-} from 'server/api/db/projects'
+} from '../db/projects'
 import { MulterFiles } from 'models/projects'
 import dotenv from 'dotenv'
 import multer from 'multer'
 import { auth } from 'express-oauth2-jwt-bearer'
-import { checkPermissions } from 'server/api/middleware/checkPermissions'
+import { checkPermissions } from '../../api/middleware/checkPermissions'
 import { v2 as cloudinary } from 'cloudinary'
 import fs from 'fs'
 
@@ -78,7 +78,9 @@ router.post(
 
     // UPLOAD GALLERY
     const gallery = await Promise.all(
-      files.gallery?.map((item) => cloudinary.uploader.upload(item.path)),
+      files.gallery?.map((item: Express.Multer.File) =>
+        cloudinary.uploader.upload(item.path),
+      ),
     )
 
     const project = {
