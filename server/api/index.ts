@@ -1,6 +1,6 @@
 import express from 'express'
 // import * as Path from 'node:path'
-import projectsRoutes from './routes/projects'
+// import projectsRoutes from './routes/projects'
 
 const app = express()
 
@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
   res.send('Express on Vercel')
 })
 
-app.use('/api/v1/projects', projectsRoutes)
+// app.use('/api/v1/projects', projectsRoutes)
 
 app.listen(3000, () => {
   console.log('Server ready on port 3000')
