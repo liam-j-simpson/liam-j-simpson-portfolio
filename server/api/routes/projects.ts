@@ -11,7 +11,7 @@ import dotenv from 'dotenv'
 import multer from 'multer'
 import { auth } from 'express-oauth2-jwt-bearer'
 import { checkPermissions } from '../../api/middleware/checkPermissions'
-import { v2 as cloudinary } from 'cloudinary'
+import { v2 as cloudinary, UploadApiResponse } from 'cloudinary'
 import fs from 'fs'
 
 dotenv.config()
@@ -92,8 +92,8 @@ router.post(
       date,
       thumbnail: thumbnail.secure_url,
       thumbnailId: thumbnail.public_id,
-      gallery: gallery.map((item) => item.secure_url),
-      galleryId: gallery.map((item) => item.public_id),
+      gallery: gallery.map((item: UploadApiResponse) => item.secure_url),
+      galleryId: gallery.map((item: UploadApiResponse) => item.public_id),
     }
     try {
       //ADD PROJECT
@@ -101,7 +101,9 @@ router.post(
 
       // DELETE LOCAL IMAGE PATHS
       fs.unlinkSync(files.thumbnail?.[0].path)
-      files.gallery?.map((item) => fs.unlinkSync(item.path))
+      files.gallery?.map((item: Express.Multer.File) =>
+        fs.unlinkSync(item.path),
+      )
       res.sendStatus(201)
     } catch (error) {
       next(error)
@@ -124,7 +126,8 @@ router.patch(
     const changes = req.body
     const files = req.files as MulterFiles
     const thumbnail = files.thumbnail?.[0].path
-    const gallery = files.gallery?.map((item) => item.path) || []
+    const gallery =
+      files.gallery?.map((item: Express.Multer.File) => item.path) || []
 
     if (gallery.length > 0) {
       // DELETE OLD IMAGE
@@ -135,14 +138,22 @@ router.patch(
       )
       // UPLOAD NEW IMAGE
       const gallery = await Promise.all(
-        files.gallery?.map((item) => cloudinary.uploader.upload(item.path)),
+        files.gallery?.map((item: Express.Multer.File) =>
+          cloudinary.uploader.upload(item.path),
+        ),
       )
       // DELETE LOCAL FILE
-      files.gallery?.map((item) => fs.unlinkSync(item.path))
+      files.gallery?.map((item: Express.Multer.File) =>
+        fs.unlinkSync(item.path),
+      )
 
       // UPDATE CHANGES OBJECT
-      changes.gallery = gallery.map((item) => item.secure_url)
-      changes.galleryId = gallery.map((item) => item.public_id)
+      changes.gallery = gallery.map(
+        (item: UploadApiResponse) => item.secure_url,
+      )
+      changes.galleryId = gallery.map(
+        (item: UploadApiResponse) => item.public_id,
+      )
     }
 
     if (thumbnail != undefined) {
