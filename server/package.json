@@ -4,8 +4,9 @@
 	"description": "",
 	"main": "index.ts",
 	"scripts": {
+    "build": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle api/index.ts",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "npx tsx api/index.ts"
+		"start": "node dist/server.js"
 	},
 	"type": "module",
 	"keywords": [],
