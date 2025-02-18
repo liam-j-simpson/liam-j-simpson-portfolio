@@ -13,15 +13,14 @@ import { auth } from 'express-oauth2-jwt-bearer'
 import { checkPermissions } from 'server/middleware/checkPermissions'
 import { v2 as cloudinary } from 'cloudinary'
 import fs from 'fs'
-dotenv.config()
 
+dotenv.config()
 cloudinary.config({
   cloud_name: 'dubbie1ur',
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
   secure: true,
 })
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'uploads/')
@@ -72,20 +71,15 @@ router.post(
     const { name, summary, description, tags, url, date } = req.body
     const files = req.files as MulterFiles
 
-    // UPLOAD THUMBNAIL & SEND IMG PATH TO DB
+    // UPLOAD THUMBNAIL
     const thumbnail = await cloudinary.uploader.upload(
       files.thumbnail?.[0].path,
     )
-    const thumbnailResult = thumbnail.secure_url
-    const thumbnailId = thumbnail.public_id
 
-    // UPLOAD GALLERY & SEND IMG PATHS TO DB
+    // UPLOAD GALLERY
     const gallery = await Promise.all(
       files.gallery?.map((item) => cloudinary.uploader.upload(item.path)),
     )
-
-    const galleryResult = gallery.map((item) => item.secure_url)
-    const galleryId = gallery.map((item) => item.public_id)
 
     const project = {
       name,
@@ -94,13 +88,15 @@ router.post(
       tags,
       url,
       date,
-      thumbnail: thumbnailResult,
-      thumbnailId,
-      gallery: galleryResult,
-      galleryId,
+      thumbnail: thumbnail.secure_url,
+      thumbnailId: thumbnail.public_id,
+      gallery: gallery.map((item) => item.secure_url),
+      galleryId: gallery.map((item) => item.public_id),
     }
     try {
+      //ADD PROJECT
       await addProject(project)
+
       // DELETE LOCAL IMAGE PATHS
       fs.unlinkSync(files.thumbnail?.[0].path)
       files.gallery?.map((item) => fs.unlinkSync(item.path))
@@ -124,21 +120,31 @@ router.patch(
     const id = req.params.id
     const changes = req.body
     const files = req.files as MulterFiles
+
     const thumbnail = files.thumbnail?.[0].path
     const gallery = files.gallery?.map((item) => item.path) || []
+
     const project = await getProjectById(id)
 
     if (gallery.length > 0) {
       const galleryId = project?.galleryId
+
       await Promise.all(
         galleryId.map((item: string) => cloudinary.uploader.destroy(item)),
       )
+
       const gallery = await Promise.all(
         files.gallery?.map((item) => cloudinary.uploader.upload(item.path)),
       )
+
       files.gallery?.map((item) => fs.unlinkSync(item.path))
+
       const galleryResult = gallery.map((item) => item.secure_url)
+
       const newGalleryId = gallery.map((item) => item.public_id)
+
+
+      
       changes.gallery = galleryResult
       changes.galleryId = newGalleryId
     }
