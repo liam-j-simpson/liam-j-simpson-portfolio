@@ -1,4 +1,4 @@
-import { Project } from '../../models/projects'
+import { Project } from 'models/projects'
 import { connectToDb } from './connection'
 import { ObjectId } from 'mongodb'
 
