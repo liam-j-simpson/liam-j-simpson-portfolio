@@ -9,7 +9,7 @@
   "scripts": {
     "build": "NODE_ENV=production run-s build:client build:server",
     "build:client": "vite build",
-    "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/api/server.ts",
+    "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/index.ts",
     "build:css": "tailwindcss -i ./src/input.css -o ./src/output.css",
     "start": "NODE_ENV=production node dist/server.js",
 
