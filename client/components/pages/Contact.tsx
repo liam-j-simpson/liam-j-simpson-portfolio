@@ -3,7 +3,26 @@ export function Contact() {
   return (
     <>
       <h1 className="text-xl">CONTACT</h1>
+
       <div className="mb-12">
+        <h2 className="text-s">Trajectory</h2>
+        <p className="mb-6">
+          {`I've recently entered the tech scene after a six year career in the creative industry. Creative thinking is a core part of my skillset and I intend on using this to turn unique ideas into innovative tech products.   
+          `}
+        </p>
+        <h2 className="text-s">Values</h2>
+        <p className="mb-6">
+          {`I believe we have a responsibility to be thoughtfull about what we
+          create, both digital and physical. The impact a product will
+          have on it's users or the environment should always be considered.`}
+        </p>
+      </div>
+
+      <div className="mb-12">
+        <h2 className="text-s">Get In Touch</h2>
+        <p className="mb-6">
+          {`Don't hestitate to call or email me. I'm looking for opportunities within tech companies where I can provide creative flair and innovative thinking.`}
+        </p>
         <div className="flex">
           Phone +64211855651
           <button
@@ -32,24 +51,6 @@ export function Contact() {
           </button>
         </div>
       </div>
-
-      <div className="mb-12">
-        <h2 className="text-s">Trajectory</h2>
-        <p className="mb-6">
-          Im looking for opportunities were I can combine my creative and coding
-          skills to develop innovative products.
-        </p>
-        <h2 className="text-s">Journey</h2>
-        <p className="mb-6">
-          Starting my training in AKL with a bachelor of industrial design.
-        </p>
-        <h2 className="text-s">Values</h2>
-        <p className="mb-6">
-          I have a strong value for nature, both spending time in it and
-          thinking about how we can preserve it.
-        </p>
-      </div>
-
       <img
         className="mb-12"
         src="../../../images/liam-simpson-headshot.jpg"
