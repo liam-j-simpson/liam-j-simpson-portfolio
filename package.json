@@ -12,12 +12,10 @@
     "build:server": "esbuild --packages=external --platform=node --format=esm --outfile=dist/server.js --bundle server/index.ts",
     "build:css": "tailwindcss -i ./src/input.css -o ./src/output.css",
     "start": "NODE_ENV=production node dist/server.js",
-
     "dev": "NODE_ENV=development run-p dev:client dev:server tailwind:watch",
     "dev:client": "vite",
     "dev:server": "tsx watch server/index.ts",
     "tailwind:watch": "tailwindcss -i ./src/input.css -o ./src/output.css --watch",
-    
     "test": "NODE_ENV=test vitest",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "format": "prettier -w '**/*.{js,jsx,ts,tsx}'"
@@ -61,6 +59,7 @@
   "browserslist": "> 2%, not dead",
   "dependencies": {
     "@auth0/auth0-react": "^2.3.0",
+    "@phosphor-icons/react": "^2.1.7",
     "@radix-ui/react-label": "^2.1.1",
     "@radix-ui/react-slot": "^1.1.1",
     "@tanstack/react-query": "^5.64.1",
