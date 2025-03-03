@@ -12,7 +12,7 @@ app.use(cors())
 app.use('/api/v1/projects', projectsRoutes)
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(Path.resolve('uploads')))
+  app.use(express.static(Path.resolve('public')))
   app.use('/assets', express.static(Path.resolve('./dist/assets')))
   app.get('*', (req, res) => {
     res.sendFile(Path.resolve('./dist/index.html'))
