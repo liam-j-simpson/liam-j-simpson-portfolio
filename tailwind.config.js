@@ -9,8 +9,11 @@ export default {
         inconsolata: ['inconsolata', 'san-serif'],
       },
       fontSize: {
-        s: '1.5rem',
-        l: '3rem',
+      
+        xs: '1rem',
+        s: '1.25rem',
+        md: '2rem',
+        l: '2.5rem',
         xl: '18rem',
       },
       borderRadius: {
