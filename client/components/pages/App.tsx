@@ -7,13 +7,13 @@ function App() {
   const { isAuthenticated } = useAuth0()
   return (
     <>
-      <nav className="mx-10 mt-3 flex items-baseline justify-between border-black border-b-2">
+      <nav className="mx-10 mt-3 pb-1 flex items-end justify-between border-black border-b-2">
         <div>
           <NavLink to="/">
-            <h1 className="text-l md:text-md lg:text-s">Liam Simpson</h1>
+            <h1 className="~text-hs/hxs pr-3 leading-none">Liam Simpson</h1>
           </NavLink>
         </div>
-        <div className="flex gap-x-6 text-s md:text-xs">
+        <div className="flex gap-x-6 ~text-pm/ps pl-3">
           <NavLink to="/">Projects </NavLink>
           <NavLink to="/contact">Contact</NavLink>
           {isAuthenticated && (

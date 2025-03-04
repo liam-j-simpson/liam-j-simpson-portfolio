@@ -1,20 +1,25 @@
 /** @type {import('tailwindcss').Config} */
+import fluid, { extract, screens, fontSize } from 'fluid-tailwind'
 export default {
-  darkMode: ['class'],
-  content: ['./client/components/**/*.{js,ts,jsx,tsx}', './index.html'],
+  content: {
+    files: ['./client/components/**/*.{js,ts,jsx,tsx}', './index.html'],
+    extract,
+  },
   theme: {
+    screens,
+    fontSize,
     extend: {
-      fontFamily: {
-        larken: ['larken', 'serif'],
-        inconsolata: ['inconsolata', 'san-serif'],
-      },
       fontSize: {
-      
-        xs: '1rem',
-        s: '1.25rem',
-        md: '2rem',
-        l: '2.5rem',
-        xl: '18rem',
+        hxs: '2rem',
+        hs: '2.25rem',
+        hm: '5.5rem',
+        hl: '8rem',
+        hxl: '18rem',
+
+        ps: '1rem',
+        pm: '1.25rem',
+        pl: '1.5rem',
+        pxl: '3rem',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -22,7 +27,8 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {},
+      screens,
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [fluid, require('tailwindcss-animate')],
 }

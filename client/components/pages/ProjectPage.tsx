@@ -19,8 +19,10 @@ export function ProjectPage() {
   if (data) {
     return (
       <>
-        <h1 className="text-xl">{data.name.toUpperCase()}</h1>
-        <ul className="flex">
+        <h1 className="~text-hm/hl lg:~text-hl/hxl">
+          {data.name.toUpperCase()}
+        </h1>
+        <ul className="flex flex-wrap">
           {Array.isArray(data.tags) &&
             data.tags.map((item: string) => (
               <li key={item}>
