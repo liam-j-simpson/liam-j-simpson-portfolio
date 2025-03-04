@@ -625,8 +625,12 @@ video {
   grid-template-columns: repeat(10, minmax(0, 1fr));
 }
 
-.items-baseline {
-  align-items: baseline;
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 .justify-between {
@@ -682,6 +686,10 @@ video {
   padding-right: 1.5rem;
 }
 
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
 .pb-24 {
   padding-bottom: 6rem;
 }
@@ -694,24 +702,28 @@ video {
   padding-bottom: 1.5rem;
 }
 
+.pl-3 {
+  padding-left: 0.75rem;
+}
+
+.pr-3 {
+  padding-right: 0.75rem;
+}
+
 .text-hl {
-  font-size: 2.5rem;
+  font-size: 8rem;
 }
 
 .text-hm {
-  font-size: 2rem;
+  font-size: 5.5rem;
 }
 
 .text-hs {
-  font-size: 1.25rem;
+  font-size: 2.25rem;
 }
 
-.text-hxl {
-  font-size: 18rem;
-}
-
-.text-pm {
-  font-size: 1.25rem;
+.leading-none {
+  line-height: 1;
 }
 
 .text-\[\#E7E6E0\] {
@@ -725,6 +737,18 @@ video {
 
 .outline-1 {
   outline-width: 1px;
+}
+
+.\~text-hm\/hl {
+  font-size: clamp(5.5rem,3.71rem + 4.46vw,8rem)/* fluid type from 5.5rem at 40rem to 8rem at 96rem */;
+}
+
+.\~text-hs\/hxs {
+  font-size: clamp(2rem,2.43rem + -0.45vw,2.25rem)/* fluid type from 2.25rem at 40rem to 2rem at 96rem */;
+}
+
+.\~text-pm\/ps {
+  font-size: clamp(1rem,1.43rem + -0.45vw,1.25rem)/* fluid type from 1.25rem at 40rem to 1rem at 96rem */;
 }
 
 @keyframes enter {
@@ -767,12 +791,18 @@ h6 {
   font-family: 'larken', serif;
 }
 
-@media (min-width: 1024px) {
-  .lg\:text-hs {
-    font-size: 1.25rem;
+@media (min-width: 48rem) {
+  .md\:text-hl {
+    font-size: 8rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .lg\:text-hxl {
+    font-size: 18rem;
   }
 
-  .lg\:text-ps {
-    font-size: 1rem;
+  .lg\:\~text-hl\/hxl {
+    font-size: clamp(8rem,0.86rem + 17.86vw,18rem)/* fluid type from 8rem at 40rem to 18rem at 96rem */;
   }
 }

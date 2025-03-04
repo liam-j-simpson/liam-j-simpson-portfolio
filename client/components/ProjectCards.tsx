@@ -8,7 +8,7 @@ export function ProjectCards({ data }: ProjectArray) {
         {data.map((item) => (
           <li key={item.id} className="mb-12">
             <Link to={`/${item.id}`}>
-              <h2 className="text-hs mb-3">{item.name}</h2>
+              <h2 className="~text-hs/hxs mb-3">{item.name}</h2>
 
               <ul className="flex">
                 {Array.isArray(item.tags) &&

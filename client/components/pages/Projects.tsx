@@ -5,7 +5,7 @@ import { ProjectCards } from '../ProjectCards'
 export function Projects() {
   const { isPending, isError, error, data } = useGetAllProjects()
   if (isPending) {
-    return <PageLoader/>
+    return <PageLoader />
   }
   if (isError) {
     return <h2>Error: {error.message}</h2>
@@ -13,7 +13,7 @@ export function Projects() {
   if (data) {
     return (
       <>
-        <h1 className="text-hxl">PROJECTS</h1>
+        <h1 className="~text-hm/hl lg:~text-hl/hxl">PROJECTS</h1>
         <div>
           <ProjectCards data={data} />
         </div>

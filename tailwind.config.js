@@ -1,13 +1,19 @@
 /** @type {import('tailwindcss').Config} */
+import fluid, { extract, screens, fontSize } from 'fluid-tailwind'
 export default {
-  darkMode: ['class'],
-  content: ['./client/components/**/*.{js,ts,jsx,tsx}', './index.html'],
+  content: {
+    files: ['./client/components/**/*.{js,ts,jsx,tsx}', './index.html'],
+    extract,
+  },
   theme: {
+    screens,
+    fontSize,
     extend: {
       fontSize: {
-        hs: '1.25rem',
-        hm: '2rem',
-        hl: '2.5rem',
+        hxs: '2rem',
+        hs: '2.25rem',
+        hm: '5.5rem',
+        hl: '8rem',
         hxl: '18rem',
 
         ps: '1rem',
@@ -21,7 +27,8 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {},
+      screens,
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [fluid, require('tailwindcss-animate')],
 }
