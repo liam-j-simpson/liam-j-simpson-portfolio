@@ -88,33 +88,33 @@ export function AddProject() {
       method="post"
       encType="multipart/form-data"
     >
-      <h2 className="text-l border-black border-t-2">Add Project</h2>
+      <h2 className="text-hl border-black border-t-2">Add Project</h2>
       <p className="mb-3">Fill out the form below to add a project.</p>
 
       <div className="grid grid-cols-10 gap-3 pb-24">
         <div>
-          <h3 className="text-s">Project Name*</h3>
+          <h3 className="text-hs">Project Name*</h3>
         </div>
         <div>
-          <h3 className="text-s">Thumbnail*</h3>
+          <h3 className="text-hs">Thumbnail*</h3>
         </div>
         <div>
-          <h3 className="text-s">Summary*</h3>
+          <h3 className="text-hs">Summary*</h3>
         </div>
         <div>
-          <h3 className="text-s">Description*</h3>
+          <h3 className="text-hs">Description*</h3>
         </div>
         <div>
-          <h3 className="text-s">Gallery</h3>
+          <h3 className="text-hs">Gallery</h3>
         </div>
         <div>
-          <h3 className="text-s">Tags</h3>
+          <h3 className="text-hs">Tags</h3>
         </div>
         <div>
-          <h3 className="text-s">URL</h3>
+          <h3 className="text-hs">URL</h3>
         </div>
         <div>
-          <h3 className="text-s">Date*</h3>
+          <h3 className="text-hs">Date*</h3>
         </div>
         <div></div>
         <div></div>

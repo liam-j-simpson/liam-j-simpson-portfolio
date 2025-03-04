@@ -4,17 +4,16 @@ export default {
   content: ['./client/components/**/*.{js,ts,jsx,tsx}', './index.html'],
   theme: {
     extend: {
-      fontFamily: {
-        larken: ['larken', 'serif'],
-        inconsolata: ['inconsolata', 'san-serif'],
-      },
       fontSize: {
-      
-        xs: '1rem',
-        s: '1.25rem',
-        md: '2rem',
-        l: '2.5rem',
-        xl: '18rem',
+        hs: '1.25rem',
+        hm: '2rem',
+        hl: '2.5rem',
+        hxl: '18rem',
+
+        ps: '1rem',
+        pm: '1.25rem',
+        pl: '1.5rem',
+        pxl: '3rem',
       },
       borderRadius: {
         lg: 'var(--radius)',

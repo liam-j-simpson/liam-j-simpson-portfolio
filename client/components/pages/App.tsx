@@ -10,10 +10,10 @@ function App() {
       <nav className="mx-10 mt-3 flex items-baseline justify-between border-black border-b-2">
         <div>
           <NavLink to="/">
-            <h1 className="text-l md:text-md lg:text-s">Liam Simpson</h1>
+            <h1 className="text-hm lg:text-hs">Liam Simpson</h1>
           </NavLink>
         </div>
-        <div className="flex gap-x-6 text-s md:text-xs">
+        <div className="flex gap-x-6 text-pm lg:text-ps">
           <NavLink to="/">Projects </NavLink>
           <NavLink to="/contact">Contact</NavLink>
           {isAuthenticated && (
