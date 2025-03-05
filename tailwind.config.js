@@ -10,9 +10,9 @@ export default {
     fontSize,
     extend: {
       fontSize: {
-        hxs: '2rem',
-        hs: '2.25rem',
-        hm: '5.5rem',
+        hxs: '1.5rem',
+        hs: '3rem',
+        hm: '6rem',
         hl: '8rem',
         hxl: '18rem',
 

@@ -2,7 +2,7 @@ import { Copy } from '@phosphor-icons/react'
 export function Contact() {
   return (
     <>
-      <h1 className="~text-hm/hl lg:~text-hl/hxl">CONTACT</h1>
+      <h1 className="~text-hs/hm lg:~text-hl/hxl">CONTACT</h1>
 
       <div className="mb-12">
         <h2 className="~text-hs/hxs mb-3">Trajectory</h2>
