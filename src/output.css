@@ -661,6 +661,10 @@ video {
   column-gap: 1.5rem;
 }
 
+.gap-x-3 {
+  column-gap: 0.75rem;
+}
+
 .break-words {
   overflow-wrap: break-word;
 }
@@ -763,6 +767,10 @@ video {
   outline-width: 1px;
 }
 
+.outline-\[\#304637\] {
+  outline-color: #304637;
+}
+
 .\~text-hm\/hl {
   font-size: clamp(4rem,1.14rem + 7.14vw,8rem)/* fluid type from 4rem at 40rem to 8rem at 96rem */;
 }
@@ -777,6 +785,10 @@ video {
 
 .\~text-pm\/ps {
   font-size: clamp(1rem,1.34rem + -0.36vw,1.2rem)/* fluid type from 1.2rem at 40rem to 1rem at 96rem */;
+}
+
+.\~text-pm {
+  font-size: /* error - Missing end value */;
 }
 
 @keyframes enter {

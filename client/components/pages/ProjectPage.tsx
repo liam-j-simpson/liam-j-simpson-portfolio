@@ -36,7 +36,7 @@ export function ProjectPage() {
         <p className="mb-3">{data.description}</p>
         {data.url && (
           <a href={data.url}>
-            <button className="rounded-full px-6 outline my-12 mr-3">
+            <button className="rounded-full px-6 outline outline-1 outline-[#304637] bg-[#304637] text-[#E7E6E0] mr-3">
               View Live
             </button>
           </a>
