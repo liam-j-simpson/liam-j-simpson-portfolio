@@ -593,6 +593,10 @@ video {
   margin-bottom: 0.75rem;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
 .mb-12 {
   margin-bottom: 3rem;
 }
@@ -609,20 +613,12 @@ video {
   margin-right: 0.75rem;
 }
 
-.mt-3 {
-  margin-top: 0.75rem;
-}
-
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
-.mb-1 {
-  margin-bottom: 0.25rem;
-}
-
 .mt-1 {
   margin-top: 0.25rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
 }
 
 .flex {
@@ -633,16 +629,12 @@ video {
   display: grid;
 }
 
-.grid-cols-10 {
-  grid-template-columns: repeat(10, minmax(0, 1fr));
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .flex-wrap {
   flex-wrap: wrap;
-}
-
-.flex-nowrap {
-  flex-wrap: nowrap;
 }
 
 .items-end {
@@ -653,12 +645,12 @@ video {
   justify-content: space-between;
 }
 
-.gap-3 {
-  gap: 0.75rem;
+.gap-12 {
+  gap: 3rem;
 }
 
-.gap-x-6 {
-  column-gap: 1.5rem;
+.gap-3 {
+  gap: 0.75rem;
 }
 
 .gap-x-3 {
@@ -677,12 +669,12 @@ video {
   border-radius: 9999px;
 }
 
-.border-b-2 {
-  border-bottom-width: 2px;
+.rounded-md {
+  border-radius: calc(var(--radius) - 2px);
 }
 
-.border-t-2 {
-  border-top-width: 2px;
+.border-b-2 {
+  border-bottom-width: 2px;
 }
 
 .border-black {
@@ -698,6 +690,19 @@ video {
 .bg-\[\#ED642E\] {
   --tw-bg-opacity: 1;
   background-color: rgb(237 100 46 / var(--tw-bg-opacity, 1));
+}
+
+.bg-\[\#F4F3ED\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(244 243 237 / var(--tw-bg-opacity, 1));
+}
+
+.p-3 {
+  padding: 0.75rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
 }
 
 .px-3 {
@@ -718,10 +723,6 @@ video {
   padding-bottom: 6rem;
 }
 
-.pb-3 {
-  padding-bottom: 0.75rem;
-}
-
 .pb-6 {
   padding-bottom: 1.5rem;
 }
@@ -730,24 +731,8 @@ video {
   padding-right: 0.75rem;
 }
 
-.pb-2 {
-  padding-bottom: 0.5rem;
-}
-
-.pb-0 {
-  padding-bottom: 0px;
-}
-
-.text-hl {
-  font-size: 8rem;
-}
-
-.text-hm {
-  font-size: 4rem;
-}
-
-.text-hs {
-  font-size: 2rem;
+.text-hxs {
+  font-size: 1.5rem;
 }
 
 .leading-none {
@@ -775,20 +760,12 @@ video {
   font-size: clamp(4rem,1.14rem + 7.14vw,8rem)/* fluid type from 4rem at 40rem to 8rem at 96rem */;
 }
 
-.\~text-hs\/hm {
-  font-size: clamp(2rem,0.57rem + 3.57vw,4rem)/* fluid type from 2rem at 40rem to 4rem at 96rem */;
-}
-
 .\~text-hs\/hxs {
   font-size: clamp(1.5rem,2.36rem + -0.89vw,2rem)/* fluid type from 2rem at 40rem to 1.5rem at 96rem */;
 }
 
 .\~text-pm\/ps {
   font-size: clamp(1rem,1.34rem + -0.36vw,1.2rem)/* fluid type from 1.2rem at 40rem to 1rem at 96rem */;
-}
-
-.\~text-pm {
-  font-size: /* error - Missing end value */;
 }
 
 @keyframes enter {
@@ -831,19 +808,13 @@ h6 {
   font-family: 'larken', serif;
 }
 
-@media (min-width: 40rem) {
-  .sm\:pb-2 {
-    padding-bottom: 0.5rem;
-  }
-}
-
 @media (min-width: 48rem) {
-  .md\:flex {
-    display: flex;
+  .md\:grid {
+    display: grid;
   }
 
-  .md\:text-hl {
-    font-size: 8rem;
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -856,8 +827,12 @@ h6 {
     display: flex;
   }
 
-  .lg\:text-hxl {
-    font-size: 18rem;
+  .lg\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .lg\:\~text-hl\/hxl {

@@ -100,196 +100,178 @@ export function ManageProjects({ data }: ProjectArray) {
 
   return (
     <>
-      <h2 className="text-hl pb-3 border-black border-t-2">Manage Projects</h2>
-
-      <div className="grid grid-cols-10 gap-3 pb-24">
-        <div>
-          <h3 className="text-hs">Project Name</h3>
-        </div>
-        <div>
-          <h3 className="text-hs">Thumbnail</h3>
-        </div>
-        <div>
-          <h3 className="text-hs">Summary</h3>
-        </div>
-        <div>
-          <h3 className="text-hs">Description</h3>
-        </div>
-        <div>
-          <h3 className="text-hs">Gallery</h3>
-        </div>
-        <div>
-          <h3 className="text-hs">Tags</h3>
-        </div>
-        <div>
-          <h3 className="text-hs">URL</h3>
-        </div>
-        <div>
-          <h3 className="text-hs">Date</h3>
-        </div>
-        <div></div>
-        <div></div>
-
+      <h2 className="~text-hs/hxs mb-1 lg:mb-3">Manage Projects</h2>
+      <div className="grid grid cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 pb-24">
         {data.map((item: ProjectData) => (
           <React.Fragment key={item.id}>
-            <div className="break-words">
-              {item.id === editId ? (
-                <Input
-                  id="name"
-                  name="name"
-                  defaultValue={item.name}
-                  onChange={handleChange}
-                />
-              ) : (
-                item.name
-              )}
-            </div>
-            <div className="break-words">
-              {item.id === editId ? (
-                <input
-                  type="file"
-                  name="thumbnail"
-                  onChange={handleChangeThumbnail}
-                  accept="image/*"
-                ></input>
-              ) : (
-                <img src={item.thumbnail} alt="project thumbnail"></img>
-              )}
-            </div>
-
-            <div className="break-words">
-              {item.id === editId ? (
-                <Input
-                  id="summary"
-                  name="summary"
-                  defaultValue={item.summary}
-                  onChange={handleChange}
-                />
-              ) : (
-                item.summary
-              )}
-            </div>
-            <div className="break-words">
-              {item.id === editId ? (
-                <Input
-                  id="description"
-                  name="description"
-                  defaultValue={item.description}
-                  onChange={handleChange}
-                />
-              ) : (
-                item.description
-              )}
-            </div>
-            <div>
-              {item.id === editId ? (
-                <input
-                  type="file"
-                  name="thumbnail"
-                  onChange={handleChangeGallery}
-                  accept="image/*"
-                  multiple
-                ></input>
-              ) : (
-                <ul>
-                  {item.gallery &&
-                    item.gallery.map((item) => (
-                      <li key={item}>
-                        <img
-                          src={item}
-                          alt="project gallery"
-                          className="mb-3"
-                        />
-                      </li>
-                    ))}
-                </ul>
-              )}
-            </div>
-            <div className="break-words">
-              {item.id === editId ? (
-                <>
+            <div className="bg-[#F4F3ED] p-6 rounded-md">
+              <div className="break-words">
+                <h3 className="text-hxs">Project Name</h3>
+                {item.id === editId ? (
                   <Input
-                    id="tags"
-                    name="tags"
-                    placeholder="Submit with <Enter>"
-                    onKeyDown={handleChangeTags}
+                    id="name"
+                    name="name"
+                    defaultValue={item.name}
+                    onChange={handleChange}
                   />
-                  <p>{changes.tags.join(', ')}</p>
-                </>
-              ) : (
-                <ul>
-                  {Array.isArray(item.tags) &&
-                    item.tags.map((item) => (
-                      <li key={item}>
-                        <button className="rounded-full px-6 outline mb-3 mr-3">
-                          {item}
-                        </button>
-                      </li>
-                    ))}
-                </ul>
-              )}
-            </div>
-            <div className="break-words">
-              {item.id === editId ? (
-                <Input
-                  id="url"
-                  name="url"
-                  defaultValue={item.url}
-                  onChange={handleChange}
-                />
-              ) : (
-                item.url
-              )}
-            </div>
-            <div className="break-words">
-              {item.id === editId ? (
-                <Input
-                  id="date"
-                  name="date"
-                  type="date"
-                  defaultValue={item.date}
-                  onChange={handleChange}
-                />
-              ) : (
-                item.date
-              )}
-            </div>
+                ) : (
+                  item.name
+                )}
+              </div>
+              <div className="break-words">
+                <h3 className="text-hxs">Thumbnail</h3>
+                {item.id === editId ? (
+                  <input
+                    type="file"
+                    name="thumbnail"
+                    onChange={handleChangeThumbnail}
+                    accept="image/*"
+                  ></input>
+                ) : (
+                  <img src={item.thumbnail} alt="project thumbnail"></img>
+                )}
+              </div>
 
-            {item.id !== editId && (
+              <div className="break-words">
+                <h3 className="text-hxs">Summary</h3>
+                {item.id === editId ? (
+                  <Input
+                    id="summary"
+                    name="summary"
+                    defaultValue={item.summary}
+                    onChange={handleChange}
+                  />
+                ) : (
+                  item.summary
+                )}
+              </div>
+              <div className="break-words">
+                <h3 className="text-hxs">Description</h3>
+                {item.id === editId ? (
+                  <Input
+                    id="description"
+                    name="description"
+                    defaultValue={item.description}
+                    onChange={handleChange}
+                  />
+                ) : (
+                  item.description
+                )}
+              </div>
+              <div>
+                <h3 className="text-hxs">Gallery</h3>
+                {item.id === editId ? (
+                  <input
+                    type="file"
+                    name="thumbnail"
+                    onChange={handleChangeGallery}
+                    accept="image/*"
+                    multiple
+                  ></input>
+                ) : (
+                  <ul>
+                    {item.gallery &&
+                      item.gallery.map((item) => (
+                        <li key={item}>
+                          <img
+                            src={item}
+                            alt="project gallery"
+                            className="mb-3"
+                          />
+                        </li>
+                      ))}
+                  </ul>
+                )}
+              </div>
+              <div className="break-words">
+                <h3 className="text-hxs">Tags</h3>
+                {item.id === editId ? (
+                  <>
+                    <Input
+                      id="tags"
+                      name="tags"
+                      placeholder="Submit with <Enter>"
+                      onKeyDown={handleChangeTags}
+                    />
+                    <p>{changes.tags.join(', ')}</p>
+                  </>
+                ) : (
+                  <ul>
+                    {Array.isArray(item.tags) &&
+                      item.tags.map((item) => (
+                        <li key={item}>
+                          <button className="rounded-full px-6 outline mb-3 mr-3">
+                            {item}
+                          </button>
+                        </li>
+                      ))}
+                  </ul>
+                )}
+              </div>
+              <div className="break-words">
+                <h3 className="text-hxs">URL</h3>
+                {item.id === editId ? (
+                  <Input
+                    id="url"
+                    name="url"
+                    defaultValue={item.url}
+                    onChange={handleChange}
+                  />
+                ) : (
+                  item.url
+                )}
+              </div>
+              <div className="break-words">
+                <h3 className="text-hxs">Date</h3>
+                {item.id === editId ? (
+                  <Input
+                    id="date"
+                    name="date"
+                    type="date"
+                    defaultValue={item.date}
+                    onChange={handleChange}
+                  />
+                ) : (
+                  item.date
+                )}
+              </div>
+
+              {item.id !== editId && (
+                <div>
+                  <button
+                    aria-label="edit project"
+                    value="edit"
+                    onClick={() => handleEdit(item.id)}
+                    className="rounded-full px-6 outline mb-3 mr-3 bg-[#304637] text-[#E7E6E0]"
+                  >
+                    Edit
+                  </button>
+                </div>
+              )}
+
+              {item.id === editId && (
+                <div>
+                  <button
+                    aria-label="save changes"
+                    value="save"
+                    onClick={() => handleSave(item.id)}
+                    className="rounded-full px-6 outline mb-3 mr-3 bg-[#304637] text-[#E7E6E0]"
+                  >
+                    Save
+                  </button>
+                </div>
+              )}
+
               <div>
                 <button
-                  aria-label="edit project"
-                  value="edit"
-                  onClick={() => handleEdit(item.id)}
-                  className="rounded-full px-6 outline mb-3 mr-3 bg-[#304637] text-[#E7E6E0]"
+                  aria-label="delete project"
+                  value="delete"
+                  onClick={() => handleDelete(item.id)}
+                  className="rounded-full px-6 outline mb-3 mr-3 bg-[#ED642E] text-[#E7E6E0]"
                 >
-                  Edit
+                  Delete
                 </button>
               </div>
-            )}
-
-            {item.id === editId && (
-              <div>
-                <button
-                  aria-label="save changes"
-                  value="save"
-                  onClick={() => handleSave(item.id)}
-                  className="rounded-full px-6 outline mb-3 mr-3 bg-[#304637] text-[#E7E6E0]"
-                >
-                  Save
-                </button>
-              </div>
-            )}
-
-            <div>
-              <button
-                aria-label="delete project"
-                value="delete"
-                onClick={() => handleDelete(item.id)}
-                className="rounded-full px-6 outline mb-3 mr-3 bg-[#ED642E] text-[#E7E6E0]"
-              >
-                Delete
-              </button>
             </div>
           </React.Fragment>
         ))}
