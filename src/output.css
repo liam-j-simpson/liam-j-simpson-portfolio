@@ -702,10 +702,6 @@ video {
   padding-bottom: 1.5rem;
 }
 
-.pl-3 {
-  padding-left: 0.75rem;
-}
-
 .pr-3 {
   padding-right: 0.75rem;
 }
@@ -715,11 +711,11 @@ video {
 }
 
 .text-hm {
-  font-size: 6rem;
+  font-size: 4rem;
 }
 
 .text-hs {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .leading-none {
@@ -740,19 +736,19 @@ video {
 }
 
 .\~text-hm\/hl {
-  font-size: clamp(6rem,4.57rem + 3.57vw,8rem)/* fluid type from 6rem at 40rem to 8rem at 96rem */;
+  font-size: clamp(4rem,1.14rem + 7.14vw,8rem)/* fluid type from 4rem at 40rem to 8rem at 96rem */;
 }
 
 .\~text-hs\/hm {
-  font-size: clamp(3rem,0.86rem + 5.36vw,6rem)/* fluid type from 3rem at 40rem to 6rem at 96rem */;
+  font-size: clamp(2rem,0.57rem + 3.57vw,4rem)/* fluid type from 2rem at 40rem to 4rem at 96rem */;
 }
 
 .\~text-hs\/hxs {
-  font-size: clamp(1.5rem,4.07rem + -2.68vw,3rem)/* fluid type from 3rem at 40rem to 1.5rem at 96rem */;
+  font-size: clamp(1.5rem,2.36rem + -0.89vw,2rem)/* fluid type from 2rem at 40rem to 1.5rem at 96rem */;
 }
 
 .\~text-pm\/ps {
-  font-size: clamp(1rem,1.43rem + -0.45vw,1.25rem)/* fluid type from 1.25rem at 40rem to 1rem at 96rem */;
+  font-size: clamp(1rem,1.34rem + -0.36vw,1.2rem)/* fluid type from 1.2rem at 40rem to 1rem at 96rem */;
 }
 
 @keyframes enter {
@@ -796,6 +792,10 @@ h6 {
 }
 
 @media (min-width: 48rem) {
+  .md\:flex {
+    display: flex;
+  }
+
   .md\:text-hl {
     font-size: 8rem;
   }

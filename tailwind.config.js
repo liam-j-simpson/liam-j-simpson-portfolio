@@ -11,13 +11,13 @@ export default {
     extend: {
       fontSize: {
         hxs: '1.5rem',
-        hs: '3rem',
-        hm: '6rem',
+        hs: '2rem',
+        hm: '4rem',
         hl: '8rem',
         hxl: '18rem',
 
         ps: '1rem',
-        pm: '1.25rem',
+        pm: '1.2rem',
         pl: '1.5rem',
         pxl: '3rem',
       },
