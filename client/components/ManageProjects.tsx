@@ -105,34 +105,79 @@ export function ManageProjects({ data }: ProjectArray) {
         {data.map((item: ProjectData) => (
           <React.Fragment key={item.id}>
             <div className="bg-[#F4F3ED] p-6 rounded-md">
-              <div className="break-words">
-                <h3 className="text-hxs">Project Name</h3>
+              <div className="break-words py-3">
                 {item.id === editId ? (
-                  <Input
-                    id="name"
-                    name="name"
-                    defaultValue={item.name}
-                    onChange={handleChange}
-                  />
+                  <>
+                    <h3 className="text-hxs">Project Name</h3>
+                    <Input
+                      id="name"
+                      name="name"
+                      defaultValue={item.name}
+                      onChange={handleChange}
+                    />
+                  </>
                 ) : (
-                  item.name
+                  <h3 className="text-hxs">{item.name}</h3>
                 )}
               </div>
-              <div className="break-words">
-                <h3 className="text-hxs">Thumbnail</h3>
+              <div className="break-words py-3">
                 {item.id === editId ? (
-                  <input
-                    type="file"
-                    name="thumbnail"
-                    onChange={handleChangeThumbnail}
-                    accept="image/*"
-                  ></input>
+                  <>
+                    <h3 className="text-hxs">Thumbnail</h3>
+                    <input
+                      type="file"
+                      name="thumbnail"
+                      onChange={handleChangeThumbnail}
+                      accept="image/*"
+                    ></input>
+                  </>
                 ) : (
                   <img src={item.thumbnail} alt="project thumbnail"></img>
                 )}
               </div>
+              <div className="break-words py-3">
+                {item.id === editId ? (
+                  <>
+                    <h3 className="text-hxs">Tags</h3>
+                    <Input
+                      id="tags"
+                      name="tags"
+                      placeholder="Submit with <Enter>"
+                      onKeyDown={handleChangeTags}
+                    />
+                    <p>{changes.tags.join(', ')}</p>
+                  </>
+                ) : (
+                  <ul className="flex flex-wrap">
+                    {Array.isArray(item.tags) &&
+                      item.tags.map((item) => (
+                        <li key={item}>
+                          <button className="rounded-full px-6 outline mb-3 mr-3">
+                            {item}
+                          </button>
+                        </li>
+                      ))}
+                  </ul>
+                )}
+              </div>
+              <div className="break-words py-3">
+                {item.id === editId ? (
+                  <>
+                    <h3 className="text-hxs">Date</h3>
+                    <Input
+                      id="date"
+                      name="date"
+                      type="date"
+                      defaultValue={item.date}
+                      onChange={handleChange}
+                    />
+                  </>
+                ) : (
+                  `Deployed on ${item.date}`
+                )}
+              </div>
 
-              <div className="break-words">
+              <div className="break-words py-3">
                 <h3 className="text-hxs">Summary</h3>
                 {item.id === editId ? (
                   <Input
@@ -145,7 +190,8 @@ export function ManageProjects({ data }: ProjectArray) {
                   item.summary
                 )}
               </div>
-              <div className="break-words">
+
+              <div className="break-words py-3">
                 <h3 className="text-hxs">Description</h3>
                 {item.id === editId ? (
                   <Input
@@ -158,16 +204,33 @@ export function ManageProjects({ data }: ProjectArray) {
                   item.description
                 )}
               </div>
-              <div>
-                <h3 className="text-hxs">Gallery</h3>
+              <div className="break-words py-3">
                 {item.id === editId ? (
-                  <input
-                    type="file"
-                    name="thumbnail"
-                    onChange={handleChangeGallery}
-                    accept="image/*"
-                    multiple
-                  ></input>
+                  <>
+                    <h3 className="text-hxs">URL</h3>
+                    <Input
+                      id="url"
+                      name="url"
+                      defaultValue={item.url}
+                      onChange={handleChange}
+                    />
+                  </>
+                ) : (
+                  item.url
+                )}
+              </div>
+              <div className="break-words py-3">
+                {item.id === editId ? (
+                  <>
+                    <h3 className="text-hxs">Gallery</h3>
+                    <input
+                      type="file"
+                      name="thumbnail"
+                      onChange={handleChangeGallery}
+                      accept="image/*"
+                      multiple
+                    ></input>
+                  </>
                 ) : (
                   <ul>
                     {item.gallery &&
@@ -183,58 +246,6 @@ export function ManageProjects({ data }: ProjectArray) {
                   </ul>
                 )}
               </div>
-              <div className="break-words">
-                <h3 className="text-hxs">Tags</h3>
-                {item.id === editId ? (
-                  <>
-                    <Input
-                      id="tags"
-                      name="tags"
-                      placeholder="Submit with <Enter>"
-                      onKeyDown={handleChangeTags}
-                    />
-                    <p>{changes.tags.join(', ')}</p>
-                  </>
-                ) : (
-                  <ul>
-                    {Array.isArray(item.tags) &&
-                      item.tags.map((item) => (
-                        <li key={item}>
-                          <button className="rounded-full px-6 outline mb-3 mr-3">
-                            {item}
-                          </button>
-                        </li>
-                      ))}
-                  </ul>
-                )}
-              </div>
-              <div className="break-words">
-                <h3 className="text-hxs">URL</h3>
-                {item.id === editId ? (
-                  <Input
-                    id="url"
-                    name="url"
-                    defaultValue={item.url}
-                    onChange={handleChange}
-                  />
-                ) : (
-                  item.url
-                )}
-              </div>
-              <div className="break-words">
-                <h3 className="text-hxs">Date</h3>
-                {item.id === editId ? (
-                  <Input
-                    id="date"
-                    name="date"
-                    type="date"
-                    defaultValue={item.date}
-                    onChange={handleChange}
-                  />
-                ) : (
-                  item.date
-                )}
-              </div>
 
               {item.id !== editId && (
                 <div>
@@ -242,7 +253,7 @@ export function ManageProjects({ data }: ProjectArray) {
                     aria-label="edit project"
                     value="edit"
                     onClick={() => handleEdit(item.id)}
-                    className="rounded-full px-6 outline mb-3 mr-3 bg-[#304637] text-[#E7E6E0]"
+                    className="rounded-full px-6 outline my-3 mr-3 bg-[#304637] text-[#E7E6E0]"
                   >
                     Edit
                   </button>

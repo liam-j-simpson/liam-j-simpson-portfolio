@@ -715,6 +715,11 @@ video {
   padding-right: 1.5rem;
 }
 
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
 .pb-1 {
   padding-bottom: 0.25rem;
 }
@@ -809,10 +814,6 @@ h6 {
 }
 
 @media (min-width: 48rem) {
-  .md\:grid {
-    display: grid;
-  }
-
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -827,12 +828,12 @@ h6 {
     display: flex;
   }
 
-  .lg\:grid-cols-5 {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
   .lg\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .lg\:\~text-hl\/hxl {
