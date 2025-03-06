@@ -16,6 +16,7 @@ export function ManageProjects({ data }: ProjectArray) {
     description: '',
     tags: [],
     url: '',
+    repo: '',
     date: '',
   })
   const [gallery, setGallery] = useState<File[]>([])
@@ -73,7 +74,18 @@ export function ManageProjects({ data }: ProjectArray) {
     }
 
     if (changes.url !== '') {
-      formData.append('url', `${changes.url}`)
+      if (changes.url?.includes('https://')) {
+        formData.append('url', `${changes.url}`)
+      } else {
+        formData.append('url', `https://${changes.url}`)
+      }
+    }
+    if (changes.repo !== '') {
+      if (changes.repo?.includes('https://')) {
+        formData.append('repo', `${changes.repo}`)
+      } else {
+        formData.append('repo', `https://${changes.repo}`)
+      }
     }
     if (changes.date !== '') {
       formData.append('date', `${changes.date}`)
@@ -94,6 +106,7 @@ export function ManageProjects({ data }: ProjectArray) {
       description: '',
       tags: [],
       url: '',
+      repo: '',
       date: '',
     })
   }
@@ -142,6 +155,7 @@ export function ManageProjects({ data }: ProjectArray) {
                     <Input
                       id="tags"
                       name="tags"
+                      aria-label="Tags"
                       placeholder="Submit with <Enter>"
                       onKeyDown={handleChangeTags}
                     />
@@ -211,12 +225,32 @@ export function ManageProjects({ data }: ProjectArray) {
                     <Input
                       id="url"
                       name="url"
+                      aria-label="live site url"
+                      placeholder="Enter url"
                       defaultValue={item.url}
                       onChange={handleChange}
                     />
                   </>
                 ) : (
-                  item.url
+                  item.url && `Live Site: ${item.url}`
+                )}
+              </div>
+
+              <div className="break-words py-3">
+                {item.id === editId ? (
+                  <>
+                    <h3 className="text-hxs mb-1">GitHub Repo</h3>
+                    <Input
+                      id="repo"
+                      name="repo"
+                      aria-label="repo url"
+                      placeholder="Enter GitHub repo url"
+                      onChange={handleChange}
+                      defaultValue={item.repo}
+                    />
+                  </>
+                ) : (
+                  item.repo && `GitHub Repo: ${item.repo}`
                 )}
               </div>
               <div className="break-words py-3">
