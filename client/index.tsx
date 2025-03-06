@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
       domain={domain}
       clientId={clientId}
       authorizationParams={{
-        redirect_uri: `${window.location.origin}`,
+        redirect_uri: `https://liamsimpson.co.nz/`,
         audience: audience,
       }}
       onRedirectCallback={() => router.navigate('/admin')}
