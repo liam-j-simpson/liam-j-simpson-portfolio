@@ -1,14 +1,15 @@
 import { PageLoader } from '../authentication/PageLoader'
+import { PageError } from '../authentication/PageError'
 import { useGetAllProjects } from '../hooks/useGetProject'
 import { ProjectCards } from '../ProjectCards'
 
 export function Projects() {
-  const { isPending, isError, error, data } = useGetAllProjects()
+  const { isPending, isError, data } = useGetAllProjects()
   if (isPending) {
     return <PageLoader />
   }
   if (isError) {
-    return <h2>Error: {error.message}</h2>
+    return <PageError />
   }
   if (data) {
     return (

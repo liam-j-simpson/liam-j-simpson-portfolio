@@ -1,16 +1,17 @@
 import { AddProject } from '../AddProject'
+import { PageError } from '../authentication/PageError'
 import { PageLoader } from '../authentication/PageLoader'
 import { useGetAllProjects } from '../hooks/useGetProject'
 import { ManageProjects } from '../ManageProjects'
 
 export function Admin() {
-  const { isPending, isError, error, data } = useGetAllProjects()
+  const { isPending, isError, data } = useGetAllProjects()
 
   if (isPending) {
     return <PageLoader />
   }
   if (isError) {
-    return <h2>Error: {error.message}</h2>
+    return <PageError />
   }
 
   if (data) {
