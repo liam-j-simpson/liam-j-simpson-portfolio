@@ -4,6 +4,7 @@ export interface Project {
   description: string
   tags: string[]
   url?: string
+  repo?: string
   date: string
 }
 export interface ProjectData extends Project {

@@ -12,9 +12,9 @@ export function AddProject() {
     description: '',
     tags: [],
     url: '',
+    repo: '',
     date: '',
   })
-  console.log(form.tags)
 
   const [thumbnail, setThumbnail] = useState<File[]>([])
   const [gallery, setGallery] = useState<File[]>([])
@@ -37,6 +37,13 @@ export function AddProject() {
         formData.append('url', `https://${form.url}`)
       }
     }
+    if (form.repo !== '') {
+      if (form.repo?.includes('https://')) {
+        formData.append('repo', form.repo)
+      } else {
+        formData.append('repo', `https://${form.repo}`)
+      }
+    }
 
     if (gallery.length !== 0) {
       gallery.forEach((item) => {
@@ -51,6 +58,7 @@ export function AddProject() {
       description: '',
       tags: [],
       url: '',
+      repo: '',
       date: '',
     })
   }
@@ -144,6 +152,7 @@ export function AddProject() {
           <input
             type="file"
             name="gallery"
+            aria-label="Gallery upload"
             onChange={handleChangeGallery}
             accept="image/*"
             multiple
@@ -162,15 +171,27 @@ export function AddProject() {
           <p>{form.tags.join(', ')}</p>
         </div>
         <div className="px-3">
-          <h3 className="text-hxs mb-1">URL</h3>
+          <h3 className="text-hxs mb-1">Live Site</h3>
           <Input
             id="url"
             name="url"
-            aria-label="URL"
+            aria-label="live site url"
             placeholder="Enter url"
             onChange={handleChange}
             value={form.url}
             defaultValue="https://"
+            className="px-3"
+          ></Input>
+        </div>
+        <div>
+          <h3 className="text-hxs mb-1">GitHub Repo</h3>
+          <Input
+            id="repo"
+            name="repo"
+            aria-label="repo url"
+            placeholder="Enter repo url"
+            onChange={handleChange}
+            value={form.repo}
             className="px-3"
           ></Input>
         </div>
