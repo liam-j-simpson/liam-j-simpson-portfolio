@@ -100,7 +100,7 @@ export function ManageProjects({ data }: ProjectArray) {
 
   return (
     <>
-      <h2 className="~text-hs/hxs mb-1 lg:mb-3">Manage Projects</h2>
+      <h2 className="~text-hs/hxs mb-1 lg:mb-3">Projects</h2>
       <div className="grid grid cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 pb-24">
         {data.map((item: ProjectData) => (
           <React.Fragment key={item.id}>

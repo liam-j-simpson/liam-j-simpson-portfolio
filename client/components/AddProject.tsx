@@ -91,8 +91,8 @@ export function AddProject() {
       <h2 className="~text-hs/hxs mb-1 lg:mb-3">Add Project</h2>
       <p className="mb-3">Fill out the form below to add a project.</p>
 
-      <div className="grid grid-cols-3 lg:grid-cols-5 gap-3 p-3 bg-[#F4F3ED] rounded-md">
-        <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-6 p-3 bg-[#F4F3ED] rounded-md">
+        <div className="px-3">
           <h3 className="text-hxs mb-1">Name*</h3>
           <Input
             id="name"
@@ -101,11 +101,10 @@ export function AddProject() {
             placeholder="Enter project name"
             onChange={handleChange}
             value={form.name}
-            className="px-3"
             required
           ></Input>
         </div>
-        <div>
+        <div className="px-3">
           <h3 className="text-hxs mb-1">Thumbnail*</h3>
           <input
             type="file"
@@ -115,7 +114,7 @@ export function AddProject() {
             required
           ></input>
         </div>
-        <div>
+        <div className="px-3">
           <h3 className="text-hxs mb-1">Summary*</h3>
           <Input
             id="summary"
@@ -124,11 +123,10 @@ export function AddProject() {
             placeholder="Enter summary"
             onChange={handleChange}
             value={form.summary}
-            className="px-3"
             required
           ></Input>
         </div>
-        <div>
+        <div className="px-3">
           <h3 className="text-hxs mb-1">Description*</h3>
           <Input
             id="description"
@@ -141,7 +139,7 @@ export function AddProject() {
             required
           ></Input>
         </div>
-        <div>
+        <div className="px-3">
           <h3 className="text-hxs mb-1">Gallery</h3>
           <input
             type="file"
@@ -151,7 +149,7 @@ export function AddProject() {
             multiple
           ></input>
         </div>
-        <div>
+        <div className="px-3">
           <h3 className="text-hxs mb-1">Tags</h3>
           <Input
             className="px-3"
@@ -163,7 +161,7 @@ export function AddProject() {
           ></Input>
           <p>{form.tags.join(', ')}</p>
         </div>
-        <div>
+        <div className="px-3">
           <h3 className="text-hxs mb-1">URL</h3>
           <Input
             id="url"
@@ -176,7 +174,7 @@ export function AddProject() {
             className="px-3"
           ></Input>
         </div>
-        <div>
+        <div className="px-3">
           <h3 className="text-hxs mb-1">Date*</h3>
           <Input
             id="date"
@@ -190,8 +188,7 @@ export function AddProject() {
             required
           ></Input>
         </div>
-        <div>
-          <h3 className="text-hxs mb-1">Submit</h3>
+        <div className="px-3">
           <button
             type="submit"
             className="rounded-full px-6 outline mb-3 mr-3 bg-[#304637] text-[#E7E6E0]"
