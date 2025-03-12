@@ -37,17 +37,17 @@ export function Contact() {
         </div>
 
         <div className="flex flex-wrap">
-          <p>Email contact@liamsimpson.co.nz</p>
+          <p>Email liamsimpsondesign@gmail.com</p>
           <button
             className="rounded-full px-3 outline outline-1 mb-3 mr-3 mx-3"
             onClick={() =>
-              navigator.clipboard.writeText('contact@liamsimpson.co.nz')
+              navigator.clipboard.writeText('liamsimpsondesign@gmail.com')
             }
           >
             <Copy size={20} />
           </button>
           <button className="rounded-full px-3 outline outline-1 mb-3 mr-3">
-            <a href="mailto:contact@liamsimpson.co.nz">Email</a>
+            <a href="mailto:liamsimpsondesign@gmail.com">Email</a>
           </button>
         </div>
       </div>
