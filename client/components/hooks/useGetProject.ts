@@ -6,6 +6,9 @@ export function useGetAllProjects() {
     queryKey: ['projects'],
     queryFn: async () => {
       const response = await api.getAllProjects()
+      response.sort(function (a, b) {
+        return b.sort - a.sort
+      })
       return response
     },
   })
