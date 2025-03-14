@@ -12,6 +12,7 @@ export function ManageProjects({ data }: ProjectArray) {
   const [editId, setEditId] = useState<number>()
   const [changes, setChanges] = useState<Project>({
     name: '',
+    sort: '',
     summary: '',
     description: '',
     tags: [],
@@ -61,6 +62,9 @@ export function ManageProjects({ data }: ProjectArray) {
     if (changes.name !== '') {
       formData.append('name', `${changes.name}`)
     }
+    if (changes.sort !== '') {
+      formData.append('sort', `${changes.sort}`)
+    }
     if (changes.summary !== '') {
       formData.append('summary', `${changes.summary}`)
     }
@@ -102,6 +106,7 @@ export function ManageProjects({ data }: ProjectArray) {
     setEditId(undefined)
     setChanges({
       name: '',
+      sort: '',
       summary: '',
       description: '',
       tags: [],
@@ -131,6 +136,21 @@ export function ManageProjects({ data }: ProjectArray) {
                   </>
                 ) : (
                   <h3 className="text-hxs">{item.name}</h3>
+                )}
+              </div>
+              <div className="break-words py-3">
+                {item.id === editId ? (
+                  <>
+                    <h3 className="text-hxs">Sort Order</h3>
+                    <Input
+                      id="sort"
+                      name="sort"
+                      defaultValue={item.sort}
+                      onChange={handleChange}
+                    />
+                  </>
+                ) : (
+                  <p>{item.sort}</p>
                 )}
               </div>
               <div className="break-words py-3">
