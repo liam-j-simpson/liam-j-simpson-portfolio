@@ -206,7 +206,6 @@ export function AddProject() {
             onChange={handleChange}
             value={form.date}
             className="px-3"
-            required
           ></Input>
         </div>
         <div className="px-3">
