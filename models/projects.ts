@@ -1,5 +1,6 @@
 export interface Project {
   name: string
+  sort: string
   summary: string
   description: string
   tags: string[]

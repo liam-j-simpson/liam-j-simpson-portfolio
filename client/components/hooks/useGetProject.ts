@@ -7,7 +7,7 @@ export function useGetAllProjects() {
     queryFn: async () => {
       const response = await api.getAllProjects()
       response.sort(function (a, b) {
-        return b.sort - a.sort
+        return a.sort - b.sort
       })
       return response
     },

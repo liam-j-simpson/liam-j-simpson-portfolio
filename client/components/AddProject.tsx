@@ -8,6 +8,7 @@ export function AddProject() {
 
   const [form, setForm] = useState<Project>({
     name: '',
+    sort: '',
     summary: '',
     description: '',
     tags: [],
@@ -23,6 +24,7 @@ export function AddProject() {
     e.preventDefault()
     const formData: FormData = new FormData()
     formData.append('name', form.name)
+    formData.append('sort', form.sort)
     formData.append('thumbnail', thumbnail[0])
     formData.append('summary', form.summary)
     formData.append('description', form.description)
@@ -54,6 +56,7 @@ export function AddProject() {
     addProjectMutation.mutate(formData)
     setForm({
       name: '',
+      sort: '',
       summary: '',
       description: '',
       tags: [],
@@ -109,6 +112,18 @@ export function AddProject() {
             placeholder="Enter project name"
             onChange={handleChange}
             value={form.name}
+            required
+          ></Input>
+        </div>
+        <div className="px-3">
+          <h3 className="text-hxs mb-1">Sort*</h3>
+          <Input
+            id="sort"
+            name="sort"
+            aria-label="Project Sort Number"
+            placeholder="Enter sort number"
+            onChange={handleChange}
+            value={form.sort}
             required
           ></Input>
         </div>

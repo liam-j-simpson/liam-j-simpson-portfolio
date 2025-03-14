@@ -68,7 +68,7 @@ router.post(
     { name: 'gallery', maxCount: 5 },
   ]),
   async (req, res, next) => {
-    const { name, summary, description, tags, url, repo, date } = req.body
+    const { name, sort, summary, description, tags, url, repo, date } = req.body
     const files = req.files as MulterFiles
 
     // UPLOAD THUMBNAIL
@@ -83,6 +83,7 @@ router.post(
 
     const project = {
       name,
+      sort,
       summary,
       description,
       tags,
