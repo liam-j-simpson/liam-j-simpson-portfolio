@@ -188,19 +188,20 @@ export function AddProject() {
             onKeyDown={handleChangeTags}
           ></Input>
           <ul className="flex flex-wrap">
-            {form.tags.map((element, index) => (
-              <li key={index}>
-                <div className="rounded-full px-6 outline my-3 mr-3">
-                  {element}
-                  <button
-                    className="ml-1"
-                    onClick={() => handleDeleteTag(index)}
-                  >
-                    x
-                  </button>
-                </div>
-              </li>
-            ))}
+            {form.tags &&
+              form.tags.map((element, index) => (
+                <li key={index}>
+                  <div className="rounded-full px-6 outline my-3 mr-3">
+                    {element}
+                    <button
+                      className="ml-1"
+                      onClick={() => handleDeleteTag(index)}
+                    >
+                      x
+                    </button>
+                  </div>
+                </li>
+              ))}
           </ul>
         </div>
         <div className="px-3">

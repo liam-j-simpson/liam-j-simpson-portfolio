@@ -189,30 +189,32 @@ export function ManageProjects({ data }: ProjectArray) {
                     />
 
                     <ul className="flex flex-wrap">
-                      {Array.isArray(item.tags) &&
+                      {changes.tags &&
                         changes.tags.map((element, index) => (
-                          <li key={index}>
-                            <div className="rounded-full px-6 outline my-3 mr-3">
-                              {element}
-                              <button
-                                className="ml-1"
-                                onClick={() => handleDeleteTag(index)}
-                              >
-                                x
-                              </button>
-                            </div>
+                          <li
+                            key={index}
+                            className="rounded-full px-6 outline my-3 mr-3"
+                          >
+                            {element}
+                            <button
+                              className="ml-1"
+                              onClick={() => handleDeleteTag(index)}
+                            >
+                              x
+                            </button>
                           </li>
                         ))}
                     </ul>
                   </>
                 ) : (
                   <ul className="flex flex-wrap">
-                    {Array.isArray(item.tags) &&
+                    {item.tags &&
                       item.tags.map((item) => (
-                        <li key={item}>
-                          <div className="rounded-full px-6 outline mb-3 mr-3">
-                            {item}
-                          </div>
+                        <li
+                          key={item}
+                          className="rounded-full px-6 outline mb-3 mr-3"
+                        >
+                          {item}
                         </li>
                       ))}
                   </ul>
