@@ -41,8 +41,16 @@ export function ManageProjects({ data }: ProjectArray) {
       e.preventDefault()
       const newTags = e.currentTarget.value
       setChanges({ ...changes, tags: [...(changes.tags || []), newTags] })
+
       e.currentTarget.value = ''
     }
+  }
+
+  const handleDeleteTag = (index: number) => {
+    setChanges({
+      ...changes,
+      tags: changes.tags.filter((_e, i: number) => i !== index),
+    })
   }
 
   const handleChangeThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -182,10 +190,16 @@ export function ManageProjects({ data }: ProjectArray) {
 
                     <ul className="flex flex-wrap">
                       {Array.isArray(item.tags) &&
-                        changes.tags.map((item) => (
-                          <li key={item}>
-                            <div className="rounded-full px-6 outline mb-3 mr-3">
-                              {item}
+                        changes.tags.map((element, index) => (
+                          <li key={index}>
+                            <div className="rounded-full px-6 outline my-3 mr-3">
+                              {element}
+                              <button
+                                className="ml-1"
+                                onClick={() => handleDeleteTag(index)}
+                              >
+                                x
+                              </button>
                             </div>
                           </li>
                         ))}

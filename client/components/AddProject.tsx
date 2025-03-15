@@ -80,8 +80,8 @@ export function AddProject() {
     }
   }
 
-  const handleDeleteTag = (item: string) => {
-    setForm({ ...form, tags: form.tags.filter((i) => i !== item) })
+  const handleDeleteTag = (index: number) => {
+    setForm({ ...form, tags: form.tags.filter((_e, i) => i !== index) })
   }
 
   const handleChangeThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -188,13 +188,13 @@ export function AddProject() {
             onKeyDown={handleChangeTags}
           ></Input>
           <ul className="flex flex-wrap">
-            {form.tags.map((item) => (
-              <li key={item}>
+            {form.tags.map((element, index) => (
+              <li key={index}>
                 <div className="rounded-full px-6 outline my-3 mr-3">
-                  {item}
+                  {element}
                   <button
                     className="ml-1"
-                    onClick={() => handleDeleteTag(item)}
+                    onClick={() => handleDeleteTag(index)}
                   >
                     x
                   </button>
