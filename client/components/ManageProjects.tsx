@@ -179,16 +179,26 @@ export function ManageProjects({ data }: ProjectArray) {
                       placeholder="Submit with <Enter>"
                       onKeyDown={handleChangeTags}
                     />
-                    <p>{changes.tags.join(', ')}</p>
+
+                    <ul className="flex flex-wrap">
+                      {Array.isArray(item.tags) &&
+                        changes.tags.map((item) => (
+                          <li key={item}>
+                            <div className="rounded-full px-6 outline mb-3 mr-3">
+                              {item}
+                            </div>
+                          </li>
+                        ))}
+                    </ul>
                   </>
                 ) : (
                   <ul className="flex flex-wrap">
                     {Array.isArray(item.tags) &&
                       item.tags.map((item) => (
                         <li key={item}>
-                          <button className="rounded-full px-6 outline mb-3 mr-3">
+                          <div className="rounded-full px-6 outline mb-3 mr-3">
                             {item}
-                          </button>
+                          </div>
                         </li>
                       ))}
                   </ul>

@@ -80,6 +80,10 @@ export function AddProject() {
     }
   }
 
+  const handleDeleteTag = (item: string) => {
+    setForm({ ...form, tags: form.tags.filter((i) => i !== item) })
+  }
+
   const handleChangeThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setThumbnail(Array.from(e.target.files))
@@ -183,7 +187,21 @@ export function AddProject() {
             placeholder="Submit with <Enter>"
             onKeyDown={handleChangeTags}
           ></Input>
-          <p>{form.tags.join(', ')}</p>
+          <ul className="flex flex-wrap">
+            {form.tags.map((item) => (
+              <li key={item}>
+                <div className="rounded-full px-6 outline my-3 mr-3">
+                  {item}
+                  <button
+                    className="ml-1"
+                    onClick={() => handleDeleteTag(item)}
+                  >
+                    x
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
         <div className="px-3">
           <h3 className="text-hxs mb-1">Live Site</h3>
