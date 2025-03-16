@@ -16,7 +16,6 @@ export function AddProject() {
     repo: '',
     date: '',
   })
-
   const [thumbnail, setThumbnail] = useState<File[]>([])
   const [gallery, setGallery] = useState<File[]>([])
 
@@ -29,22 +28,23 @@ export function AddProject() {
     formData.append('summary', form.summary)
     formData.append('description', form.description)
     formData.append('date', form.date)
+
     form.tags?.forEach((item) => {
       formData.append('tags[]', item)
     })
+
     if (form.url !== '') {
-      if (form.url?.includes('https://')) {
-        formData.append('url', form.url)
-      } else {
-        formData.append('url', `https://${form.url}`)
-      }
+      formData.append(
+        'url',
+        form.url?.includes('https://') ? form.url : `https://${form.url}`,
+      )
     }
+
     if (form.repo !== '') {
-      if (form.repo?.includes('https://')) {
-        formData.append('repo', form.repo)
-      } else {
-        formData.append('repo', `https://${form.repo}`)
-      }
+      formData.append(
+        'repo',
+        form.repo?.includes('https://') ? form.repo : `https://${form.repo}`,
+      )
     }
 
     if (gallery.length !== 0) {
@@ -79,7 +79,6 @@ export function AddProject() {
       e.currentTarget.value = ''
     }
   }
-
   const handleDeleteTag = (index: number) => {
     setForm({ ...form, tags: form.tags.filter((_e, i) => i !== index) })
   }
