@@ -5,23 +5,22 @@ export function ProjectCards({ data }: ProjectArray) {
   return (
     <>
       <ul>
-        {data.map((item) => (
-          <li key={item.id} className="mb-12">
-            <h2 className="~text-hs/hxs mb-1 lg:mb-3">{item.name}</h2>
-
+        {data.map((element, index) => (
+          <li key={index} className="mb-12">
+            <h2 className="~text-hs/hxs mb-1 lg:mb-3">{element.name}</h2>
             <ul className="flex flex-wrap">
-              {Array.isArray(item.tags) &&
-                item.tags.map((item) => (
-                  <li key={item}>
+              {element.tags &&
+                element.tags.map((element, index) => (
+                  <li key={index}>
                     <div className="rounded-full px-3 outline outline-1 mb-3 mr-3">
-                      {item}
+                      {element}
                     </div>
                   </li>
                 ))}
             </ul>
-            <p className="mb-3">{item.summary}</p>
-            <Link to={`/${item.id}`}>
-              <img src={item.thumbnail} alt="represents the project" />
+            <p className="mb-3">{element.summary}</p>
+            <Link to={`/${element.id}`}>
+              <img src={element.thumbnail} alt="represents the project" />
             </Link>
           </li>
         ))}
