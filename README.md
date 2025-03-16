@@ -1,6 +1,11 @@
-# React Boilerplate
+# CMS Portfolio
 
-## Packages Included
+<h1> Aim:</h1> 
+To create a portfolio that can be updated using a content management system that's accessed through authentication.
+
+
+
+
 
 - react
 - react-router-dom
