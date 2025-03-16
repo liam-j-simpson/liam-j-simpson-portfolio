@@ -1,6 +1,6 @@
 # CMS Portfolio
 
-# Introduction 
+## Introduction 
 I created this portfolio website to display my coding projects.
 I wanted the site to be quickly updatable through a password protected content management system. 
 I drew on all my learnings from Dev Academy Aotearoa's Full Stack Web Development Bootcamp to create this project.
