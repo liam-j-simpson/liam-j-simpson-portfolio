@@ -18,22 +18,24 @@ export function ProjectPage() {
         <h1 className="~text-hm/hl lg:~text-hl/hxl">
           {data.name.toUpperCase()}
         </h1>
+
+        <h2 className="mb-3">
+          Status:
+          {data.date ? ` Deployed on ${data.date}` : ' Project in Development.'}
+        </h2>
+
         <ul className="flex flex-wrap">
-          {Array.isArray(data.tags) &&
-            data.tags.map((item: string) => (
-              <li key={item}>
-                <button className="rounded-full px-6 outline outline-1 mb-3 mr-3">
-                  {item}
-                </button>
+          {data.tags &&
+            data.tags.map((element: string, index: number) => (
+              <li key={index}>
+                <div className="rounded-full px-6 outline outline-1 mb-3 mr-3">
+                  {element}
+                </div>
               </li>
             ))}
         </ul>
-        {data.date ? (
-          <h2 className="mb-3">{`Status: Deployed on ${data.date}`}</h2>
-        ) : (
-          <h2>Status: Project in Development.</h2>
-        )}
         <p className="mb-3">{data.description}</p>
+
         {data.url && (
           <a href={data.url}>
             <button className="rounded-full px-6 outline outline-1 outline-[#304637] bg-[#304637] text-[#E7E6E0] mr-3">
@@ -49,9 +51,9 @@ export function ProjectPage() {
           </a>
         )}
         <ul>
-          {data.gallery.map((item: string) => (
-            <li key={item}>
-              <img src={item} alt="project gallery" className="my-12" />
+          {data.gallery.map((element: string, index: number) => (
+            <li key={index}>
+              <img src={element} alt="project gallery" className="my-12" />
             </li>
           ))}
         </ul>
