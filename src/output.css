@@ -573,14 +573,14 @@ video {
   --chart-5: 27 87% 67%;
 }
 
-.mx-10 {
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
-}
-
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
+}
+
+.mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
 }
 
 .my-10 {
@@ -598,9 +598,9 @@ video {
   margin-bottom: 0.75rem;
 }
 
-.mx-5 {
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 }
 
 .mb-1 {
@@ -836,11 +836,6 @@ h6 {
 }
 
 @media (min-width: 48rem) {
-  .md\:mx-10 {
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
-  }
-
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -854,10 +849,6 @@ h6 {
 
   .lg\:mb-3 {
     margin-bottom: 0.75rem;
-  }
-
-  .lg\:flex {
-    display: flex;
   }
 
   .lg\:grid-cols-3 {

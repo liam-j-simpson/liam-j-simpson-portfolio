@@ -15,7 +15,7 @@ function App() {
             </h1>
           </NavLink>
         </div>
-        <div className="flex mt-1 gap-x-3 ~text-pm/ps flex-wrap">
+        <div className="flex mt-1 gap-x-3 ~text-pm/ps">
           <NavLink to="/">Projects </NavLink>
           <NavLink to="/contact">Contact</NavLink>
           {isAuthenticated && (
