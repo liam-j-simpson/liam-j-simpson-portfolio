@@ -22,8 +22,13 @@ export function ManageProjects({ data }: ProjectArray) {
   })
   const [gallery, setGallery] = useState<File[]>([])
   const [thumbnail, setThumbnail] = useState<File[]>([])
+  console.log(changes)
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target
     setChanges({ ...changes, [name]: value })
   }
@@ -140,6 +145,7 @@ export function ManageProjects({ data }: ProjectArray) {
                       name="name"
                       defaultValue={item.name}
                       onChange={handleChange}
+                      className="py-2 pr-8"
                     />
                   </>
                 ) : (
@@ -155,6 +161,7 @@ export function ManageProjects({ data }: ProjectArray) {
                       name="sort"
                       defaultValue={item.sort}
                       onChange={handleChange}
+                      className="py-2 pr-8"
                     />
                   </>
                 ) : (
@@ -170,6 +177,7 @@ export function ManageProjects({ data }: ProjectArray) {
                       name="thumbnail"
                       onChange={handleChangeThumbnail}
                       accept="image/*"
+                      className="py-2 pr-8"
                     ></input>
                   </>
                 ) : (
@@ -186,6 +194,7 @@ export function ManageProjects({ data }: ProjectArray) {
                       aria-label="Tags"
                       placeholder="Submit with <Enter>"
                       onKeyDown={handleChangeTags}
+                      className="py-2 pr-8"
                     />
 
                     <ul className="flex flex-wrap">
@@ -230,6 +239,7 @@ export function ManageProjects({ data }: ProjectArray) {
                       type="date"
                       defaultValue={item.date}
                       onChange={handleChange}
+                      className="py-2 pr-8"
                     />
                   </>
                 ) : (
@@ -240,12 +250,15 @@ export function ManageProjects({ data }: ProjectArray) {
               <div className="break-words py-3">
                 <h3 className="text-hxs">Summary</h3>
                 {item.id === editId ? (
-                  <Input
-                    id="summary"
-                    name="summary"
-                    defaultValue={item.summary}
-                    onChange={handleChange}
-                  />
+                  <>
+                    <textarea
+                      className="py-2 pl-4 pr-8 field-sizing-content rounded-sm "
+                      id="summary"
+                      name="summary"
+                      defaultValue={item.summary}
+                      onChange={(e) => handleChange(e)}
+                    ></textarea>
+                  </>
                 ) : (
                   item.summary
                 )}
@@ -254,12 +267,13 @@ export function ManageProjects({ data }: ProjectArray) {
               <div className="break-words py-3">
                 <h3 className="text-hxs">Description</h3>
                 {item.id === editId ? (
-                  <Input
+                  <textarea
+                    className="py-2 pl-4 pr-8 field-sizing-content rounded-sm"
                     id="description"
                     name="description"
                     defaultValue={item.description}
-                    onChange={handleChange}
-                  />
+                    onChange={(e) => handleChange(e)}
+                  ></textarea>
                 ) : (
                   item.description
                 )}
@@ -275,6 +289,7 @@ export function ManageProjects({ data }: ProjectArray) {
                       placeholder="Enter url"
                       defaultValue={item.url}
                       onChange={handleChange}
+                      className="py-2 pr-8"
                     />
                   </>
                 ) : (
@@ -293,6 +308,7 @@ export function ManageProjects({ data }: ProjectArray) {
                       placeholder="Enter GitHub repo url"
                       onChange={handleChange}
                       defaultValue={item.repo}
+                      className="py-2 pr-8"
                     />
                   </>
                 ) : (
@@ -308,6 +324,7 @@ export function ManageProjects({ data }: ProjectArray) {
                       name="thumbnail"
                       onChange={handleChangeGallery}
                       accept="image/*"
+                      className="py-2 pr-8"
                       multiple
                     ></input>
                   </>
