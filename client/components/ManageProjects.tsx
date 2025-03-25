@@ -202,7 +202,7 @@ export function ManageProjects({ data }: ProjectArray) {
                         changes.tags.map((element, index) => (
                           <li
                             key={index}
-                            className="rounded-full px-6 outline my-3 mr-3"
+                            className="rounded-full px-3 outline  outline-1 my-3 mr-3"
                           >
                             {element}
                             <button
@@ -221,7 +221,7 @@ export function ManageProjects({ data }: ProjectArray) {
                       item.tags.map((item) => (
                         <li
                           key={item}
-                          className="rounded-full px-6 outline mb-3 mr-3"
+                          className="rounded-full px-6 outline outline-1 mb-3 mr-3"
                         >
                           {item}
                         </li>

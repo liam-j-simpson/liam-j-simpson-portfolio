@@ -2,7 +2,7 @@ import { Copy } from '@phosphor-icons/react'
 export function Contact() {
   return (
     <>
-      <h1 className="~text-hm/hl lg:~text-hl/hxl">CONTACT</h1>
+      <h1 className="~text-hm/hl lg:~text-hl/text-hxl">CONTACT</h1>
 
       <h2 className="~text-hs/hxs mb-1 lg:mb-3">Trajectory</h2>
       <p className="mb-6">
@@ -21,7 +21,7 @@ export function Contact() {
       <p className="mb-6">
         {`I'm looking for opportunities within tech companies where I can provide innovative thinking and technical skills. If you'd like to get in touch, please call or email me.`}
       </p>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap bg-mint-500">
         <p>Phone +64211855651</p>
         <button
           className="rounded-full px-3 outline outline-1 mb-3 mr-3 mx-3"
@@ -37,7 +37,7 @@ export function Contact() {
       <div className="flex flex-wrap">
         <p>Email liamsimpsondesign@gmail.com</p>
         <button
-          className="rounded-full px-3 outline outline-1 mb-3 mr-3 mx-3"
+          className="rounded-sm px-3 outline outline-1 mb-3 mr-3 mx-3"
           onClick={() =>
             navigator.clipboard.writeText('liamsimpsondesign@gmail.com')
           }

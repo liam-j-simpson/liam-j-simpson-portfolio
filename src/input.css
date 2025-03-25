@@ -1,28 +1,71 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@font-face {
-  font-family: 'larken';
-  src: url('../fonts/Larken-Regular.ttf');
-}
-@font-face {
-  font-family: 'inconsolata';
-  src: url('../fonts/Inconsolata-Regular.ttf');
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
-body {
-  background-color: #e7e6e0;
-  font-family: 'Inconsolata', sans-serif;
+/* NEED TO INTEGRATE FLUID SO THE TEXT SCALES BETWEEN THESE SIZES, WILL DO THIS ONCE FLUID SUPPORTS V4 */
+@theme {
+  --text-hxl--line-height: 22rem;
+  --text-hxl: clamp(5rem, 2vw, 10rem);
+  --text-hl--line-height: 9rem;
+  --text-hl: 8rem;
+  --text-hm--line-height: 5rem;
+  --text-hm: 4rem;
+  --text-hs--line-height: 2.5rem;
+  --text-hs: 2rem;
+  --text-hxs--line-height: 2rem;
+  --text-hxs: 1.5rem;
+
+  /* paragraph styles */
+
+  --text-ps--line-height: 2rem;
+  --text-ps: 1rem;
+  --text-pm--line-height: 2.2rem;
+  --text-pm: 1.2rem;
+  --text-pl--line-height: 2.5rem;
+  --text-pl: 1.5rem;
+  --text-pxl--line-height: 3.5rem;
+  --text-pxl: 3rem;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'larken', serif;
+@layer utilities {
+  @font-face {
+    font-family: 'larken';
+    src: url('../fonts/Larken-Regular.ttf');
+  }
+  @font-face {
+    font-family: 'inconsolata';
+    src: url('../fonts/Inconsolata-Regular.ttf');
+  }
+
+  body {
+    background-color: #e7e6e0;
+    font-family: 'Inconsolata', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'larken', serif;
+  }
 }
 
 @layer base {
