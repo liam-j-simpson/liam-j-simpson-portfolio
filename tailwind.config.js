@@ -30,5 +30,5 @@ export default {
       screens,
     },
   },
-  plugins: [fluid, require('tailwindcss-animate')],
+
 }
