@@ -22,7 +22,7 @@ export function Contact() {
         {`I'm looking for opportunities within tech companies where I can provide innovative thinking and technical skills. If you'd like to get in touch, please call or email me.`}
       </p>
       <div className="flex flex-wrap">
-        <p>Phone +64211855651</p>
+        <p>+64211855651</p>
         <button
           className="rounded-full px-3 outline outline-1 mb-3 mr-3 mx-3"
           onClick={() => navigator.clipboard.writeText('+64211855651')}
@@ -35,7 +35,7 @@ export function Contact() {
       </div>
 
       <div className="flex flex-wrap">
-        <p>Email liamsimpsondesign@gmail.com</p>
+        <p>liamsimpsondesign@gmail.com</p>
         <button
           className="rounded-full px-3 outline outline-1 mb-3 mr-3 mx-3"
           onClick={() =>

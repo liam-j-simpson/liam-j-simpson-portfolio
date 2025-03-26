@@ -2,6 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Logout } from '../authentication/Logout'
 import { Profile } from '../authentication/Profile'
+import { Footer } from '../Footer'
 
 function App() {
   const { isAuthenticated } = useAuth0()
@@ -15,7 +16,7 @@ function App() {
             </h1>
           </NavLink>
         </div>
-        <div className="flex mt-1 gap-x-3 ~text-pm/ps">
+        <div className="flex mt-1 gap-x-3">
           <NavLink to="/">Projects </NavLink>
           <NavLink to="/contact">Contact</NavLink>
           {isAuthenticated && (
@@ -30,6 +31,7 @@ function App() {
 
       <main className=" mx-5 lg:mx-10 my-3">
         <Outlet />
+        <Footer />
       </main>
     </>
   )
