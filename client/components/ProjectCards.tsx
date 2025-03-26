@@ -13,7 +13,7 @@ export function ProjectCards({ data }: ProjectArray) {
                 element.tags.map((element, index) => (
                   <li key={index}>
                     <div className="rounded-full px-3 outline outline-1 mb-3 mr-3">
-                      {element}
+                      <p>{element}</p>
                     </div>
                   </li>
                 ))}
