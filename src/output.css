@@ -606,6 +606,10 @@ video {
   margin-bottom: 3rem;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
 .mb-3 {
   margin-bottom: 0.75rem;
 }
@@ -618,6 +622,10 @@ video {
   margin-left: 0.25rem;
 }
 
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
 .mr-3 {
   margin-right: 0.75rem;
 }
@@ -628,10 +636,6 @@ video {
 
 .mt-3 {
   margin-top: 0.75rem;
-}
-
-.mt-6 {
-  margin-top: 1.5rem;
 }
 
 .flex {
@@ -750,13 +754,8 @@ video {
   padding-bottom: 0.75rem;
 }
 
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
-.pb-1 {
-  padding-bottom: 0.25rem;
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 
 .pb-24 {
@@ -862,7 +861,7 @@ h6 {
 p {
   font-family: 'Inconsolata', sans-serif;
   font-size: 1rem;
-  line-height: 1.3rem;
+  line-height: 1.2rem;
 }
 
 @media (min-width: 48rem) {
@@ -886,6 +885,6 @@ p {
   }
 
   .lg\:\~text-hl\/hxl {
-    font-size: clamp(8rem,0.86rem + 17.86vw,18rem)/* fluid type from 8rem at 40rem to 18rem at 96rem */;
+    font-size: clamp(8rem,1.57rem + 16.07vw,17rem)/* fluid type from 8rem at 40rem to 17rem at 96rem */;
   }
 }
