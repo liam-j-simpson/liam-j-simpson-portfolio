@@ -7,12 +7,12 @@ export function ProjectCards({ data }: ProjectArray) {
       <ul>
         {data.map((element, index) => (
           <li key={index} className="mb-12">
-            <h2 className="~text-hs/hxs mb-1 lg:mb-3">{element.name}</h2>
+            <h2 className="~text-hs/hxs mb-1">{element.name}</h2>
             <ul className="flex flex-wrap">
               {element.tags &&
                 element.tags.map((element, index) => (
                   <li key={index}>
-                    <div className="rounded-full px-3 outline outline-1 mb-3 mr-3">
+                    <div className="rounded-full px-3 outline outline-1 mb-2 mr-2">
                       <p>{element}</p>
                     </div>
                   </li>

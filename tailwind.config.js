@@ -14,7 +14,7 @@ export default {
         hs: '2rem',
         hm: '4rem',
         hl: '8rem',
-        hxl: '18rem',
+        hxl: '17rem',
       },
       borderRadius: {
         lg: 'var(--radius)',
