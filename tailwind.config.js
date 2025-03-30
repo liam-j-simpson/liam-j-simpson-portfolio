@@ -13,7 +13,7 @@ export default {
         hxs: '1.5rem',
         hs: '2rem',
         hm: '4rem',
-        hl: '8rem',
+        hl: '7rem',
         hxl: '17rem',
       },
       borderRadius: {
