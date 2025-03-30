@@ -28,7 +28,7 @@ export function ProjectPage() {
           {data.tags &&
             data.tags.map((element: string, index: number) => (
               <li key={index}>
-                <div className="rounded-full px-6 outline outline-1 mb-3 mr-3">
+                <div className="rounded-full px-3 outline outline-1 mb-2 mr-2">
                   <p>{element}</p>
                 </div>
               </li>
@@ -38,14 +38,14 @@ export function ProjectPage() {
 
         {data.url && (
           <a href={data.url}>
-            <button className="rounded-full px-6 outline outline-1 outline-[#304637] bg-[#304637] text-[#E7E6E0] mr-3">
+            <button className="rounded-full px-3 outline outline-1 outline-[#304637] bg-[#304637] text-[#E7E6E0] mr-3">
               <p>Live Site</p>
             </button>
           </a>
         )}
         {data.repo && (
           <a href={data.repo}>
-            <button className="rounded-full px-6 outline outline-1 outline-[#304637] bg-[#304637] text-[#E7E6E0] mr-3">
+            <button className="rounded-full px-3 outline outline-1 outline-[#304637] bg-[#304637] text-[#E7E6E0] mr-3">
               <p>GitHub Repo</p>
             </button>
           </a>

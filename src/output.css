@@ -642,6 +642,14 @@ video {
   margin-top: 0.75rem;
 }
 
+.mb-0 {
+  margin-bottom: 0px;
+}
+
+.mb-0\.5 {
+  margin-bottom: 0.125rem;
+}
+
 .flex {
   display: flex;
 }
@@ -674,6 +682,10 @@ video {
   gap: 1.5rem;
 }
 
+.gap-2 {
+  gap: 0.5rem;
+}
+
 .gap-x-12 {
   column-gap: 3rem;
 }
@@ -704,6 +716,10 @@ video {
 
 .rounded-sm {
   border-radius: calc(var(--radius) - 4px);
+}
+
+.border {
+  border-width: 1px;
 }
 
 .border-b {
@@ -742,6 +758,10 @@ video {
   padding: 1.5rem;
 }
 
+.p-2 {
+  padding: 0.5rem;
+}
+
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -760,6 +780,11 @@ video {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .pb-2 {
@@ -790,8 +815,12 @@ video {
   padding-top: 1.5rem;
 }
 
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+
 .text-hxs {
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .leading-none {
@@ -801,6 +830,10 @@ video {
 .text-\[\#E7E6E0\] {
   --tw-text-opacity: 1;
   color: rgb(231 230 224 / var(--tw-text-opacity, 1));
+}
+
+.underline {
+  text-decoration-line: underline;
 }
 
 .outline {
@@ -824,7 +857,7 @@ video {
 }
 
 .\~text-hs\/hxs {
-  font-size: clamp(1.5rem,2.36rem + -0.89vw,2rem)/* fluid type from 2rem at 40rem to 1.5rem at 96rem */;
+  font-size: clamp(1rem,1.86rem + -0.89vw,1.5rem)/* fluid type from 1.5rem at 40rem to 1rem at 96rem */;
 }
 
 @keyframes enter {
