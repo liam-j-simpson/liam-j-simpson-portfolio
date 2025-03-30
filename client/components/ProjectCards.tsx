@@ -6,7 +6,7 @@ export function ProjectCards({ data }: ProjectArray) {
     <>
       <ul>
         {data.map((element, index) => (
-          <li key={index} className="mb-16">
+          <li key={index} className="mb-12">
             <h2 className="~text-hs/hxs mb-1.5">
               {element.name.toUpperCase()}
             </h2>

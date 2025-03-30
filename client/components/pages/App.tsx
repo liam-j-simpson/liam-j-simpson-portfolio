@@ -8,15 +8,15 @@ function App() {
   const { isAuthenticated } = useAuth0()
   return (
     <>
-      <nav className="mx-5 mt-3 pb-2 border-black border-b lg:mx-10 flex items-end justify-between">
+      <nav className="mx-6 mt-3 pb-1 border-black border-b lg:mx-12 flex items-end justify-between">
         <div>
           <NavLink to="/">
-            <h1 className="~text-hs/hxs pr-3 leading-none break-keep">
+            <h1 className="~text-hs/hxs leading-none break-keep">
               LIAM SIMPSON
             </h1>
           </NavLink>
         </div>
-        <div className="flex mt-1 gap-x-3">
+        <div className="flex gap-x-3">
           <NavLink to="/">
             <p>Projects</p>
           </NavLink>
@@ -32,8 +32,7 @@ function App() {
           )}
         </div>
       </nav>
-
-      <main className=" mx-5 lg:mx-10 my-3">
+      <main className=" mx-6 lg:mx-12">
         <Outlet />
         <Footer />
       </main>

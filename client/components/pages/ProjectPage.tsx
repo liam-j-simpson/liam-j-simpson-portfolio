@@ -15,20 +15,20 @@ export function ProjectPage() {
   if (data) {
     return (
       <>
-        <h1 className="~text-hm/hl lg:~text-hl/hxl">
+        <h1 className="~text-hm/hl pb-24 pt-12 lg:~text-hl/hxl lg:py-0">
           {data.name.toUpperCase()}
         </h1>
 
-        <h2 className="mb-3">
-          Status:
-          {data.date ? ` Deployed on ${data.date}` : ' Project in Development.'}
-        </h2>
+        <p className="mb-3">
+          Status -
+          {data.date ? ` Deployed on ${data.date}` : ' Project in development.'}
+        </p>
 
         <ul className="flex flex-wrap">
           {data.tags &&
             data.tags.map((element: string, index: number) => (
               <li key={index}>
-                <div className="rounded-full px-3 outline outline-1 mb-2 mr-2">
+                <div className="rounded-full px-3 outline outline-1 mb-3 mr-3">
                   <p>{element}</p>
                 </div>
               </li>
