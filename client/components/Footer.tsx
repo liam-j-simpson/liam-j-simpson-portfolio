@@ -4,10 +4,8 @@ export function Footer() {
   return (
     <>
       <h2 className="~text-hs/hxs pt-6 border-black border-t leading-none">
-        {`Let's work together,`.toUpperCase()}
+        {`LET'S WORK TOGETHER`}
       </h2>
-      <h2 className="~text-hs/hxs mb-1 lg:mb-3">GET IN TOUCH.</h2>
-
       <div className="grid grid cols-1 md:grid-cols-2 gap-6 pb-6">
         <div>
           <p>+64211855651</p>
