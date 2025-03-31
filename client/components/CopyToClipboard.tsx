@@ -16,7 +16,7 @@ export function CopyToClipboard({
     navigator.clipboard.writeText(text)
     setTimeout(() => {
       setShowMessage(false)
-    }, 1000)
+    }, 800)
   }
 
   return (
@@ -31,7 +31,7 @@ export function CopyToClipboard({
           </button>
         </>
       ) : (
-        <p className="flex pr-3 underline mb-1.5">Copied to clipboard</p>
+        <p className="flex pr-3 underline mb-1.5">Copied</p>
       )}
       {
         <button className="rounded-full outline outline-1 px-3 mb-1.5">
