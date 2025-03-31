@@ -1,3 +1,5 @@
+import { CopyToClipboard } from '../CopyToClipboard'
+
 export function Contact() {
   return (
     <>
@@ -22,37 +24,14 @@ export function Contact() {
       <p className="mb-6">
         {`I'm looking for opportunities within tech companies where I can provide innovative thinking and technical skills. If you'd like to get in touch, please call or email me.`}
       </p>
-      <div className="flex flex-wrap">
-        <button
-          className="flex pr-3 underline pb-3"
-          onClick={() => navigator.clipboard.writeText('+64211855651')}
-        >
-          <p>+64211855651 </p>
-        </button>
 
-        <button className="rounded-full outline outline-1 px-3 mb-3">
-          <a href="tel:+64211855651">
-            <p>Call</p>
-          </a>
-        </button>
-      </div>
+      <CopyToClipboard url="tel:+64211855651" text="+64211855651" cta="Call" />
 
-      <div className="flex flex-wrap">
-        <button
-          className="flex pr-3 underline pb-3"
-          onClick={() =>
-            navigator.clipboard.writeText('liamsimpsondesign@gmail.com')
-          }
-        >
-          <p className="underline">liamsimpsondesign@gmail.com</p>
-        </button>
-        <button className="rounded-full outline outline-1 px-3 mb-3">
-          <a href="mailto:liamsimpsondesign@gmail.com">
-            <p>Email</p>
-          </a>
-        </button>
-      </div>
-
+      <CopyToClipboard
+        url="mailto:liamsimpsondesign@gmail.com"
+        text="liamsimpsondesign@gmail.com"
+        cta="Email"
+      />
       <img
         className="my-10"
         src="../../../images/liam-simpson-headshot.jpg"
