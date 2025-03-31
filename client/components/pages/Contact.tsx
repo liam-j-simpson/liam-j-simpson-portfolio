@@ -1,7 +1,9 @@
 export function Contact() {
   return (
     <>
-      <h1 className="~text-hm/hl py-24 lg:~text-hl/hxl lg:py-0">CONTACT</h1>
+      <h1 className="~text-hm/hl pt-12 pb-8 lg:~text-hl/hxl lg:py-0">
+        CONTACT
+      </h1>
 
       <h2 className="~text-hs/hxs mb-1">TRAJECTORY</h2>
       <p className="mb-6">

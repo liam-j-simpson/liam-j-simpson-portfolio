@@ -14,7 +14,7 @@ export function Projects() {
   if (data) {
     return (
       <>
-        <h1 className="~text-hm/hl py-24 lg:~text-hl/hxl lg:py-0">PROJECTS</h1>
+        <h1 className="~text-hm/hl pt-12 pb-8 lg:~text-hl/hxl lg:py-0">PROJECTS</h1>
         <div>
           <ProjectCards data={data} />
         </div>

@@ -17,7 +17,9 @@ export function Admin() {
   if (data) {
     return (
       <>
-        <h1 className="~text-hm/hl py-24 lg:~text-hl/hxl lg:py-0">ADMIN</h1>
+        <h1 className="~text-hm/hl pt-12 pb-8 lg:~text-hl/hxl lg:py-0">
+          ADMIN
+        </h1>
         <ManageProjects data={data} />
         <AddProject />
       </>
