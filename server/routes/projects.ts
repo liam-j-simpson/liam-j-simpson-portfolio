@@ -53,6 +53,8 @@ router.get('/:id', async (req, res, next) => {
     const id = req.params.id
     const project = await getProjectById(id)
     res.json({ project })
+
+    // res.json({ project })
   } catch (error) {
     next(error)
   }
