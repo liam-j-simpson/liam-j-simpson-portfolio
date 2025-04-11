@@ -25,7 +25,9 @@ function App() {
           </NavLink>
           {isAuthenticated && (
             <>
-              <NavLink to="/admin">Admin</NavLink>
+              <NavLink to="/admin">
+                <p>Admin</p>
+              </NavLink>
               <Profile />
               <Logout />
             </>
