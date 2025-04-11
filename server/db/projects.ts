@@ -1,24 +1,11 @@
 import { Project } from 'models/projects'
-import { connectToDb } from './connection'
-import { ObjectId } from 'mongodb'
-
-//GET PROJECTS COLLECTION
-export async function connectProjectCollection() {
-  const db = await connectToDb()
-  const collection = db.collection('projects')
-  return collection
-}
+import db from './connection'
 
 // GET ALL PROJECTS
 export async function getAllProjects() {
-  const collection = await connectProjectCollection()
   try {
-    const projects = await collection.find({}).toArray()
-    const projectsWithId = projects.map((project) => {
-      const { _id, ...rest } = project
-      return { id: _id, ...rest }
-    })
-    return projectsWithId
+    const projects = await db('projects').select()
+    return projects
   } catch (error) {
     throw new Error(`Error getting projects, ${error}`)
   }
@@ -26,9 +13,8 @@ export async function getAllProjects() {
 
 // GET ONE PROJECT
 export async function getProjectById(id: string) {
-  const collection = await connectProjectCollection()
   try {
-    const project = await collection.findOne({ _id: new ObjectId(id) })
+    const project = await db('projects').where('id', id).first().select()
     return project
   } catch (error) {
     throw new Error(`Error getting project:${id}, ${error}`)
@@ -37,9 +23,9 @@ export async function getProjectById(id: string) {
 
 // CREATE PROJECT
 export async function addProject(project: Project) {
-  const collection = await connectProjectCollection()
   try {
-    collection.insertOne(project)
+    const newProject = await db('projects').insert(project)
+    return newProject
   } catch (error) {
     throw new Error(`Error creating project, ${error}`)
   }
@@ -47,9 +33,9 @@ export async function addProject(project: Project) {
 
 //EDIT PROJECT
 export async function editProject(id: string, changes: Project) {
-  const collection = await connectProjectCollection()
   try {
-    collection.updateOne({ _id: new ObjectId(id) }, { $set: changes })
+    const editProject = await db('projects').where('id', id).update(changes)
+    return editProject
   } catch (error) {
     throw new Error(`Error editing project:${id}, ${error}`)
   }
@@ -57,9 +43,9 @@ export async function editProject(id: string, changes: Project) {
 
 // DELETE PROJECT
 export async function deleteProject(id: string) {
-  const collection = await connectProjectCollection()
   try {
-    return await collection.deleteOne({ _id: new ObjectId(id) })
+    const deleteProject = await db('projects').where('id', id).del()
+    return deleteProject
   } catch (error) {
     throw new Error(`Error deleting project:${id}, ${error}`)
   }
