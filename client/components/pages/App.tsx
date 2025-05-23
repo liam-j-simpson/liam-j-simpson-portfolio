@@ -4,21 +4,21 @@ import { Logout } from '../authentication/Logout'
 import { Profile } from '../authentication/Profile'
 import { Footer } from '../Footer'
 import enterView from 'enter-view'
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 
 function App() {
   const { isAuthenticated } = useAuth0()
 
   // page animations
-  const location = useLocation()
-  useEffect(() => {
-    enterView({
-      selector: '.enter',
-      enter: function (el) {
-        el.classList.add('entered')
-      },
-    })
-  }, [location.pathname])
+  // const location = useLocation()
+  // useEffect(() => {
+  enterView({
+    selector: '.enter',
+    enter: function (el) {
+      el.classList.add('entered')
+    },
+  })
+  // }, [location.pathname])
 
   return (
     <>
