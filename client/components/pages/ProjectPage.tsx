@@ -14,7 +14,7 @@ export function ProjectPage() {
   }
   if (data) {
     return (
-      <section className="enter">
+      <section>
         <>
           <h1 className="~text-hm/hl pt-12 pb-8 lg:~text-hl/hxl lg:py-0">
             {data.name.toUpperCase()}
