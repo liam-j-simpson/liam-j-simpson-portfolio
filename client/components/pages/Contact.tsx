@@ -1,10 +1,26 @@
 import { CopyToClipboard } from '../CopyToClipboard'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 
 export function Contact() {
+
+
+  useGSAP(() => {
+    gsap.from('.Heading', {
+      duration: 0.5,
+      ease: 'power1.out',
+      opacity: 0,
+      y: 5,
+    })
+  })
+
   return (
     <section>
       <>
-        <h1 className="~text-hm/hl pt-12 pb-8 lg:~text-hl/hxl lg:py-0">
+        <h1
+          // ref={contactText}
+          className="Heading ~text-hm/hl pt-12 pb-8 lg:~text-hl/hxl lg:py-0"
+        >
           CONTACT
         </h1>
 
