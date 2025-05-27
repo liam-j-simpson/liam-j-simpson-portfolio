@@ -13,6 +13,7 @@
 
 body {
   background-color: #e7e6e0;
+  overflow-y: scroll;
 }
 
 h1,
