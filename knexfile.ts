@@ -7,12 +7,12 @@ interface IKnexConfig {
 const config: IKnexConfig = {
   development: {
     client: 'pg',
-    connection: process.env.DATABASE_URL || {
-      host: 'localhost',
-      port: 5432,
-      user: 'liamsimpson',
-      password: 'Jemaine96',
-      database: 'liamsimpson',
+    connection: {
+      host: process.env.PGHOST || 'localhost',
+      port: process.env.PGPORT || 5432,
+      user: process.env.PGUSER || 'liamsimpson',
+      password: process.env.PGPASSWORD || 'Jemaine96',
+      database: process.env.POSTGRES_DB || 'liamsimpson',
     },
     migrations: {
       extension: 'ts',
