@@ -25,16 +25,20 @@ function App() {
           </NavLink>
           {isAuthenticated && (
             <>
-              <NavLink to="/admin">Admin</NavLink>
+              <NavLink to="/admin">
+                <p>Admin</p>
+              </NavLink>
               <Profile />
               <Logout />
             </>
           )}
         </div>
       </nav>
-      <main className=" mx-6 lg:mx-12">
-        <Outlet />
-        <Footer />
+      <main className="mx-6 lg:mx-12">
+        <section>
+          <Outlet />
+          <Footer />
+        </section>
       </main>
     </>
   )

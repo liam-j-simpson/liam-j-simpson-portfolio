@@ -9,7 +9,7 @@ export function Logout() {
           logout({ logoutParams: { returnTo: window.location.origin } })
         }
       >
-        Log Out
+        <p>Log Out</p>
       </button>
     )
   }
