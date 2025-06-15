@@ -3,8 +3,6 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 
 export function Contact() {
-
-
   useGSAP(() => {
     gsap.from('.Heading', {
       duration: 0.5,
@@ -32,9 +30,9 @@ export function Contact() {
 
         <h2 className="~text-hs/hxs mb-1">VALUES</h2>
         <p className="mb-6">
-          {`I believe we have a responsibility to be thoughtfull about what we
+          {`I believe we have a responsibility to be thoughtful about what we
           create, both digital and physical. The impact a product will
-          have on it's users or the environment should always be considered.`}
+          have on its users or the environment should always be considered.`}
         </p>
 
         <h2 className="~text-hs/hxs mb-1">GET IN TOUCH</h2>
